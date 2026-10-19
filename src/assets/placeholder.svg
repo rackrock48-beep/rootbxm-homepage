@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-label="이미지 자리">
+  <rect width="1200" height="750" fill="#eef2f5"/>
+  <path d="M460 470 L560 340 L660 430 L740 370 L860 470 Z" fill="#c9d3db"/>
+  <circle cx="500" cy="300" r="40" fill="#c9d3db"/>
+</svg>

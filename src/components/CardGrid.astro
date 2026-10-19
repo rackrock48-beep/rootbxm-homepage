@@ -1,0 +1,30 @@
+---
+// 카드 그리드. 카드마다 제목·설명·(선택) 불릿 목록. 항목 수는 자유.
+interface Props {
+  items: { title: string; description?: string; items?: string[] }[];
+  columns?: 2 | 3 | 4;
+}
+const { items, columns = 3 } = Astro.props;
+const cols = { 2: 'md:grid-cols-2', 3: 'md:grid-cols-2 lg:grid-cols-3', 4: 'md:grid-cols-2 lg:grid-cols-4' };
+---
+
+<ul class:list={['grid gap-5', cols[columns]]}>
+  {
+    items.map(({ title, description, items: bullets = [] }) => (
+      <li class="flex flex-col rounded-3xl border border-border-accent bg-background p-7">
+        <h3 class="text-20 font-bold">{title}</h3>
+        {description && <p class="mt-2 text-15 text-foreground-muted">{description}</p>}
+        {bullets.length > 0 && (
+          <ul class="mt-5 space-y-2 border-t border-border pt-5 text-15 text-foreground">
+            {bullets.map((b) => (
+              <li class="flex gap-2.5">
+                <svg aria-hidden="true" class="mt-1 shrink-0 text-primary" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7" /></svg>
+                {b}
+              </li>
+            ))}
+          </ul>
+        )}
+      </li>
+    ))
+  }
+</ul>

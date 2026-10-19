@@ -1,0 +1,30 @@
+---
+// 이미지 갤러리. 가로로 넘겨 본다(CSS scroll-snap, 자바스크립트 없음). 개수는 자유.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import placeholder from '../assets/placeholder.svg';
+
+interface Props {
+  items: { image?: ImageMetadata; alt: string; caption?: string }[];
+}
+const { items } = Astro.props;
+---
+
+<ul class="-mx-gutter flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-gutter px-gutter pb-4">
+  {
+    items.map(({ image, alt, caption }) => (
+      <li class="w-[28rem] shrink-0 snap-start md:w-[36rem]">
+        <figure>
+          <Image
+            src={image ?? placeholder}
+            alt={alt}
+            width={720}
+            height={450}
+            class="aspect-[16/10] w-full rounded-2xl border border-border-accent bg-surface-accent object-cover"
+          />
+          {caption && <figcaption class="mt-2 text-14 text-foreground-muted">{caption}</figcaption>}
+        </figure>
+      </li>
+    ))
+  }
+</ul>

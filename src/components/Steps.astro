@@ -1,0 +1,27 @@
+---
+// 단계 목록. 순서대로 번호가 붙는다. 개수는 자유.
+interface Props {
+  items: { title: string; description?: string }[];
+}
+const { items } = Astro.props;
+---
+
+<ol class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+  {
+    items.map(({ title, description }, i) => (
+      <li class="rounded-3xl border border-border-accent bg-background p-6">
+        <span
+          aria-hidden="true"
+          class="flex size-11 items-center justify-center rounded-full bg-primary-surface text-16 font-bold text-primary tabular-nums"
+        >
+          {i + 1}
+        </span>
+        <h3 class="mt-5 text-20 font-bold">
+          <span class="sr-only">{i + 1}단계. </span>
+          {title}
+        </h3>
+        {description && <p class="mt-1.5 text-15 text-foreground-muted">{description}</p>}
+      </li>
+    ))
+  }
+</ol>

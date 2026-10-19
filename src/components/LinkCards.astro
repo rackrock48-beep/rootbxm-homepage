@@ -1,0 +1,32 @@
+---
+// 링크 카드 목록. 외부 글·기사로 가는 카드. 개수는 자유.
+interface Props {
+  items: { title: string; source?: string; date?: string; href: string }[];
+}
+const { items } = Astro.props;
+---
+
+<ul class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+  {
+    items.map(({ title, source, date, href }) => (
+      <li>
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener"
+          class="flex h-full flex-col rounded-3xl border border-border-accent bg-background p-7 transition-colors hover:border-primary"
+        >
+          {(source || date) && (
+            <p class="text-14 text-foreground-muted">
+              {source}
+              {source && date && ' · '}
+              {date && <time>{date}</time>}
+            </p>
+          )}
+          <h3 class="mt-3 text-18 font-bold">{title}</h3>
+          <span class="mt-auto pt-6 text-14 font-semibold text-primary">자세히 보기 ↗</span>
+        </a>
+      </li>
+    ))
+  }
+</ul>

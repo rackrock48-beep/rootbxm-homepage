@@ -1,0 +1,212 @@
+@import "tailwindcss";
+/* 한글 웹폰트: Pretendard 다이나믹 서브셋(쓰이는 글자 묶음만 내려받음). npm 패키지에서 self-host, 400~800 전부 한 파일. */
+@import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
+
+/*
+  디자인 토큰. 색·글꼴·크기·간격은 모두 여기서만 정한다.
+  html font-size가 62.5%이므로 1rem = 10px이다. rem 값은 "px ÷ 10"으로 적는다.
+*/
+
+/* ── 색 ───────────────────────────────────────────────────────────────── */
+:root {
+  /* 브랜드 컬러: 회사 색은 이 한 줄만 바꾼다. 연한 배경(primary-surface)과 포커스 링(ring)은 자동으로 따라온다. */
+  --primary: hsl(217, 100%, 52%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --primary-surface: hsl(from var(--primary) h 100% 95%);
+  --ring: hsl(from var(--primary) h 100% 88%);
+
+  --secondary: hsl(0, 0%, 20%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+
+  --background: hsl(0, 0%, 100%);
+  --surface: hsl(210, 20%, 98%);
+  --surface-accent: hsl(195, 18%, 95%);
+
+  --foreground: hsl(222, 20%, 13%);
+  --foreground-muted: hsl(218, 12%, 36%);
+  --foreground-subtle: hsl(212, 14%, 54%); /* 대비 3.6:1 → 큰 글자·장식에만 쓴다 */
+
+  --border: hsl(210, 20%, 95%);
+  --border-accent: hsl(213, 12%, 88%);
+
+  --black: hsl(0, 0%, 0%);
+  --white: hsl(0, 0%, 100%);
+
+  --success: hsl(157, 91%, 38%);
+  --success-surface: hsl(157, 52%, 94%);
+  --info: hsl(220, 93%, 66%);
+  --info-surface: hsl(220, 82%, 96%);
+  --warning: hsl(34, 95%, 54%);
+  --warning-surface: hsl(30, 100%, 96%);
+  --destructive: hsl(0, 88%, 60%);
+  --destructive-surface: hsl(11, 94%, 96%);
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-surface: var(--primary-surface);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-accent: var(--surface-accent);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-subtle: var(--foreground-subtle);
+  --color-border: var(--border);
+  --color-border-accent: var(--border-accent);
+  --color-ring: var(--ring);
+  --color-black: var(--black);
+  --color-white: var(--white);
+  --color-success: var(--success);
+  --color-success-surface: var(--success-surface);
+  --color-info: var(--info);
+  --color-info-surface: var(--info-surface);
+  --color-warning: var(--warning);
+  --color-warning-surface: var(--warning-surface);
+  --color-destructive: var(--destructive);
+  --color-destructive-surface: var(--destructive-surface);
+}
+
+/* ── 글꼴·크기·간격·모서리·그림자 ───────────────────────────────────── */
+@theme {
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  /* 글자 크기: px 숫자가 곧 이름. text-16이 본문. */
+  --text-*: initial;
+  --text-10: 10px;
+  --text-10--line-height: 1.4;
+  --text-10--letter-spacing: -0.02em;
+  --text-12: 12px;
+  --text-12--line-height: 1.4;
+  --text-12--letter-spacing: -0.02em;
+  --text-13: 13px;
+  --text-13--line-height: 1.4;
+  --text-13--letter-spacing: -0.02em;
+  --text-14: 14px;
+  --text-14--line-height: 1.4;
+  --text-14--letter-spacing: -0.02em;
+  --text-15: 15px;
+  --text-15--line-height: 1.4;
+  --text-15--letter-spacing: -0.02em;
+  --text-16: 16px;
+  --text-16--line-height: 1.4;
+  --text-16--letter-spacing: -0.025em;
+  --text-18: 18px;
+  --text-18--line-height: 1.4;
+  --text-18--letter-spacing: -0.025em;
+  --text-20: 20px;
+  --text-20--line-height: 1.4;
+  --text-20--letter-spacing: -0.025em;
+  --text-22: 22px;
+  --text-22--line-height: 1.4;
+  --text-22--letter-spacing: -0.025em;
+  --text-24: 24px;
+  --text-24--line-height: 1.4;
+  --text-24--letter-spacing: -0.025em;
+  --text-28: 28px;
+  --text-28--line-height: 1.4;
+  --text-28--letter-spacing: -0.025em;
+  --text-32: 32px;
+  --text-32--line-height: 1.4;
+  --text-32--letter-spacing: -0.025em;
+  --text-36: 36px;
+  --text-36--line-height: 1.4;
+  --text-36--letter-spacing: -0.025em;
+  --text-40: 40px;
+  --text-40--line-height: 1.5;
+  --text-40--letter-spacing: -0.025em;
+  --text-46: 46px;
+  --text-46--line-height: 1.5;
+  --text-46--letter-spacing: -0.025em;
+
+  /* 간격: p-4 = 16px, gap-5 = 20px (숫자 × 4px) */
+  --spacing: 0.4rem;
+  --spacing-gutter: clamp(1.6rem, 4vw, 3.2rem); /* 화면 좌우 여백 → px-gutter */
+  --spacing-section: clamp(6.4rem, 8vw, 10rem); /* 섹션 위아래 여백 → py-section */
+
+  /* 폭: max-w-site / max-w-prose */
+  --container-*: initial;
+  --container-site: 128rem;
+  --container-prose: 72rem;
+
+  --breakpoint-*: initial;
+  --breakpoint-sm: 500px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1200px;
+
+  --radius-*: initial;
+  --radius-xs: 0.2rem;
+  --radius-sm: 0.4rem;
+  --radius-md: 0.6rem;
+  --radius-lg: 0.8rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.2rem;
+  --radius-3xl: 1.6rem;
+  --radius-4xl: 2.2rem;
+  --radius-full: 999rem;
+
+  --shadow-sm: 0 4px 12px 0 hsla(213, 12%, 24%, 0.03);
+  --shadow-md: 0 8px 20px 0 hsla(213, 12%, 24%, 0.07);
+  --shadow-lg: 0 14px 28px 0 hsla(213, 12%, 24%, 0.08);
+
+  --animate-draw-underline: draw-underline 0.7s cubic-bezier(0.65, 0, 0.35, 1) 0.3s both;
+  @keyframes draw-underline {
+    from {
+      background-size: 0% 30%;
+    }
+    to {
+      background-size: 100% 30%;
+    }
+  }
+}
+
+@layer base {
+  html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 8rem; /* 앵커로 이동할 때 상단 고정 메뉴에 가리지 않게 */
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background font-sans text-16 text-foreground antialiased;
+    word-break: keep-all; /* 한글 단어 중간에서 줄이 끊기지 않게 */
+    overflow-wrap: anywhere;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  ::selection {
+    background: var(--color-primary-surface);
+  }
+  summary {
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    ::before,
+    ::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+/* 글자 아래 형광펜 밑줄. <span class="highlight-underline">강조할 말</span>
+   배경 그라데이션으로 그려서 여러 줄로 꺾여도 줄마다 칠해진다(인라인 블록 방식은 한글 제목이 줄바꿈될 때 깨짐). */
+@utility highlight-underline {
+  background-image: linear-gradient(var(--color-primary-surface), var(--color-primary-surface));
+  background-repeat: no-repeat;
+  background-position: 0 92%;
+  background-size: 100% 30%;
+  animation: var(--animate-draw-underline);
+}

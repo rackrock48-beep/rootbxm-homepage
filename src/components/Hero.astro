@@ -1,0 +1,44 @@
+---
+// 첫 화면. 제목(h1)·설명·버튼 두 개·키워드 목록. 글은 src/content.ts의 hero에서 바꾼다.
+import { SITE, url } from '../site';
+import Button from './Button.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  highlight?: string; // title 안에서 형광펜 밑줄을 칠 부분
+  lead?: string;
+  tags?: string[];
+  cta?: { label: string; href: string }; // 첫 번째 버튼. 기본은 "자세히 보기" → 첫 섹션
+}
+const { eyebrow, title, highlight, lead, tags = [], cta = { label: '자세히 보기', href: url('/#features') } } = Astro.props;
+const [before, after] = highlight && title.includes(highlight) ? title.split(highlight) : [title, undefined];
+---
+
+<section class="border-b border-border bg-background">
+  <div class="mx-auto max-w-site px-gutter py-section">
+    <div class="max-w-[80rem]">
+      {eyebrow && <p class="mb-5 text-14 font-semibold text-primary">{eyebrow}</p>}
+      <h1 class="text-32 font-extrabold text-foreground md:text-46">
+        {before}
+        {after !== undefined && <span class="highlight-underline">{highlight}</span>}
+        {after}
+      </h1>
+      {lead && <p class="mt-6 max-w-prose text-18 text-foreground-muted md:text-20">{lead}</p>}
+      <div class="mt-10 flex flex-wrap gap-3">
+        <Button href={cta.href} size="lg">{cta.label}</Button>
+        <Button href={SITE.contact.kakao} variant="secondary" size="lg">문의하기</Button>
+      </div>
+    </div>
+
+    {
+      tags.length > 0 && (
+        <ul aria-label="키워드" class="mt-16 flex flex-wrap gap-2">
+          {tags.map((t) => (
+            <li class="rounded-full border border-border-accent bg-surface px-4 py-2 text-14 font-medium text-foreground-muted">{t}</li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</section>

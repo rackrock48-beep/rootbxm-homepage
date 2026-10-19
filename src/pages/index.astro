@@ -1,0 +1,42 @@
+---
+// 첫 페이지(원페이지). 섹션 부품을 한 번씩 보여 주는 구성이다.
+// 섹션을 빼려면 해당 <Section> 블록을 지우고, 순서를 바꾸려면 블록을 옮긴다. 글은 src/content.ts, 회사 정보는 src/site.ts.
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import CardGrid from '../components/CardGrid.astro';
+import About from '../components/About.astro';
+import Steps from '../components/Steps.astro';
+import Gallery from '../components/Gallery.astro';
+import LinkCards from '../components/LinkCards.astro';
+import ContactChannels from '../components/ContactChannels.astro';
+import { hero, about, features, steps, gallery, posts } from '../content';
+---
+
+<Layout>
+  <Hero {...hero} />
+
+  <Section id="features" eyebrow="작은 라벨" title="카드 그리드 섹션 제목" lead="섹션 설명이 들어갑니다. 한두 문장이 알맞습니다.">
+    <CardGrid items={features} columns={4} />
+  </Section>
+
+  <Section id="about" tone="surface">
+    <About {...about} />
+  </Section>
+
+  <Section id="steps" eyebrow="작은 라벨" title="단계 섹션 제목" lead="섹션 설명이 들어갑니다. 한두 문장이 알맞습니다.">
+    <Steps items={steps} />
+  </Section>
+
+  <Section id="gallery" tone="surface" eyebrow="작은 라벨" title="갤러리 섹션 제목" lead="옆으로 넘겨서 볼 수 있습니다.">
+    <Gallery items={gallery} />
+  </Section>
+
+  <Section id="posts" eyebrow="작은 라벨" title="링크 카드 섹션 제목">
+    <LinkCards items={posts} />
+  </Section>
+
+  <Section id="contact" tone="surface" eyebrow="문의" title="문의 섹션 제목" lead="섹션 설명이 들어갑니다. 한두 문장이 알맞습니다.">
+    <ContactChannels />
+  </Section>
+</Layout>

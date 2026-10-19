@@ -1,0 +1,12 @@
+---
+// 본문 폭을 가운데로 맞추는 상자. 섹션 안쪽 내용은 모두 이 안에 둔다.
+interface Props {
+  class?: string;
+  narrow?: boolean; // 긴 글은 좁게
+}
+const { class: className = '', narrow = false } = Astro.props;
+---
+
+<div class:list={['mx-auto w-full px-gutter', narrow ? 'max-w-prose' : 'max-w-site', className]}>
+  <slot />
+</div>

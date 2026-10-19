@@ -1,0 +1,49 @@
+---
+// 바닥글. 상호·대표자·사업자번호·연락처·운영시간·저작권. 내용은 src/site.ts에서 바꾼다.
+// 아래쪽 여백은 모바일 플로팅 메뉴(QuickMenu)에 가리지 않기 위한 것이다.
+import { SITE, url } from '../site';
+
+const { phone, email, address, hours } = SITE.contact;
+const tel = `tel:${phone.replace(/-/g, '')}`;
+---
+
+<footer class="border-t border-border bg-surface pb-[calc(5.6rem+env(safe-area-inset-bottom))] lg:pb-0">
+  <div class="mx-auto grid max-w-site gap-10 px-gutter py-14 md:grid-cols-[1.2fr_1fr]">
+    <div>
+      <p class="text-18 font-extrabold tracking-tight text-foreground">{SITE.name}</p>
+      <dl class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-14 text-foreground-muted">
+        <dt>대표자</dt>
+        <dd>{SITE.legal.representative}</dd>
+        <dt>사업자등록번호</dt>
+        <dd>{SITE.legal.businessNumber}</dd>
+        <dt>주소</dt>
+        <dd>{address}</dd>
+        <dt>전화</dt>
+        <dd><a href={tel} class="hover:text-foreground">{phone}</a></dd>
+        <dt>이메일</dt>
+        <dd><a href={`mailto:${email}`} class="hover:text-foreground">{email}</a></dd>
+        <dt>운영시간</dt>
+        <dd>{hours}</dd>
+      </dl>
+    </div>
+
+    <nav aria-label="바닥글 메뉴" class="md:justify-self-end">
+      <ul class="grid grid-cols-2 gap-x-8 sm:grid-cols-3 md:grid-cols-1">
+        {
+          SITE.nav.map(({ href, label }) => (
+            <li>
+              <a href={url(href)} class="flex min-h-10 items-center text-14 text-foreground hover:text-primary">
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+  <div class="border-t border-border">
+    <p class="mx-auto max-w-site px-gutter py-5 text-13 text-foreground-muted lg:pr-28">
+      © {new Date().getFullYear()} {SITE.name}. All rights reserved.
+    </p>
+  </div>
+</footer>

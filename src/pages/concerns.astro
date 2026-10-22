@@ -22,17 +22,6 @@ import { concerns } from '../concerns';
       </p>
     </header>
 
-    <!-- 고민 바로가기: 둥근 탭 -->
-    <nav aria-label="고민 바로가기" class="mt-10 flex flex-wrap gap-2">
-      {
-        concerns.map((c) => (
-          <a href={`#q${c.rank}`} class="rounded-full border border-border-accent px-4 py-2 text-13 font-semibold text-foreground-muted hover:border-primary hover:text-primary md:text-14">
-            {c.rank}. {c.title}
-          </a>
-        ))
-      }
-    </nav>
-
     <ol class="mt-12 border-t border-border-accent">
       {
         concerns.map((c) => (

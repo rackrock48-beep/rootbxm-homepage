@@ -51,27 +51,27 @@ import { hero, results, leaders, people, campaignsCopy, services, voice } from '
 
   <!-- 원장님들의 한마디: 인터뷰 소개 → 손글씨 느낌의 인용 → 핵심 한 줄 -->
   <Section id="voice" class="relative isolate overflow-clip">
-    <InterviewWall />
     <div class="mx-auto max-w-[110rem] text-center">
       <!-- 첫 줄은 보통 크기, 둘째 줄("모든 원장님이 바라는 1가지")은 크게 -->
       <p class="text-16 leading-snug font-semibold text-foreground-muted md:text-18">
         {voice.intro.split('\n')[0]}
         <span class="mt-3 block text-28 leading-snug font-extrabold text-foreground md:text-36">{voice.intro.split('\n')[1]}</span>
       </p>
-      <!-- 따옴표를 인용문 좌우에 같은 높이로 나란히 둔다 -->
-      <blockquote class="mx-auto mt-14 flex max-w-[96rem] items-center justify-center gap-3 md:mt-20 md:gap-8">
+      <!-- 따옴표를 인용문 좌우에 같은 높이로 나란히 둔다. 인터뷰 배경 사진 띠가 인용문 뒤 세로 가운데에 깔린다 -->
+      <blockquote class="relative isolate mx-auto mt-14 flex max-w-[96rem] items-center justify-center gap-3 md:mt-20 md:gap-8">
+        <InterviewWall />
         <span aria-hidden="true" class="shrink-0 translate-y-[0.3em] self-center font-serif text-[6.4rem] leading-[0.6] text-primary/70 md:text-[9.6rem]">“</span>
         <p class="font-serif text-20 font-bold leading-[1.8] whitespace-pre-line text-foreground md:text-[2.6rem]">{voice.quote}</p>
         <span aria-hidden="true" class="shrink-0 translate-y-[0.3em] self-center font-serif text-[6.4rem] leading-[0.6] text-primary/70 md:text-[9.6rem]">”</span>
       </blockquote>
-      <div aria-hidden="true" class="mx-auto mt-20 h-16 w-px bg-primary/60 md:mt-28 md:h-24" />
-      <h2 class="mt-10 text-28 leading-snug font-extrabold md:mt-12 md:text-36">{voice.answer.split('가치를 ')[0]}가치를<br class="md:hidden" /> {voice.answer.split('가치를 ')[1]}</h2>
+      <div aria-hidden="true" class="mx-auto mt-8 h-8 w-px bg-primary/60 md:mt-12 md:h-12" />
+      <h2 class="mt-5 text-28 leading-snug font-extrabold md:mt-6 md:text-36">{voice.answer.split('가치를 ')[0]}가치를<br class="md:hidden" /> {voice.answer.split('가치를 ')[1]}</h2>
       <!-- 원장님 고민 30가지: 정사각형 상자 하나. 누르면 /concerns 페이지로 간다 -->
-      <a id="concerns-tab" href={url('/concerns/')} class="group scroll-mt-[40vh] mx-auto mt-12 flex aspect-square w-[20rem] flex-col items-center justify-center gap-3 rounded-2xl border-2 border-primary bg-background/80 p-6 text-center shadow-lg transition-colors hover:bg-primary hover:text-primary-foreground md:mt-14 md:w-[22rem]">
-        <span class="text-15 font-semibold text-foreground-muted group-hover:text-primary-foreground md:text-16">스물한 분 원장님의</span>
-        <span class="text-22 leading-snug font-extrabold md:text-24">고민과 해답</span>
-        <span class="text-28 font-extrabold text-primary-bright group-hover:text-primary-foreground md:text-32">1위~30위</span>
-        <span aria-hidden="true" class="text-20 font-bold transition-transform group-hover:translate-x-1">→</span>
+      <a id="concerns-tab" href={url('/concerns/')} class="group scroll-mt-[40vh] mx-auto mt-12 flex aspect-square w-[11.2rem] flex-col items-center justify-center gap-1.5 rounded-xl border-2 border-primary bg-background/80 p-2 text-center shadow-lg transition-colors hover:bg-primary hover:text-primary-foreground md:mt-14 md:w-[12.4rem]">
+        <span class="text-14 leading-tight font-bold text-foreground-muted group-hover:text-primary-foreground">스물한 분 원장님의</span>
+        <span class="text-16 leading-snug font-extrabold md:text-18">고민과 해답</span>
+        <span class="text-16 font-extrabold text-primary-bright group-hover:text-primary-foreground md:text-18">1위~30위</span>
+        <span aria-hidden="true" class="text-12 font-bold transition-transform group-hover:translate-x-1">→</span>
       </a>
     </div>
   </Section>

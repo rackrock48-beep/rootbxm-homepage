@@ -1,42 +1,198 @@
 ---
-// 첫 페이지(원페이지). 섹션 부품을 한 번씩 보여 주는 구성이다.
-// 섹션을 빼려면 해당 <Section> 블록을 지우고, 순서를 바꾸려면 블록을 옮긴다. 글은 src/content.ts, 회사 정보는 src/site.ts.
+// 첫 페이지(원페이지). 섹션을 빼려면 해당 <Section> 블록을 지우고, 순서를 바꾸려면 블록을 옮긴다. 글은 src/content.ts, 회사 정보는 src/site.ts.
+import { Image, getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import campaignsCollage from '../assets/campaigns-collage-cutout.png';
+import logoYonsei from '../assets/logo-yonsei-emblem.png';
+import logoJogak from '../assets/logo-jogak.png';
+import logoBoryung from '../assets/logo-campaign-2.png';
+import logoMohw from '../assets/logo-campaign-3.png';
+import logoLg from '../assets/logo-campaign-4.png';
+import logoCnp from '../assets/logo-cnp.png';
+import logoVidivici from '../assets/logo-vidivici.png';
+import logoAmore from '../assets/logo-amore.png';
+import type { ImageMetadata } from 'astro';
+
+const collageBg = await getImage({ src: campaignsCollage, width: 1047, format: 'webp', quality: 80 });
+
+const campaignLogos: { src: ImageMetadata; alt: string; caption?: string; h?: string; project: string }[] = [
+  { src: logoYonsei, alt: '연세대학교 의과대학', caption: '연세대학교 의과대학', project: '연세대학교 의과대학\n통합 캠페인' },
+  { src: logoBoryung, alt: '보령제약', project: '보령제약\n기업 홍보 및 캠페인' },
+  { src: logoMohw, alt: '보건복지부', h: 'max-h-[6.2rem] max-w-[12.2rem]', project: '보건복지부\n금연 캠페인' },
+  { src: logoLg, alt: 'LG생활건강', h: 'max-h-[4.8rem] max-w-[12.2rem]', project: 'LG생활건강\n건기식 및 화장품 브랜딩' },
+];
+
+// 흰 상자 아래 줄: 뷰티·브랜드 런칭 프로젝트. 더조각 스킨메디는 로고 파일이 없어 이름을 글자로 보여 준다
+const beautyLogos: { src?: ImageMetadata; alt: string; h?: string; project: string }[] = [
+  { src: logoCnp, alt: 'CNP Laboratory', h: 'max-w-[10.6rem]', project: 'CNP 차앤박\n화장품 브랜드 런칭' },
+  { src: logoVidivici, alt: 'VIDIVICI', h: 'max-w-[9.4rem]', project: 'VIDIVICI 코스메틱\n상품 브랜드 매니지먼트' },
+  { src: logoJogak, alt: 'The Jogak 더조각 스킨메디', h: 'max-h-[5.8rem] max-w-[11.3rem]', project: '더조각 스킨메디\n브랜드 런칭 및\n해외 사업 매니지먼트' },
+  { src: logoAmore, alt: 'AMOREPACIFIC', h: 'max-w-[12.2rem]', project: '아모레퍼시픽\n상품 브랜드 매니지먼트' },
+];
 import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
-import CardGrid from '../components/CardGrid.astro';
-import About from '../components/About.astro';
-import Steps from '../components/Steps.astro';
-import Gallery from '../components/Gallery.astro';
-import LinkCards from '../components/LinkCards.astro';
+import Stats from '../components/Stats.astro';
+import People from '../components/People.astro';
 import ContactChannels from '../components/ContactChannels.astro';
-import { hero, about, features, steps, gallery, posts } from '../content';
+import WhyRoot from '../components/WhyRoot.astro';
+import Stages from '../components/Stages.astro';
+import { url } from '../site';
+import { concerns } from '../concerns';
+import InterviewWall from '../components/InterviewWall.astro';
+import Promises from '../components/Promises.astro';
+import Compare from '../components/Compare.astro';
+import Conditions from '../components/Conditions.astro';
+import ServiceFlow from '../components/ServiceFlow.astro';
+import { hero, results, leaders, people, campaignsCopy, services, voice } from '../content';
 ---
 
 <Layout>
   <Hero {...hero} />
 
-  <Section id="features" eyebrow="작은 라벨" title="카드 그리드 섹션 제목" lead="섹션 설명이 들어갑니다. 한두 문장이 알맞습니다.">
-    <CardGrid items={features} columns={4} />
+  <!-- 원장님들의 한마디: 인터뷰 소개 → 손글씨 느낌의 인용 → 핵심 한 줄 -->
+  <Section id="voice" class="relative isolate overflow-clip">
+    <InterviewWall />
+    <div class="mx-auto max-w-[110rem] text-center">
+      <!-- 첫 줄은 보통 크기, 둘째 줄("모든 원장님이 바라는 1가지")은 크게 -->
+      <p class="text-16 leading-snug font-semibold text-foreground-muted md:text-18">
+        {voice.intro.split('\n')[0]}
+        <span class="mt-3 block text-28 leading-snug font-extrabold text-foreground md:text-36">{voice.intro.split('\n')[1]}</span>
+      </p>
+      <!-- 따옴표를 인용문 좌우에 같은 높이로 나란히 둔다 -->
+      <blockquote class="mx-auto mt-14 flex max-w-[96rem] items-center justify-center gap-3 md:mt-20 md:gap-8">
+        <span aria-hidden="true" class="shrink-0 translate-y-[0.3em] self-center font-serif text-[6.4rem] leading-[0.6] text-primary/70 md:text-[9.6rem]">“</span>
+        <p class="font-serif text-20 font-bold leading-[1.8] whitespace-pre-line text-foreground md:text-[2.6rem]">{voice.quote}</p>
+        <span aria-hidden="true" class="shrink-0 translate-y-[0.3em] self-center font-serif text-[6.4rem] leading-[0.6] text-primary/70 md:text-[9.6rem]">”</span>
+      </blockquote>
+      <div aria-hidden="true" class="mx-auto mt-20 h-16 w-px bg-primary/60 md:mt-28 md:h-24" />
+      <h2 class="mt-10 text-28 leading-snug font-extrabold md:mt-12 md:text-36">{voice.answer.split('가치를 ')[0]}가치를<br class="md:hidden" /> {voice.answer.split('가치를 ')[1]}</h2>
+      <!-- 원장님 고민 30가지: 정사각형 상자 하나. 누르면 /concerns 페이지로 간다 -->
+      <a id="concerns-tab" href={url('/concerns/')} class="group scroll-mt-[40vh] mx-auto mt-12 flex aspect-square w-[20rem] flex-col items-center justify-center gap-3 rounded-2xl border-2 border-primary bg-background/80 p-6 text-center shadow-lg transition-colors hover:bg-primary hover:text-primary-foreground md:mt-14 md:w-[22rem]">
+        <span class="text-15 font-semibold text-foreground-muted group-hover:text-primary-foreground md:text-16">스물한 분 원장님의</span>
+        <span class="text-22 leading-snug font-extrabold md:text-24">고민과 해답</span>
+        <span class="text-28 font-extrabold text-primary-bright group-hover:text-primary-foreground md:text-32">1위~30위</span>
+        <span aria-hidden="true" class="text-20 font-bold transition-transform group-hover:translate-x-1">→</span>
+      </a>
+    </div>
   </Section>
 
-  <Section id="about" tone="surface">
-    <About {...about} />
+  <Section id="conditions" tone="surface">
+    <Conditions />
   </Section>
 
-  <Section id="steps" eyebrow="작은 라벨" title="단계 섹션 제목" lead="섹션 설명이 들어갑니다. 한두 문장이 알맞습니다.">
-    <Steps items={steps} />
+  <Section id="brand">
+    <WhyRoot />
   </Section>
 
-  <Section id="gallery" tone="surface" eyebrow="작은 라벨" title="갤러리 섹션 제목" lead="옆으로 넘겨서 볼 수 있습니다.">
-    <Gallery items={gallery} />
+  <Section id="company" tone="surface">
+    <div class="mx-auto mb-16 max-w-prose text-center">
+      <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 text-14 font-bold text-primary-foreground">{leaders.eyebrow}</p>
+      <h2 class="text-28 leading-snug font-extrabold whitespace-pre-line md:text-36"><span class="text-lg-red">LG그룹</span>{leaders.title.replace('LG그룹', '').split('프리미엄 브랜드')[0]}<span class="text-premium-purple">프리미엄 브랜드</span>{leaders.title.split('프리미엄 브랜드')[1]}</h2>
+    </div>
+    <People items={people} />
   </Section>
 
-  <Section id="posts" eyebrow="작은 라벨" title="링크 카드 섹션 제목">
-    <LinkCards items={posts} />
+  <!-- 주요 캠페인 소개: 캠페인 사진 모음을 섹션 전체 배경으로 반복해 깔고 흰색으로 흐리게 누른다. 그 위에 제목·480+·로고 상자 -->
+  <section id="campaigns" class="relative isolate overflow-clip bg-white py-section text-black">
+    <!-- 흰 여백을 지운 사진 모음을 네 겹으로 어긋나게 겹쳐 빈틈 없이 채운다. 맨 아래 색은 사진들의 평균 색 -->
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 -z-10 bg-[rgb(171_181_201)] bg-repeat"
+      style={`background-image: ${Array(4).fill(`url(${collageBg.src})`).join(', ')}; background-size: 72rem auto; background-position: 0 0, 36rem 26.5rem, 18rem 13rem, 54rem 40rem;`}
+    />
+    <div aria-hidden="true" class="absolute inset-0 -z-10 bg-white/55" />
+
+    <div class="mx-auto max-w-site px-gutter text-center">
+      <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 text-14 font-bold text-primary-foreground">{campaignsCopy.eyebrow}</p>
+      <h2 class="text-22 leading-snug font-extrabold whitespace-pre-line sm:text-28 md:text-36">{campaignsCopy.title}</h2>
+
+      <div class="mx-auto mt-10 max-w-[104.7rem] md:mt-14">
+        <p class="text-[6.4rem] leading-none font-extrabold text-primary [text-shadow:0_0_6px_#fff,0_0_18px_#fff,0_0_32px_#fff] md:text-[12rem]" aria-label={`${campaignsCopy.count}${campaignsCopy.countSuffix}`}>
+          <span aria-hidden="true" class="count-up" style={`--to: ${campaignsCopy.count}`}></span><span aria-hidden="true" class="plus-pop ml-1">{campaignsCopy.countSuffix}</span>
+        </p>
+        <div class="mx-auto mt-8 rounded-3xl bg-white px-6 py-6 shadow-lg md:mx-[6%] md:mt-12 md:py-7">
+          <p class="mb-8 text-20 font-extrabold text-primary md:text-24">{campaignsCopy.boxTitle}</p>
+          <!-- 로고 네 개와 각 로고 아래 프로젝트 이름. 로고를 칸 아래쪽에 붙여 설명과 가깝게 두고(그 로고의 설명으로 보이게), 항목끼리는 넓게 띄운다 -->
+          <ul class="mx-auto grid max-w-[88rem] grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-4">
+            {campaignLogos.map(({ src, alt, caption, h, project }) => (
+              <li class="flex flex-col items-center">
+                <!-- 연세대처럼 caption이 있으면 심볼 아래에 기관명을 작게 붙인다 -->
+                <div class="flex h-[7.3rem] w-full flex-col items-center justify-end">
+                  <Image src={src} alt={alt} quality={95} format="png" class={caption ? "h-[4.8rem] w-auto object-contain" : `h-auto w-auto object-contain ${h ?? "max-h-[4.8rem] max-w-[9.4rem]"}`} />
+                  {caption && <span class="mt-1.5 text-12 font-bold tracking-tight text-black/70">{caption}</span>}
+                </div>
+                <p class="mt-3.5 text-14 leading-snug font-bold whitespace-pre-line text-black/55 md:text-15">{project}</p>
+              </li>
+            ))}
+          </ul>
+          <!-- 아래 줄: 뷰티·브랜드 런칭 프로젝트. 로고 파일이 없는 곳(logo 없음)은 이름을 글자 로고처럼 보여 준다 -->
+          <ul class="mx-auto mt-10 grid max-w-[88rem] grid-cols-2 gap-x-6 gap-y-12 border-t border-black/10 pt-10 md:grid-cols-4">
+            {beautyLogos.map(({ src, alt, h, project }) => (
+              <li class="flex flex-col items-center">
+                <div class="flex h-[7.3rem] w-full items-end justify-center">
+                  {src ? <Image src={src} alt={alt} quality={95} format="png" class={`h-auto max-h-[4.8rem] w-auto object-contain ${h ?? "max-w-[9.4rem]"}`} /> : <span class="text-20 font-extrabold tracking-tight">{alt}</span>}
+                </div>
+                <p class="mt-3.5 text-14 leading-snug font-bold whitespace-pre-line text-black/55 md:text-15">{project}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Section id="results">
+    <div class="mx-auto mb-14 max-w-[96rem] text-center md:mb-20">
+      <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 text-14 font-bold text-primary-foreground">브랜딩 성과</p>
+      <h2 class="text-28 leading-snug font-extrabold md:text-36">저희의 정성스러운 브랜딩과<br />원장님의 <span class="text-primary">TRUST &amp; PREMIUM</span>한 노력으로<br />만든 귀한 성과입니다</h2>
+    </div>
+    <Stats items={results} />
   </Section>
 
-  <Section id="contact" tone="surface" eyebrow="문의" title="문의 섹션 제목" lead="섹션 설명이 들어갑니다. 한두 문장이 알맞습니다.">
+  <Section id="compare" tone="surface">
+    <Compare />
+  </Section>
+
+  <Section id="stages">
+    <Stages />
+  </Section>
+
+  <Section id="services" tone="surface">
+    <div class="mx-auto mb-16 max-w-[96rem] text-center">
+      <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 text-14 font-bold text-primary-foreground">{services.eyebrow}</p>
+      <h2 class="text-28 leading-snug font-extrabold whitespace-pre-line md:text-36">{services.title}</h2>
+    </div>
+    <ServiceFlow items={services.items} />
+  </Section>
+
+  <Section id="promise">
+    <Promises />
+  </Section>
+
+  <!-- 원장님 고민 30 안내: 제목·설명과 /concerns로 가는 둥근 탭 하나 -->
+  <Section id="concerns" tone="surface" align="center" class="overflow-clip" eyebrow="원장님 인터뷰" title={'스물한 분 원장님 인터뷰 중\n가장 많이 나온 고민 1위~30위'} lead={'가장 많이 나온 순서대로 1위부터 30위까지 정리했습니다.\n궁금한 고민과 해결 방법을 확인하세요.'}>
+    <!-- 고민 30개 둥근 탭이 화면 끝에서 끝까지 한 줄로 천천히 흐른다(같은 목록을 두 번 이어 붙여 끊김 없이 반복). 마우스를 올리면 멈춘다 -->
+    <div class="concern-marquee relative left-1/2 w-screen -translate-x-1/2 overflow-hidden py-2 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
+      <ul class="concern-marquee-track flex w-max gap-3">
+        {[...concerns, ...concerns].map((c, i) => (
+          <li aria-hidden={i >= concerns.length ? 'true' : undefined}>
+            <a href={url(`/concerns/#q${c.rank}`)} tabindex={i >= concerns.length ? -1 : undefined} class="inline-flex min-h-11 items-center gap-2 rounded-full border border-border-accent bg-background/70 px-5 py-2 text-14 font-semibold whitespace-nowrap text-foreground-muted transition-colors hover:border-primary hover:text-primary-bright md:text-15">
+              <span class="text-primary-bright">{c.rank}</span>{c.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="mt-10 text-center">
+      <a href={url('/concerns/')} class="inline-flex min-h-12 items-center gap-2 rounded-full border border-primary bg-background/70 px-7 py-3 text-15 font-bold text-foreground transition-colors hover:bg-primary hover:text-primary-foreground md:text-16">
+        고민 30가지 보러 가기
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </Section>
+
+  <Section id="contact" align="center" eyebrow="문의" title={'원장님의 병원은\n진료의 가치만큼 평가받고 있습니까?'} lead="브랜드 진단 제안을 신청하시면 영업일 기준 1일 안에 대표가 직접 연락드립니다.">
     <ContactChannels />
   </Section>
 </Layout>

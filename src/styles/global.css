@@ -1,6 +1,9 @@
 @import "tailwindcss";
 /* 한글 웹폰트: Pretendard 다이나믹 서브셋(쓰이는 글자 묶음만 내려받음). npm 패키지에서 self-host, 400~800 전부 한 파일. */
 @import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
+/* 인용문용 명조체(나눔명조). 글자 묶음별로 나뉘어 있어 쓰는 글자만 내려받는다. → font-serif */
+@import "@fontsource/nanum-myeongjo/400.css";
+@import "@fontsource/nanum-myeongjo/700.css";
 
 /*
   디자인 토큰. 색·글꼴·크기·간격은 모두 여기서만 정한다.
@@ -10,24 +13,28 @@
 /* ── 색 ───────────────────────────────────────────────────────────────── */
 :root {
   /* 브랜드 컬러: 회사 색은 이 한 줄만 바꾼다. 연한 배경(primary-surface)과 포커스 링(ring)은 자동으로 따라온다. */
-  --primary: hsl(217, 100%, 52%);
+  /* 검정 배경 + 녹색 포인트 테마 */
+  --primary: hsl(147, 85%, 32%); /* 로고 녹색(#00B050) 계열. 흰 글자 버튼과 검정 배경 위 글자 모두 읽히는 밝기 */
   --primary-foreground: hsl(0, 0%, 100%);
-  --primary-surface: hsl(from var(--primary) h 100% 95%);
-  --ring: hsl(from var(--primary) h 100% 88%);
+  --primary-bright: hsl(147, 100%, 45%); /* 검정 바탕 위 강조 글자용 밝은 녹색(로고 녹색 계열) */
+  --primary-surface: hsl(from var(--primary) h 60% 14%);
+  --lg-red: #a50034; /* "LG그룹" 글자용 LG 공식 빨강(LG Red) */
+  --premium-purple: #7c3aed; /* "프리미엄 브랜드" 글자용 진한 보라 */
+  --ring: hsl(from var(--primary) h 80% 40%);
 
-  --secondary: hsl(0, 0%, 20%);
-  --secondary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(0, 0%, 100%);
+  --secondary-foreground: hsl(0, 0%, 0%);
 
-  --background: hsl(0, 0%, 100%);
-  --surface: hsl(210, 20%, 98%);
-  --surface-accent: hsl(195, 18%, 95%);
+  --background: hsl(0, 0%, 0%);
+  --surface: hsl(0, 0%, 7%);
+  --surface-accent: hsl(0, 0%, 11%);
 
-  --foreground: hsl(222, 20%, 13%);
-  --foreground-muted: hsl(218, 12%, 36%);
-  --foreground-subtle: hsl(212, 14%, 54%); /* 대비 3.6:1 → 큰 글자·장식에만 쓴다 */
+  --foreground: hsl(0, 0%, 100%);
+  --foreground-muted: hsl(0, 0%, 78%);
+  --foreground-subtle: hsl(0, 0%, 58%); /* 큰 글자·장식에만 쓴다 */
 
-  --border: hsl(210, 20%, 95%);
-  --border-accent: hsl(213, 12%, 88%);
+  --border: hsl(0, 0%, 14%);
+  --border-accent: hsl(0, 0%, 22%);
 
   --black: hsl(0, 0%, 0%);
   --white: hsl(0, 0%, 100%);
@@ -45,7 +52,10 @@
 @theme inline {
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-bright: var(--primary-bright);
   --color-primary-surface: var(--primary-surface);
+  --color-lg-red: var(--lg-red);
+  --color-premium-purple: var(--premium-purple);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-background: var(--background);
@@ -72,6 +82,7 @@
 /* ── 글꼴·크기·간격·모서리·그림자 ───────────────────────────────────── */
 @theme {
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-serif: "Nanum Myeongjo", AppleMyungjo, Batang, serif;
 
   /* 글자 크기: px 숫자가 곧 이름. text-16이 본문. */
   --text-*: initial;
@@ -123,8 +134,8 @@
 
   /* 간격: p-4 = 16px, gap-5 = 20px (숫자 × 4px) */
   --spacing: 0.4rem;
-  --spacing-gutter: clamp(1.6rem, 4vw, 3.2rem); /* 화면 좌우 여백 → px-gutter */
-  --spacing-section: clamp(6.4rem, 8vw, 10rem); /* 섹션 위아래 여백 → py-section */
+  --spacing-gutter: clamp(2rem, 5vw, 4.8rem); /* 화면 좌우 여백 → px-gutter */
+  --spacing-section: clamp(9.6rem, 12vw, 16rem); /* 섹션 위아래 여백 → py-section */
 
   /* 폭: max-w-site / max-w-prose */
   --container-*: initial;
@@ -172,7 +183,12 @@
   body {
     @apply bg-background font-sans text-16 text-foreground antialiased;
     word-break: keep-all; /* 한글 단어 중간에서 줄이 끊기지 않게 */
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word; /* 칸보다 긴 단어(주소 등)만 예외로 자른다 */
+    text-wrap: pretty; /* 마지막 줄에 한 단어만 덩그러니 남지 않게 */
+  }
+  /* 제목·짧은 문구는 줄 길이를 고르게 나눠 의미 단위로 끊기게 */
+  h1, h2, h3, h4, blockquote, figcaption {
+    text-wrap: balance;
   }
   :focus-visible {
     outline: 2px solid var(--color-primary);
@@ -201,6 +217,204 @@
   }
 }
 
+/* 숫자가 0부터 목표값까지 빠르게 올라가는 효과(자바스크립트 없이 CSS만).
+   <span class="count-up" style="--to: 900"></span> → 화면에 들어올 때 0→900. 지원하지 않는 브라우저나
+   "동작 줄이기" 설정에서는 애니메이션 없이 바로 목표값이 보인다. */
+@property --count {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+@keyframes count-up {
+  from {
+    --count: 0;
+  }
+}
+@utility count-up {
+  display: inline-block; /* 스크롤 위치에 맞춰 움직이려면 상자가 있어야 한다 */
+  --count: var(--to);
+  counter-reset: count var(--count);
+  font-variant-numeric: tabular-nums;
+  animation: count-up 2.4s cubic-bezier(0.35, 0.3, 0.45, 1) both;
+  &::after {
+    content: counter(count);
+  }
+  @supports (animation-timeline: view()) {
+    animation-timeline: view();
+    animation-range: entry 0% cover 55%; /* 화면 아래에서 들어와 화면 가운데쯤 올라오면 목표값 도달 */
+  }
+}
+
+/* 흐름도 차례로 나타나기(CSS만). 부모에 flow-timeline, 각 항목에 flow-reveal + style="--i: 순서(0부터)".
+   스크롤해서 흐름도가 화면에 올라오는 동안 선이 그려지고 1번부터 하나씩 아래에서 떠오른다.
+   지원하지 않는 브라우저나 "동작 줄이기" 설정에서는 처음부터 모두 보인다. */
+@keyframes flow-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(2.4rem);
+  }
+}
+@keyframes flow-line-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes flow-line-y {
+  from {
+    transform: scaleY(0);
+  }
+}
+@utility flow-timeline {
+  view-timeline-name: --flow;
+}
+@utility flow-reveal {
+  @supports (animation-timeline: view()) {
+    /* 휴대폰(세로 흐름도): 각 항목이 화면에 들어올 때 하나씩 */
+    animation: flow-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 100%;
+    /* 넓은 화면(가로 흐름도): 흐름도 전체가 올라오는 동안 1번부터 차례로 */
+    @media (width >= 1200px) {
+      animation-timeline: --flow;
+      animation-range: cover calc(8% + var(--i) * 4%) cover calc(16% + var(--i) * 4%);
+    }
+  }
+}
+@utility flow-line {
+  transform-origin: top;
+  @supports (animation-timeline: view()) {
+    animation: flow-line-y linear both;
+    animation-timeline: --flow;
+    animation-range: cover 8% cover 36%;
+  }
+  @media (width >= 1200px) {
+    transform-origin: left;
+    animation-name: flow-line-x;
+  }
+}
+
+/* 나무가 뿌리(아래)부터 열매(위)까지 차오르듯 자라나는 효과. 스크롤과 상관없이 4초마다 끝없이 되풀이한다
+   (자라남 → 잠시 머묾 → 살짝 사라짐 → 다시 자라남). "동작 줄이기" 설정에서는 다 자란 나무로 멈춰 보인다. */
+@keyframes tree-grow {
+  0% {
+    clip-path: inset(100% 0 0 0);
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  30% {
+    clip-path: inset(30% 0 0 0);
+  }
+  50% {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1);
+  }
+  85% {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+@utility tree-grow {
+  transform-origin: 50% 100%;
+  animation: tree-grow 4s ease-out infinite;
+}
+
+/* 픽토그램 선이 그려졌다가 잠시 머물고 지워지기를 반복한다. 카드마다 시작 시간을 조금씩 엇갈린다(animation-delay) */
+@keyframes icon-draw {
+  0% {
+    stroke-dashoffset: 1;
+  }
+  45%,
+  80% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -1;
+  }
+}
+@utility icon-draw {
+  & :is(path, circle, rect) {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: icon-draw 3.2s ease-in-out infinite;
+    animation-delay: inherit;
+  }
+}
+
+/* 번호 동그라미가 사라졌다 다시 나타나기를 반복한다. 번호마다 시작 시간·주기를 다르게 줘서(ServiceFlow.astro) 무작위처럼 보인다 */
+@keyframes num-blink {
+  0%,
+  60%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  75% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+}
+@utility num-blink {
+  animation: num-blink 3.6s ease-in-out infinite;
+}
+
+/* 고민 페이지: 평소엔 답변을 접어 두고, 주소의 #q번호로 선택된 고민(:target)만 펼친다(자바스크립트 없이) */
+.concern-body {
+  display: none;
+}
+.concern:target .concern-body {
+  display: block;
+}
+.concern:target .concern-q {
+  color: var(--color-primary-bright);
+}
+.concern:target .concern-ic {
+  transform: rotate(45deg);
+}
+
+/* 브랜드 로고: 평소엔 흑백(회색)으로 통일하고, 마우스를 올리면 원래 색이 나온다 */
+@utility logo-mono {
+  filter: grayscale(1);
+  opacity: 0.75;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+  &:hover {
+    filter: none;
+    opacity: 1;
+  }
+}
+
+/* 첫 화면 배경 사진이 천천히 줌아웃 → 줌인을 끝없이 되풀이하는 효과. 한 번 왕복에 28초 */
+@keyframes slow-zoom-out {
+  from {
+    transform: scale(1.18);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@utility slow-zoom-out {
+  animation: slow-zoom-out 14s ease-in-out infinite alternate both;
+}
+
+/* 살짝 커졌다 돌아오는 은은한 움직임. 예: 900+의 + */
+@keyframes plus-pop {
+  0%, 70%, 100% {
+    transform: scale(1);
+  }
+  85% {
+    transform: scale(1.08);
+  }
+}
+@utility plus-pop {
+  display: inline-block;
+  animation: plus-pop 2.4s ease-in-out infinite;
+}
+
 /* 글자 아래 형광펜 밑줄. <span class="highlight-underline">강조할 말</span>
    배경 그라데이션으로 그려서 여러 줄로 꺾여도 줄마다 칠해진다(인라인 블록 방식은 한글 제목이 줄바꿈될 때 깨짐). */
 @utility highlight-underline {
@@ -209,4 +423,19 @@
   background-position: 0 92%;
   background-size: 100% 30%;
   animation: var(--animate-draw-underline);
+}
+
+/* 원장님 고민 30 둥근 탭 한 줄 흐르기(홈). 목록을 두 번 붙여 두었으니 절반만큼 움직이면 처음과 같은 모습이 된다 */
+@keyframes concern-marquee {
+  to { transform: translateX(-50%); }
+}
+.concern-marquee-track {
+  animation: concern-marquee 90s linear infinite;
+}
+.concern-marquee:hover .concern-marquee-track,
+.concern-marquee:focus-within .concern-marquee-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .concern-marquee-track { animation: none; }
 }

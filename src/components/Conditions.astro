@@ -1,0 +1,82 @@
+---
+// "살아남는 병원의 조건" 섹션. 가운데 제목 → TRUST / PREMIUM 두 단어를 아주 크게, 각 단어 아래에 설명 → 대표의 글(서명).
+// 글은 src/content.ts의 conditions에서 바꾼다.
+import { Image } from 'astro:assets';
+import tree from '../assets/tree-small.png';
+import signImg from '../assets/signature-noh.png';
+import { conditions } from '../content';
+
+const { eyebrow, title, letter, signature, pillars } = conditions;
+---
+
+<div class="mx-auto max-w-[96rem] text-center">
+  <p class="mb-5 text-14 font-semibold tracking-[0.2em] text-primary">{eyebrow}</p>
+  <h2 class="text-24 leading-snug font-extrabold whitespace-pre-line md:text-36">{title}</h2>
+</div>
+
+<!-- 두 기둥: TRUST는 왼쪽, PREMIUM은 오른쪽 아래로 엇갈리게. 나무가 TRUST의 T, PREMIUM의 M 위에 올라앉고,
+     그 옆에 라벨·한마디·설명이 붙는다. 큰 글자 크기(font-size)를 기준(em)으로 나무·여백이 함께 커지고 작아진다. -->
+<div class="mx-auto mt-16 max-w-[120rem] text-[clamp(5.6rem,15.5vw,21rem)] md:mt-24">
+  {
+    pillars.map(({ label, title, description, quote }, i) => {
+      const right = i % 2 === 1;
+      const head = right ? title.slice(0, -1) : title.slice(1);
+      const tip = right ? title.slice(-1) : title.slice(0, 1);
+      const treeLetter = (
+        <span class="relative inline-block">
+          {tip}
+          <Image src={tree} alt="" aria-hidden="true" width={300} quality={95} class:list={['absolute h-auto w-[0.34em] max-w-none -translate-x-1/2', right ? 'bottom-[86%] left-[88%]' : 'bottom-[88%] left-[32%]']} />
+        </span>
+      );
+      // 넓은 화면: PREMIUM의 E 위에 작은 & 를 얹는다. 위치(bottom)는 TRUST 아래끝과 E 윗끝의 한가운데가 되도록
+      // "글자 크기 비율(em) + 위 설명 줄 높이(rem)"로 맞춘 값이다. (휴대폰에서는 TRUST 오른쪽 아래에 따로 놓는다)
+      const withAmp = (word: string) => {
+        const at = word.indexOf('E');
+        if (at < 0) return word;
+        return (
+          <>
+            {word.slice(0, at)}
+            <span class="relative inline-block">
+              E
+              <span aria-hidden="true" class="absolute bottom-[calc(2.57em+4.25rem)] left-1/2 hidden -translate-x-1/2 text-[0.3em] leading-none font-bold text-foreground-subtle lg:block">&amp;</span>
+            </span>
+            {word.slice(at + 1)}
+          </>
+        );
+      };
+      return (
+        <div class:list={['relative', right ? 'mt-[0.45em] text-right lg:mt-[0.3em]' : 'text-left']}>
+          <!-- 맨 위: 한마디 → 그 아래: 라벨·설명 → 영문 단어 -->
+          <div class:list={['flex flex-col gap-2 pb-[0.12em] lg:pb-[0.03em]', right ? 'mr-[0.72em] items-end lg:mr-[0.32em]' : 'ml-[0.5em] items-start lg:ml-[0.4em]']}>
+            <p class="text-20 leading-snug font-extrabold md:text-28">{quote}</p>
+            <!-- 라벨과 설명을 한 줄로: "환자가 선택하는 이유 | 실력과 전문성에 대한 신뢰" -->
+            <p class="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-13 md:text-15">
+              <span class="font-bold text-foreground">{label}</span>
+              <span aria-hidden="true" class="h-[1.1em] w-px bg-primary/70"></span>
+              <span class="text-foreground-muted">{description}</span>
+            </p>
+          </div>
+          <h3 class="leading-[0.8] font-black tracking-[-0.02em] whitespace-nowrap text-primary">
+            <span class="relative inline-block">
+              {right ? <>{withAmp(head)}{treeLetter}</> : <>{treeLetter}{head}</>}
+              {!right && <span aria-hidden="true" class="absolute bottom-[0.02em] left-full ml-[0.12em] text-[0.3em] leading-none font-bold text-foreground-subtle lg:hidden">&amp;</span>}
+            </span>
+          </h3>
+        </div>
+      );
+    })
+  }
+</div>
+
+<!-- 대표의 글 -->
+<figure class="mx-auto mt-24 max-w-[64rem] border-t border-border-accent pt-16 md:mt-32">
+  <p class="mb-10 text-center text-20 font-black tracking-[0.2em] text-white md:text-24">{pillars.map((p) => p.title).join(' & ')}</p>
+  <blockquote class="space-y-6 text-center text-15 leading-[1.9] whitespace-pre-line text-foreground-muted md:text-16">
+    {letter.map((p) => <p>{p}</p>)}
+  </blockquote>
+  <!-- 서명: "대표 노규락" 옆에 손글씨 사인 -->
+  <figcaption class="mt-10 flex items-center justify-center gap-4 text-[1.7rem] font-bold tracking-[0.15em] text-foreground">
+    <span>{signature}</span>
+    <Image src={signImg} alt="노규락 대표 서명" quality={95} format="png" class="h-auto w-[8.4rem] md:w-[10rem]" />
+  </figcaption>
+</figure>

@@ -16,8 +16,8 @@ const tel = `tel:${phone.replace(/-/g, '')}`;
         <dd>{SITE.legal.representative}</dd>
         <dt>사업자등록번호</dt>
         <dd>{SITE.legal.businessNumber}</dd>
-        <dt>주소</dt>
-        <dd>{address}</dd>
+        {address && <dt>주소</dt>}
+        {address && <dd>{address}</dd>}
         <dt>전화</dt>
         <dd><a href={tel} class="hover:text-foreground">{phone}</a></dd>
         <dt>이메일</dt>

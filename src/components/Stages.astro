@@ -1,0 +1,83 @@
+---
+// "병원 연차별 4단계" 카드. 카드 맨 위 그림(씨앗·줄기·나무·숲) → 단계 이름 → 연차 → 한마디 → 설명 → 라벨 → 할 일 목록.
+// 글은 src/content.ts의 stages에서 바꾼다. 그림은 아래 arts에 선·면 그림(SVG)으로 들어 있는 임시 그림이다.
+// 실제 사진·일러스트가 생기면 arts 대신 <Image />로 바꿔 넣으면 된다.
+import { stages } from '../content';
+
+const { eyebrow, title, items, footnote } = stages;
+
+// 임시 그림(80×80). 땅 선 위에 단계별로 자라는 모습
+const ground = '<path d="M8 66h64" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".5"/>';
+// 3단 나무 하나: (x, 아래 기준선 y=66, 크기 s). 줄기 + 아래·가운데·위 세 겹의 삼각형
+const tieredTree = (x: number, s: number, o: number) => {
+  const tri = (cy: number, w: number, h: number) =>
+    `M${x - w * s} ${66 - cy * s}L${x} ${66 - (cy + h) * s}L${x + w * s} ${66 - cy * s}Z`;
+  return (
+    `<path d="M${x} 66V${66 - 8 * s}" stroke="currentColor" stroke-width="${2.2 * s}" stroke-linecap="round"/>` +
+    `<path d="${tri(6, 11, 14)} ${tri(14, 9, 13)} ${tri(22, 6.5, 12)}" fill="currentColor" opacity="${o}"/>`
+  );
+};
+// 둥근 나무 하나: THRIVE(나무) 그림과 같은 모양(줄기·가지 + 큰 수관 + 양옆 작은 수관)을 크기 s로 줄인 것
+const roundTree = (x: number, s: number, o: number) =>
+  `<path d="M${x} 66V${66 - 22 * s}M${x} ${66 - 14 * s}l${-7 * s} ${-6 * s}M${x} ${66 - 18 * s}l${7 * s} ${-6 * s}" stroke="currentColor" stroke-width="${3.2 * s}" stroke-linecap="round" fill="none" opacity="${o}"/>` +
+  `<g fill="currentColor" opacity="${o}"><circle cx="${x}" cy="${66 - 36 * s}" r="${17 * s}"/><circle cx="${x - 12 * s}" cy="${66 - 28 * s}" r="${9 * s}"/><circle cx="${x + 12 * s}" cy="${66 - 28 * s}" r="${9 * s}"/></g>`;
+// 숲: 둥근 나무 다섯 그루를 크기·위치를 제각각 다르게(뒤쪽 작은 나무는 연하게, 앞쪽 큰 나무는 진하게)
+const forestTrees = [
+  roundTree(11, 0.5, 0.5),
+  roundTree(67, 0.6, 0.55),
+  roundTree(25, 0.79, 0.75),
+  roundTree(55, 0.7, 0.7),
+  roundTree(40, 1.03, 1),
+].join('');
+
+const arts: Record<string, string> = {
+  // 씨앗: 흙 속 씨앗과 막 튼 작은 싹
+  seed: `${ground}<ellipse cx="40" cy="62" rx="7" ry="5" fill="currentColor" opacity=".55"/><path d="M40 58c0-6 0-9 0-12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M40 50c-6-1-9-5-9-9 5 0 9 3 9 9Z M40 47c5-1 8-4 8-8-5 0-8 3-8 8Z" fill="currentColor"/>`,
+  // 줄기: 곧게 선 줄기와 잎 몇 장
+  stem: `${ground}<path d="M40 66V26" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/><path d="M40 52c-9-1-14-7-14-13 8 0 14 5 14 13Z M40 44c9-1 14-7 14-13-8 0-14 5-14 13Z M40 32c-6-1-9-5-9-9 5 0 9 3 9 9Z" fill="currentColor"/>`,
+  // 나무: 둥근 수관과 굵은 줄기
+  tree: `${ground}<path d="M40 66V44M40 52l-7-6M40 48l7-6" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" fill="none"/><circle cx="40" cy="30" r="17" fill="currentColor"/><circle cx="28" cy="38" r="9" fill="currentColor"/><circle cx="52" cy="38" r="9" fill="currentColor"/>`,
+  // 숲: 나무 그림과 같은 둥근 나무 다섯 그루(크기 제각각)
+  forest: `${ground}${forestTrees}`,
+};
+
+// 단계가 올라갈수록 카드 바탕의 녹색이 진해진다
+const tones = ['bg-primary/10', 'bg-primary/20', 'bg-primary/35', 'bg-primary'];
+---
+
+<div class="mx-auto max-w-[96rem] text-center">
+  <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 text-14 font-bold text-primary-foreground">{eyebrow}</p>
+  <h2 class="text-28 leading-snug font-extrabold whitespace-pre-line md:text-36">{title}</h2>
+</div>
+
+<ol class="mx-auto mt-12 grid max-w-[120rem] gap-4 sm:grid-cols-2 md:mt-16 lg:grid-cols-4 lg:gap-5">
+  {
+    items.map(({ art, badge, name, period, headline, lead, tag, points, highlight }, i) => (
+      <li class="flex flex-col">
+        <!-- 연차: 카드 바로 위, 카드 밖에 -->
+        <p class="mb-3 text-center text-20 font-extrabold text-white md:text-24">{period}</p>
+        <div class:list={['flex flex-1 flex-col items-center rounded-3xl px-6 py-8 text-center', tones[i]]}>
+        <!-- 단계 그림 + 단계 이름 동그라미 -->
+        <div class="relative">
+          <svg aria-hidden="true" viewBox="0 0 80 80" style={`animation-delay: ${i * 0.5}s`} class:list={['tree-grow size-24 md:size-28', highlight ? 'text-white' : 'text-primary-bright']} set:html={arts[art]} />
+          <span class:list={['absolute -right-3 -bottom-1 rounded-full px-3 py-1 text-13 font-extrabold', highlight ? 'bg-white text-primary' : 'bg-primary text-primary-foreground']}>{badge}</span>
+        </div>
+
+        <h3 class="mt-5 text-36 leading-none font-black tracking-tight md:text-40">{name}</h3>
+        <!-- 단계 이름과 아래 문구 사이의 작은 흰 동그라미 -->
+        <span aria-hidden="true" class="mt-4 size-1.5 rounded-full bg-white" />
+
+        <p class:list={['mt-4 text-18 leading-snug font-extrabold whitespace-pre-line md:text-20', highlight ? 'text-white' : 'text-primary-bright']}>{headline}</p>
+        <p class:list={['mt-3 text-14 leading-relaxed whitespace-pre-line', highlight ? 'text-white/85' : 'text-foreground-muted']}>{lead}</p>
+
+        <p class:list={['mt-6 w-full max-w-[20rem] rounded-full py-2 text-14 font-bold', highlight ? 'bg-white text-primary' : 'bg-background text-foreground']}>{tag}</p>
+        <ul class:list={['mt-4 space-y-1 text-14', highlight ? 'text-white' : 'text-foreground']}>
+          {points.map((p) => <li>· {p}</li>)}
+        </ul>
+        </div>
+      </li>
+    ))
+  }
+</ol>
+
+<p class="mx-auto mt-6 max-w-[120rem] rounded-2xl bg-surface-accent px-6 py-5 text-center text-15 font-bold md:text-18">{footnote}</p>

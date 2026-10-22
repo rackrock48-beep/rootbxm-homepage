@@ -1,0 +1,97 @@
+---
+// 원장님 고민 30가지 페이지(/concerns). 첫 페이지 "원장님 인터뷰" 섹션의 둥근 탭을 누르면 이 페이지의 해당 고민으로 바로 온다.
+// 글은 src/concerns.ts에서 바꾼다. 자바스크립트 없이 주소의 #q번호(:target)로 고민 하나를 펼친다. 제목이나 탭을 누르면 그 고민이 열린다.
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import { url, SITE } from '../site';
+import { concerns } from '../concerns';
+---
+
+<Layout title="원장님 고민 30" description="스물한 분 원장님 인터뷰에서 가장 많이 나온 고민 30가지와 루트의 답변입니다.">
+  <Section narrow>
+    <a href={url('/#concerns-tab')} class="inline-flex min-h-11 items-center gap-2 text-15 font-semibold text-foreground-muted hover:text-primary">
+      <span aria-hidden="true">←</span> 홈으로 돌아가기
+    </a>
+
+    <header class="mt-6">
+      <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 text-14 font-bold text-primary-foreground">원장님 인터뷰</p>
+      <h1 class="text-28 leading-snug font-extrabold md:text-36">스물한 분 원장님 인터뷰 중<br />가장 많이 나온 고민 1위~30위</h1>
+      <p class="mt-4 text-16 text-foreground-muted md:text-18">
+        가장 많이 나온 순서대로 1위부터 30위까지 정리했습니다.<br />궁금한 고민과 해결 방법을 확인하세요.
+      </p>
+    </header>
+
+    <!-- 고민 바로가기: 둥근 탭 -->
+    <nav aria-label="고민 바로가기" class="mt-10 flex flex-wrap gap-2">
+      {
+        concerns.map((c) => (
+          <a href={`#q${c.rank}`} class="rounded-full border border-border-accent px-4 py-2 text-13 font-semibold text-foreground-muted hover:border-primary hover:text-primary md:text-14">
+            {c.rank}. {c.title}
+          </a>
+        ))
+      }
+    </nav>
+
+    <ol class="mt-12 border-t border-border-accent">
+      {
+        concerns.map((c) => (
+          <li id={`q${c.rank}`} class="concern scroll-mt-28 border-b border-border-accent">
+            <a href={`#q${c.rank}`} class="concern-q grid min-h-16 cursor-pointer grid-cols-[4.4rem_1fr_2rem] items-baseline gap-3 py-5">
+                <span class:list={['text-14 font-semibold tabular-nums', c.rank <= 3 ? 'text-primary-bright' : 'text-foreground-muted']}>{c.rank}위</span>
+                <span>
+                  <span class="block text-18 font-bold leading-snug md:text-20">{c.title}</span>
+                  <span class="mt-1 block text-13 text-foreground-muted">{c.category}</span>
+                </span>
+                <span aria-hidden="true" class="concern-ic text-right text-20 text-foreground-muted transition-transform">+</span>
+              </a>
+
+              <div class="concern-body pb-8">
+                <div class="rounded-[0.4rem_1.8rem_1.8rem_1.8rem] bg-surface-accent px-5 py-5 font-serif text-16 font-bold leading-[1.85] text-foreground md:text-18">
+                  <span class="mb-2 block font-sans text-13 font-semibold text-foreground-muted">{c.who}</span>
+                  {c.story}
+                </div>
+
+                <div class="mt-6">
+                  <span class="block text-13 font-semibold text-primary-bright">루트의 답변</span>
+                  <p class="mt-2 text-15 leading-relaxed md:text-16">{c.empathy}</p>
+                  <h2 class="mt-6 text-15 font-bold md:text-16">이렇게 해 보세요</h2>
+                  <ol class="mt-3 space-y-3">
+                    {c.actions.map((a, i) => (
+                      <li class="grid grid-cols-[2.4rem_1fr] gap-2 text-15 leading-relaxed text-foreground-muted">
+                        <span class="flex size-6 items-center justify-center rounded-full bg-primary-surface text-12 font-bold text-primary-bright">{i + 1}</span>
+                        <span>{a}</span>
+                      </li>
+                    ))}
+                  </ol>
+                  <p class="mt-6 rounded-xl bg-primary-surface px-5 py-4 text-15 font-semibold leading-relaxed md:text-16">{c.closing}</p>
+                  {c.expert && <p class="mt-4 border-l-2 border-border-accent pl-3 text-13 leading-relaxed text-foreground-muted">{c.expert}</p>}
+                </div>
+              </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <p class="mt-10 text-13 leading-relaxed text-foreground-muted">
+      원장님 이야기의 병원명과 지역은 이니셜로 익명 처리했습니다. 답변은 일반적인 경영 조언입니다. 법률·세무 판단이 필요한 사안은 해당 전문가와 함께 확인하세요.
+    </p>
+
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      <Button href={SITE.contact.kakao} variant="kakao" size="lg">원장님의 고민은 무엇인가요?</Button>
+      <Button href={url('/#concerns-tab')} variant="secondary" size="lg">홈으로</Button>
+    </div>
+  </Section>
+
+  <!-- 스크롤해도 따라다니는 탭 두 개(상담하기 → 홈으로). 휴대폰은 하단 메뉴 위 오른쪽,
+       큰 화면은 고민 글 바로 오른쪽 옆 화면 가운데에 둬서 글을 읽다가 바로 누를 수 있게 한다 -->
+  <div class="fixed right-4 bottom-[calc(7.6rem+env(safe-area-inset-bottom))] z-40 flex flex-col items-end gap-2 lg:right-auto lg:bottom-auto lg:top-1/2 lg:left-[calc(50%+38.4rem)] lg:-translate-y-1/2 lg:items-start">
+    <a href={SITE.contact.kakao} target="_blank" rel="noopener" class="inline-flex min-h-12 items-center gap-2 rounded-full bg-[#fee500] px-5 py-3 text-15 font-bold text-[#191919] shadow-lg transition-transform hover:-translate-y-0.5 lg:text-16">
+      <svg aria-hidden="true" class="size-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.8 5.2 4.6 6.6L5.5 21l4.4-2.6c.7.1 1.4.2 2.1.2 5.5 0 10-3.6 10-8S17.5 3 12 3z"/></svg>
+      원장님의 고민은 무엇인가요?
+    </a>
+    <a href={url('/#concerns-tab')} class="inline-flex min-h-11 items-center gap-2 rounded-full border border-border-accent bg-background/90 px-5 py-2.5 text-14 font-bold text-foreground shadow-lg backdrop-blur transition-colors hover:border-primary hover:text-primary-bright lg:text-15">
+      <span aria-hidden="true">←</span> 홈으로
+    </a>
+  </div>
+</Layout>

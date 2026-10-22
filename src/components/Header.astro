@@ -2,6 +2,8 @@
 // 상단 메뉴. 넓은 화면에서는 가로 앵커 메뉴 + "문의하기" 버튼, 좁은 화면에서는 ☰ 버튼을 누르면 펼쳐진다(자바스크립트 없이 <details>로 동작).
 import { SITE, url } from '../site';
 import Button from './Button.astro';
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
 
 const linkClass =
   'flex min-h-11 items-center rounded-lg px-3 text-15 font-medium text-foreground-muted transition-colors hover:bg-surface hover:text-foreground';
@@ -9,16 +11,18 @@ const linkClass =
 
 <header class="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
   <div class="mx-auto flex min-h-16 max-w-site items-center justify-between gap-4 px-gutter">
-    <a href={url('/')} class="flex min-h-11 items-center text-18 font-extrabold tracking-tight text-foreground">
-      {SITE.name}
+    <a href={url('/')} class="flex min-h-11 items-center">
+      <Image src={logo} alt={SITE.name} class="h-9 w-auto" loading="eager" />
     </a>
 
     <nav aria-label="주요 메뉴" class="hidden items-center gap-1 lg:flex">
       {SITE.nav.map(({ href, label }) => <a href={url(href)} class={linkClass}>{label}</a>)}
-      <Button href={SITE.contact.kakao} class="ml-3">문의하기</Button>
+      <Button href={SITE.contact.kakao} size="sm" class="ml-3">브랜드 진단 제안 받기</Button>
     </nav>
 
-    <details class="group relative lg:hidden">
+    <div class="flex items-center gap-1 lg:hidden">
+    <Button href={SITE.contact.kakao} size="sm" class="max-sm:px-3 max-sm:text-13">브랜드 진단 제안 받기</Button>
+    <details class="group relative">
       <summary
         class="flex size-11 cursor-pointer items-center justify-center rounded-lg text-foreground hover:bg-surface"
         aria-label="메뉴 열기"
@@ -32,9 +36,10 @@ const linkClass =
       >
         {SITE.nav.map(({ href, label }) => <a href={url(href)} class={linkClass}>{label}</a>)}
         <div class="mt-2 border-t border-border pt-2">
-          <Button href={SITE.contact.kakao} full>문의하기</Button>
+          <Button href={SITE.contact.kakao} full>브랜드 진단 제안 받기</Button>
         </div>
       </nav>
     </details>
+    </div>
   </div>
 </header>

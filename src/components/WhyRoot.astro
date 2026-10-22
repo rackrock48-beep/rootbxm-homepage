@@ -1,0 +1,57 @@
+---
+// "왜 루트인가" 섹션. 왼쪽 글, 오른쪽 흐린 나무 그림 위에 열매(위)·지면·뿌리(아래) 카드, 아래 띠 문구.
+// 글은 src/content.ts의 brand에서 바꾼다. 문단 안의 **굵게** 표시는 굵은 글씨가 된다.
+import { Image } from 'astro:assets';
+import tree from '../assets/tree-mark.png';
+import sprout from '../assets/banner-sprout.jpg';
+import { brand } from '../content';
+
+const { eyebrow, title, highlight, bright = [], paragraphs, others, root, banner } = brand;
+const [before, after] = highlight && title.includes(highlight) ? title.split(highlight) : [title, undefined];
+// bright 낱말(전문성·프리미엄)을 밝은 녹색으로 감싼다
+const brightRe = new RegExp('(' + bright.join('|') + ')');
+const paint = (s: string) => (bright.length ? s.split(brightRe).map((part) => (bright.includes(part) ? { part, on: true } : { part, on: false })) : [{ part: s, on: false }]);
+const bold = (p: string) => p.split('**').map((part, i) => ({ part, strong: i % 2 === 1 }));
+---
+
+<div class="grid items-center gap-14 lg:grid-cols-2">
+  <div>
+    <p class="mb-5 inline-flex rounded-lg bg-primary px-3 py-1 text-14 font-bold text-primary-foreground">{eyebrow}</p>
+    <h2 class="text-24 leading-relaxed font-extrabold whitespace-pre-line md:text-28">
+      {paint(before).map(({ part, on }) => (on ? <span class="text-primary-bright">{part}</span> : part))}{after !== undefined && <span class="text-primary">{highlight}</span>}{after}
+    </h2>
+    {
+      paragraphs.map((p) => (
+        <p class="mt-8 text-16 leading-relaxed whitespace-pre-line text-foreground-muted md:text-18">
+          {bold(p).map(({ part, strong }) => (strong ? <strong class="font-bold text-foreground">{part}</strong> : part))}
+        </p>
+      ))
+    }
+  </div>
+
+  <div class="relative mx-auto w-full max-w-[44rem]">
+    <Image src={tree} alt="" aria-hidden="true" class="absolute inset-0 m-auto h-[95%] w-auto max-w-full object-contain -translate-y-[6%] opacity-40" />
+    <div class="relative flex translate-y-10 flex-col gap-5 px-6 py-10">
+      <div class="px-6 py-6 text-center [text-shadow:0_1px_8px_rgb(0_0_0/0.9)]">
+        <p class="text-13 font-semibold text-foreground-muted">{others.label}</p>
+        <p class="mt-2 text-28 font-extrabold">{others.title}</p>
+        <p class="mt-1 text-15 text-foreground-muted">{others.keywords}</p>
+      </div>
+      <div class="relative border-t-2 border-primary">
+      </div>
+      <div class="px-6 py-6 text-center text-primary-foreground [text-shadow:0_1px_8px_rgb(0_0_0/0.9)]">
+        <p class="text-13 font-semibold">{root.label}</p>
+        <p class="mt-2 text-28 font-extrabold">{root.title}</p>
+        <p class="mt-1 text-15">{root.keywords}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 아래 띠: 새싹을 심는 손 사진(가운데)을 배경으로 깔고 어둡게 눌러 글을 얹는다 -->
+<div class="relative isolate mt-14 overflow-hidden rounded-3xl px-6 py-16 text-center text-white md:py-24">
+  <Image src={sprout} alt="" aria-hidden="true" widths={[800, 1400, 2000]} sizes="(min-width: 1280px) 1200px, 100vw" quality={85} class="absolute inset-0 -z-10 size-full object-cover object-[50%_32%]" />
+  <div aria-hidden="true" class="absolute inset-0 -z-10 bg-black/45"></div>
+  <p class="text-24 font-extrabold [text-shadow:0_2px_12px_rgb(0_0_0/0.5)] md:text-32">{banner.title}</p>
+  <p class="mt-2 text-16 [text-shadow:0_1px_8px_rgb(0_0_0/0.5)] md:text-20">{banner.text}</p>
+</div>

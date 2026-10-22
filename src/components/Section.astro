@@ -22,8 +22,8 @@ const { id, eyebrow, title, lead, tone = 'white', align = 'left', narrow = false
       (eyebrow || title || lead) && (
         <div class:list={['mb-12 max-w-prose', align === 'center' && 'mx-auto text-center']}>
           {eyebrow && <p class="mb-3 text-14 font-semibold text-primary">{eyebrow}</p>}
-          {title && <h2 class="text-28 font-bold md:text-36">{title}</h2>}
-          {lead && <p class="mt-4 text-16 text-foreground-muted md:text-18">{lead}</p>}
+          {title && <h2 class="text-28 font-bold whitespace-pre-line md:text-36">{title}</h2>}
+          {lead && <p class="mt-4 text-16 whitespace-pre-line text-foreground-muted md:text-18">{lead}</p>}
         </div>
       )
     }

@@ -1,0 +1,52 @@
+---
+// 대표 소개. 한 명씩 위아래로, 큰 사진과 약력(라벨·이름·직함·경력·로고 띠)을 좌우에 둔다. 글과 사진은 src/content.ts의 people에서 바꾼다.
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import placeholder from '../assets/placeholder.svg';
+
+interface Person {
+  tag: string;
+  name: string;
+  role: string;
+  title: string;
+  career: string[];
+  more: string;
+  image?: ImageMetadata;
+  logos?: ImageMetadata;
+  logosAlt?: string;
+}
+interface Props {
+  items: Person[];
+}
+const { items } = Astro.props;
+---
+
+<!-- 한 명씩 위아래로. 대표는 사진 왼쪽·약력 오른쪽, 이사는 약력 왼쪽·사진 오른쪽(짝수 번째에서 좌우가 바뀐다) -->
+<ul class="mx-auto max-w-[112rem] space-y-10 md:space-y-14">
+  {
+    items.map(({ tag, name, role, title, career, more, image, logos, logosAlt = '' }, i) => (
+      <li class:list={['grid items-center gap-8 rounded-4xl border border-border-accent bg-surface p-6 md:min-h-[72rem] md:gap-12 md:p-10', i % 2 === 1 ? 'md:grid-cols-[3fr_2fr]' : 'md:grid-cols-[2fr_3fr]']}>
+        <Image
+          src={image ?? placeholder}
+          alt={`${name} ${role} 사진`}
+          quality={95}
+          class:list={['aspect-[4/5] w-full rounded-3xl bg-surface-accent object-cover grayscale brightness-[.82] contrast-[1.15]', i % 2 === 1 && 'md:order-2']}
+        />
+
+        <div class:list={['flex flex-col', i % 2 === 1 && 'md:order-1']}>
+          <p class="text-22 leading-snug font-extrabold text-primary md:text-[2.6rem]">{tag}</p>
+          <h3 class="mt-8 text-36 font-extrabold tracking-[0.2em] md:text-46 md:tracking-[0.3em]">
+            {name}<span class="ml-2 text-20 font-bold tracking-normal md:text-24">{role}</span>
+          </h3>
+          <p class="mt-1 text-16 text-foreground-muted md:text-18">{title}</p>
+
+          <ul class="mt-8 space-y-2 border-t border-border-accent pt-8 text-16 font-bold md:text-18">
+            {career.map((c) => <li>{c}</li>)}
+            <li class="font-medium text-foreground-muted">{more}</li>
+          </ul>
+
+        </div>
+      </li>
+    ))
+  }
+</ul>

@@ -1,0 +1,62 @@
+---
+// 브랜딩 성과 병원별 페이지(/results/주소이름/). 첫 페이지 "브랜딩 성과" 카드를 누르면 온다. 글은 src/cases.ts에서 바꾼다.
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/Section.astro';
+import Button from '../../components/Button.astro';
+import { url, SITE } from '../../site';
+import { cases } from '../../cases';
+
+export function getStaticPaths() {
+  return cases.map((c) => ({ params: { slug: c.slug }, props: { c } }));
+}
+
+const { c } = Astro.props;
+const others = cases.filter((o) => o.slug !== c.slug);
+---
+
+<Layout title={`${c.label} 브랜딩 성과`} description={`${c.label}: ${c.valueNote} ${c.value}. 루트가 함께한 브랜딩 과정입니다.`}>
+  <Section narrow>
+    <a href={url('/#results')} class="inline-flex min-h-11 items-center gap-2 text-15 font-semibold text-foreground-muted hover:text-primary">
+      <span aria-hidden="true">←</span> 브랜딩 성과로 돌아가기
+    </a>
+
+    <header class="mt-6">
+      <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 text-14 font-bold text-primary-foreground">브랜딩 성과</p>
+      <h1 class="text-28 leading-snug font-extrabold md:text-36">{c.label}</h1>
+      <p class="mt-6 text-46 leading-none font-extrabold text-primary-bright md:text-[6.4rem]">{c.value}</p>
+      <p class="mt-3 text-16 font-semibold text-foreground-muted md:text-18">{c.valueNote}</p>
+    </header>
+
+    <div class="mt-12 space-y-6">
+      <section class="rounded-3xl bg-surface-accent px-6 py-7 md:px-8">
+        <h2 class="text-14 font-extrabold tracking-[0.2em] text-foreground-muted">PROBLEM</h2>
+        <p class="mt-4 text-16 leading-[1.85] md:text-18">{c.problem}</p>
+      </section>
+      <section class="rounded-3xl border border-primary bg-primary-surface px-6 py-7 md:px-8">
+        <h2 class="text-14 font-extrabold tracking-[0.2em] text-primary-bright">SOLUTION</h2>
+        <p class="mt-4 text-16 leading-[1.85] md:text-18">{c.solution}</p>
+      </section>
+    </div>
+
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      <Button href={SITE.contact.kakao} variant="kakao" size="lg">우리 병원도 상담받기</Button>
+      <Button href={url('/#results')} variant="secondary" size="lg">홈으로</Button>
+    </div>
+
+    <!-- 다른 병원 성과 바로가기 -->
+    <nav aria-label="다른 병원 성과" class="mt-14 border-t border-border-accent pt-8">
+      <p class="text-14 font-bold text-foreground-muted">다른 병원 성과</p>
+      <ul class="mt-4 grid gap-3 sm:grid-cols-3">
+        {others.map((o) => (
+          <li>
+            <a href={url(`/results/${o.slug}/`)} class="flex h-full flex-col rounded-2xl bg-surface-accent px-5 py-4 transition-colors hover:bg-primary-surface">
+              <span class="text-14 font-bold text-primary">[{o.label}]</span>
+              <span class="mt-2 text-24 font-extrabold">{o.value}</span>
+              <span class="mt-1 text-13 text-foreground-muted">{o.valueNote}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </Section>
+</Layout>

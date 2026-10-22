@@ -1,23 +1,22 @@
 ---
-// 문의 채널 세 가지: 전화·카카오톡·이메일. 값은 src/site.ts의 contact에서 바꾼다.
+// 문의 채널 두 가지: 전화·카카오톡. 값은 src/site.ts의 contact에서 바꾼다.
 import { SITE } from '../site';
 import Button from './Button.astro';
 
-const { phone, kakao, email, hours } = SITE.contact;
+const { phone, kakao } = SITE.contact;
 const channels = [
-  { label: '전화', value: phone, note: hours, href: `tel:${phone.replace(/-/g, '')}`, button: '전화 걸기', variant: 'primary' as const },
-  { label: '카카오톡', value: '채널 1:1 문의', note: '안내 문구가 들어갑니다.', href: kakao, button: '카카오톡 문의', variant: 'kakao' as const },
-  { label: '이메일', value: email, note: '안내 문구가 들어갑니다.', href: `mailto:${email}`, button: '이메일 보내기', variant: 'secondary' as const },
+  { label: '전화', value: phone, note: '원장님의 가치를 진단해 드립니다', href: `tel:${phone.replace(/-/g, '')}`, button: '전화 걸기', variant: 'primary' as const },
+  { label: '카카오톡', value: '오픈채팅 1:1 문의', note: '편하게 메시지 남겨 주세요.', href: kakao, button: '카카오톡 문의', variant: 'kakao' as const },
 ];
 ---
 
-<ul class="grid gap-5 md:grid-cols-3">
+<ul class="mx-auto grid max-w-[80rem] gap-5 md:grid-cols-2">
   {
     channels.map(({ label, value, note, href, button, variant }) => (
       <li class="flex flex-col rounded-3xl border border-border-accent bg-background p-7">
         <p class="text-14 font-semibold text-primary">{label}</p>
         <p class="mt-2 text-20 font-bold text-foreground">{value}</p>
-        <p class="mt-1 text-14 text-foreground-muted">{note}</p>
+        {note && <p class="mt-1 text-14 text-foreground-muted">{note}</p>}
         <div class="mt-auto pt-6">
           <Button href={href} variant={variant} full>
             {button}

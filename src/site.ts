@@ -9,6 +9,8 @@ export const SITE = {
   verification: {
     google: 'ILMSA86LU_89iTWsY1R3Daj4VAyyfy5THyrGgLwkAeY',
     naver: 'a3d6db4af9e0f0b95608597cc82f470372bd7b91',
+    // 다음 웹마스터도구 PIN 코드. robots.txt 맨 아래에 그대로 붙는다.
+    daum: '#DaumWebMasterTool:72023541a0c755282e767d47303be80fe800b35a99e5c30fa831e2a3bebf12dd:WoYFtMaR84eZ7MaX1Xjw9A==',
   },
   // 상단 메뉴. 원페이지라 섹션 id로 이동한다. index.astro의 Section id와 맞춘다.
   nav: [

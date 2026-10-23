@@ -7,7 +7,7 @@ export const SITE = {
   ogImage: '/og.png', // 1200x630, public/에 추가
   // 검색엔진 소유 확인 코드. 각 콘솔의 "HTML 태그" 방식에서 content="..." 값만 넣는다.
   verification: {
-    google: '',
+    google: 'ILMSA86LU_89iTWsY1R3Daj4VAyyfy5THyrGgLwkAeY',
     naver: '',
   },
   // 상단 메뉴. 원페이지라 섹션 id로 이동한다. index.astro의 Section id와 맞춘다.

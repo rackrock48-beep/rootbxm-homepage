@@ -5,6 +5,7 @@ import Section from '../../components/Section.astro';
 import Button from '../../components/Button.astro';
 import { url, SITE } from '../../site';
 import { cases } from '../../cases';
+import { breadcrumb } from '../../seo';
 
 export function getStaticPaths() {
   return cases.map((c) => ({ params: { slug: c.slug }, props: { c } }));
@@ -12,9 +13,33 @@ export function getStaticPaths() {
 
 const { c } = Astro.props;
 const others = cases.filter((o) => o.slug !== c.slug);
+
+// 검색·AI용 사례 글 정보(문제 → 해결 → 결과). 화면 내용과 같다.
+const site = Astro.site!;
+const pageUrl = new URL(url(`/results/${c.slug}/`), site).href;
+const schema = [
+  breadcrumb(site, [
+    { name: '브랜딩 성과', path: '/#results' },
+    { name: c.label, path: `/results/${c.slug}/` },
+  ]),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: `${c.label} 병원 브랜딩·마케팅 사례: ${c.valueNote} ${c.value}`,
+    about: ['병원 마케팅', '병원 브랜딩', c.label],
+    articleSection: '브랜딩 성과',
+    inLanguage: 'ko-KR',
+    url: pageUrl,
+    mainEntityOfPage: pageUrl,
+    author: { '@id': new URL(url('/#organization'), site).href },
+    publisher: { '@id': new URL(url('/#organization'), site).href },
+    image: new URL(url(SITE.ogImage), site).href,
+    articleBody: `PROBLEM\n${c.problem}\n\nSOLUTION\n${c.solution}\n\n결과: ${c.valueNote} ${c.value}`,
+  },
+];
 ---
 
-<Layout title={`${c.label} 브랜딩 성과`} description={`${c.label}: ${c.valueNote} ${c.value}. 루트가 함께한 브랜딩 과정입니다.`}>
+<Layout title={`${c.label} 병원 마케팅 사례: ${c.valueNote} ${c.value}`} description={`${c.label}의 고민(PROBLEM)과 루트의 병원 브랜딩·마케팅 해결 과정(SOLUTION). ${c.valueNote} ${c.value}.`} schema={schema}>
   <Section narrow>
     <a href={url('/#results')} class="inline-flex min-h-11 items-center gap-2 text-15 font-semibold text-foreground-muted hover:text-primary">
       <span aria-hidden="true">←</span> 브랜딩 성과로 돌아가기

@@ -14,5 +14,6 @@ export default defineConfig({
   },
 
   // base 경로 빌드 시 홈이 "/repo"와 "/repo/"로 중복 등록되는 것 방지(canonical은 슬래시 있는 쪽)
-  integrations: [sitemap({ filter: (page) => page.endsWith("/") })]
+  // lastmod: 배포할 때마다 "최근 수정일"을 사이트맵에 적어 검색엔진·AI가 새 내용을 빨리 다시 읽게 한다.
+  integrations: [sitemap({ filter: (page) => page.endsWith("/"), lastmod: new Date() })]
 });

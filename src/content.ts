@@ -11,7 +11,7 @@ import jooLogos from './assets/logos-joo.png';
 // 첫 화면. background에 들판의 나무 사진을 import해서 넣으면 그라데이션 대신 사진이 깔린다.
 export const hero = {
   eyebrow: '뿌리깊은 나무가 단단한 열매를 맺습니다',
-  title: '브랜딩의 기본을 생각합니다',
+  title: '병원 브랜딩의 기본을 생각합니다',
   name: 'ROOT Branding × Marketing',
   image: undefined as ImageMetadata | undefined,
   imageAlt: '',

@@ -2,9 +2,9 @@
 // 각 섹션에 들어가는 글은 src/content.ts에 있다.
 export const SITE = {
   name: 'ROOT Branding × Marketing',
-  description: '병원의 뿌리부터 브랜딩합니다. 전문(TRUST)과 프리미엄(CARE)을 설계하는 병원 브랜딩·마케팅 회사 ROOTBXM.',
+  description: '병원 전문 브랜딩·마케팅 회사 루트(ROOT BxM). 치과·피부과·성형외과 등 병원의 전문성(TRUST)과 프리미엄(PREMIUM)을 브랜딩하고, 네이버 검색·AI 추천(GEO)·오프라인 광고·의료법 검수까지 함께합니다.',
   locale: 'ko_KR',
-  ogImage: '/og.png', // 1200x630, public/에 추가
+  ogImage: '/og.jpg', // 1200x630 공유 이미지(카톡·SNS 링크 미리보기). public/og.jpg
   // 검색엔진 소유 확인 코드. 각 콘솔의 "HTML 태그" 방식에서 content="..." 값만 넣는다.
   verification: {
     google: 'ILMSA86LU_89iTWsY1R3Daj4VAyyfy5THyrGgLwkAeY',

@@ -6,9 +6,30 @@ import Section from '../components/Section.astro';
 import Button from '../components/Button.astro';
 import { url, SITE } from '../site';
 import { concerns } from '../concerns';
+import { breadcrumb } from '../seo';
+
+// 검색·AI용 질문과 답(FAQ). 화면의 30가지 고민과 같은 내용이다.
+const site = Astro.site!;
+const schema = [
+  breadcrumb(site, [{ name: '원장님 고민 30', path: '/concerns/' }]),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: concerns.map((c) => ({
+      '@type': 'Question',
+      name: c.title,
+      answerCount: 1,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: [c.empathy, ...c.actions.map((a, i) => `${i + 1}. ${a}`), c.closing].join('\n'),
+        url: new URL(url(`/concerns/#q${c.rank}`), site).href,
+      },
+    })),
+  },
+];
 ---
 
-<Layout title="원장님 고민 30" description="스물한 분 원장님 인터뷰에서 가장 많이 나온 고민 30가지와 루트의 답변입니다.">
+<Layout title="병원 원장님 고민 30가지와 해답" description="스물한 분 병원 원장님 인터뷰에서 가장 많이 나온 경영·마케팅 고민 1위~30위와, 병원 브랜딩 전문 루트의 해결 방법을 정리했습니다." schema={schema}>
   <Section narrow>
     <a href={url('/#concerns-tab')} class="inline-flex min-h-11 items-center gap-2 text-15 font-semibold text-foreground-muted hover:text-primary">
       <span aria-hidden="true">←</span> 홈으로 돌아가기

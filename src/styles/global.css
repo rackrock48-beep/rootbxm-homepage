@@ -439,3 +439,14 @@
 @media (prefers-reduced-motion: reduce) {
   .concern-marquee-track { animation: none; }
 }
+
+/* 휴대폰: 섹션이 서로 구분되도록 홀수 번째 섹션은 어두운 회색, 짝수 번째는 검정으로 번갈아 깐다.
+   첫 화면(사진)과 주요 캠페인(사진 배경)은 원래 배경을 그대로 둔다. */
+@media (max-width: 767px) {
+  main > section:nth-of-type(odd):not(:first-child):not(#campaigns) {
+    background-color: hsl(0, 0%, 12%);
+  }
+  main > section:nth-of-type(even):not(#campaigns) {
+    background-color: var(--background);
+  }
+}

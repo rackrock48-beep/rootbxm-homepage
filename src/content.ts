@@ -31,7 +31,7 @@ export const brand = {
   ],
   others: { label: '많은 대행사가 보는 곳', title: '열매', keywords: '노출 · 클릭 · 숫자', term: '한 철' },
   root: { label: '루트가 보는 곳', title: '뿌리', keywords: '브랜드 · 전문성 · 프리미엄', term: '수십 년' },
-  banner: { title: 'ROOT Branding × Marketing', text: '브랜딩으로 뿌리를 내리고, 마케팅으로 열매를 맺습니다.' },
+  banner: { title: 'ROOT Branding × Marketing', text: '브랜딩으로 뿌리를 내리고,|마케팅으로 열매를 맺습니다.' }, // | 자리에서 휴대폰만 줄바꿈
 };
 
 // 성과 카드. 병원명은 동의받은 표기만, 숫자는 근거 자료가 있는 것만 넣는다.

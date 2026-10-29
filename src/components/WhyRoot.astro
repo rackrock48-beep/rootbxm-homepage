@@ -17,7 +17,7 @@ const bold = (p: string) => p.split('**').map((part, i) => ({ part, strong: i % 
 <div class="grid items-center gap-14 lg:grid-cols-2">
   <div>
     <p class="mb-5 inline-flex rounded-lg bg-primary px-3 py-1 text-14 font-bold text-primary-foreground">{eyebrow}</p>
-    <h2 class="text-18 leading-relaxed font-extrabold whitespace-pre-line md:text-28">
+    <h2 class="text-[2.1rem] leading-relaxed font-extrabold whitespace-pre-line md:text-28">
       {paint(before).map(({ part, on }) => (on ? <span class="text-primary-bright">{part}</span> : part))}{after !== undefined && <span class="text-primary">{highlight}</span>}{after}
     </h2>
     {
@@ -53,5 +53,5 @@ const bold = (p: string) => p.split('**').map((part, i) => ({ part, strong: i % 
   <Image src={sprout} alt="" aria-hidden="true" widths={[800, 1400, 2000]} sizes="(min-width: 1280px) 1200px, 100vw" quality={85} class="absolute inset-0 -z-10 size-full object-cover object-[50%_32%]" />
   <div aria-hidden="true" class="absolute inset-0 -z-10 bg-black/45"></div>
   <p class="text-24 font-extrabold [text-shadow:0_2px_12px_rgb(0_0_0/0.5)] md:text-32">{banner.title}</p>
-  <p class="mt-2 text-16 [text-shadow:0_1px_8px_rgb(0_0_0/0.5)] md:text-20">{banner.text}</p>
+  <p class="mt-2 text-16 [text-shadow:0_1px_8px_rgb(0_0_0/0.5)] md:text-20">{banner.text.split('|').map((t, j) => (j ? <><br class="md:hidden" /><span class="max-md:hidden"> </span>{t}</> : t))}</p>
 </div>

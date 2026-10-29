@@ -80,4 +80,4 @@ const tones = ['bg-primary/10', 'bg-primary/20', 'bg-primary/35', 'bg-primary'];
   }
 </ol>
 
-<p class="mx-auto mt-6 max-w-[120rem] rounded-2xl bg-surface-accent px-6 py-5 text-center text-15 font-bold md:text-18">{footnote}</p>
+<p class="mx-auto mt-6 max-w-[120rem] rounded-2xl bg-surface-accent px-6 py-5 text-center text-15 font-bold md:text-18">{footnote.split('|').map((t, j) => (j ? <><br class="md:hidden" /><span class="max-md:hidden"> </span>{t}</> : t))}</p>

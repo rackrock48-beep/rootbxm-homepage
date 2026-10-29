@@ -39,6 +39,8 @@ const parts = footnote.split('**').map((part, i) => ({ part, strong: i % 2 === 1
   </ul>
 
   <p class="mt-12 text-center text-16 text-foreground-muted md:text-20">
-    {parts.map(({ part, strong }) => (strong ? <strong class="font-extrabold text-primary">{part}</strong> : part))}
+    {parts.map(({ part, strong }) =>
+      strong ? <strong class="font-extrabold text-primary">{part}</strong> : part.split('|').map((t, j) => (j ? <><br class="md:hidden" /><span class="max-md:hidden"> </span>{t}</> : t)),
+    )}
   </p>
 </div>

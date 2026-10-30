@@ -1,5 +1,5 @@
 ---
-// 화면 하단 고정 빠른 메뉴: 브랜드 제안(문의폼)·전화·카카오톡·맨 위로. 자바스크립트 없음.
+// 화면 하단 고정 빠른 메뉴: 브랜딩 제안(문의폼)·전화·카카오톡·맨 위로. 자바스크립트 없음.
 // 모바일: 화면 아래 가로 막대(바닥글에 같은 높이의 여백을 두어 가리지 않는다). 넓은 화면: 오른쪽 아래 세로 묶음.
 import { SITE, url } from '../site';
 
@@ -13,10 +13,10 @@ const icon = 'size-5';
   aria-label="빠른 메뉴"
   class="fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 border-t border-border-accent bg-background/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:inset-x-auto lg:right-6 lg:bottom-6 lg:flex lg:flex-col lg:gap-1 lg:rounded-2xl lg:border lg:p-1 lg:pb-1 lg:shadow-lg"
 >
-  <!-- 브랜드 제안: 문의폼(Tally)으로 간다. 초록 글씨로 눈에 띄게 -->
+  <!-- 브랜딩 제안: 문의폼(Tally)으로 간다. 초록 글씨로 눈에 띄게 -->
   <a href={SITE.contact.form} target="_blank" rel="noopener" class:list={[item, 'text-primary-bright lg:h-auto lg:py-2 lg:text-center lg:leading-tight']}>
     <svg aria-hidden="true" class={icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>
-    브랜드 제안
+    브랜딩 제안
   </a>
   <a href={tel} class={item}>
     <svg aria-hidden="true" class={icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>

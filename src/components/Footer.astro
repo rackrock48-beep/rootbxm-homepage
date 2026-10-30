@@ -12,6 +12,10 @@ const tel = `tel:${phone.replace(/-/g, '')}`;
     <div>
       <p class="text-18 font-extrabold tracking-tight text-foreground">{SITE.name}</p>
       <dl class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-14 text-foreground-muted">
+        <dt>상호명</dt>
+        <dd>{SITE.legal.brand}</dd>
+        <dt>법인명</dt>
+        <dd>{SITE.legal.company}</dd>
         <dt>대표자</dt>
         <dd>{SITE.legal.representative}</dd>
         <dt>사업자등록번호</dt>

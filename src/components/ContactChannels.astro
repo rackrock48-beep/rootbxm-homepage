@@ -6,7 +6,7 @@ import Button from './Button.astro';
 const { phone, kakao, form } = SITE.contact;
 const channels = [
   { label: '브랜딩 제안', value: '진단을 넘어, 우리 병원만의 브랜딩을 제안드립니다', note: 'LG그룹 브랜드 전략 프로세스와 동일한 방식으로 브랜딩 제안서를 직접 브리핑 해드립니다.', href: form, button: '우리 병원 브랜딩 제안 받기', variant: 'primary' as const, wide: true },
-  { label: '전화', value: phone, note: '원장님의 가치를 진단해 드립니다', href: `tel:${phone.replace(/-/g, '')}`, button: '문자 또는 전화하기', variant: 'gray' as const },
+  { label: '전화', value: phone, note: '원장님의 가치를 진단하고 브랜딩 해드립니다', href: `tel:${phone.replace(/-/g, '')}`, button: '문자 또는 전화하기', variant: 'gray' as const },
   { label: '카카오톡', value: '1:1 문의', note: '편하게 메시지 남겨 주세요.', href: kakao, button: '카카오톡 문의', variant: 'kakao' as const },
 ];
 ---

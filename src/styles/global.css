@@ -240,9 +240,9 @@
   }
   #contact {
     display: flex;
-    min-height: 133.33vw; /* 문의: 나무 사진(3:4) 전체가 보이는 높이. 글·박스는 사진 위쪽에 */
+    min-height: 129.4vw; /* 문의: 산·호수 사진 전체가 보이는 높이. 글·박스는 위쪽 하늘에 */
     align-items: flex-start;
-    padding-bottom: 100vw; /* 박스 아래로 나무가 보이게 */
+    padding-bottom: 70vw; /* 박스 아래로 산·호수가 보이게 */
   }
   #concerns > div > div:first-child {
     margin-bottom: 3.4rem;

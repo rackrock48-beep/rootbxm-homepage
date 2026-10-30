@@ -238,6 +238,12 @@
     min-height: calc((100svh - 12rem) * 0.7); /* 위 메뉴 줄·아래 고정 메뉴를 뺀 화면 높이의 70% */
     align-items: center;
   }
+  #contact {
+    display: flex;
+    min-height: 133.33vw; /* 문의: 나무 사진(3:4) 전체가 보이는 높이. 글·박스는 사진 위쪽에 */
+    align-items: flex-start;
+    padding-bottom: 100vw; /* 박스 아래로 나무가 보이게 */
+  }
   #concerns > div > div:first-child {
     margin-bottom: 3.4rem;
   }

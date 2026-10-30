@@ -11,6 +11,7 @@ import logoLg from '../assets/logo-campaign-4.png';
 import logoCnp from '../assets/logo-cnp.png';
 import logoVidivici from '../assets/logo-vidivici.png';
 import logoAmore from '../assets/logo-amore.png';
+import promiseTree from '../assets/promise-tree.jpg';
 import type { ImageMetadata } from 'astro';
 
 const collageBg = await getImage({ src: campaignsCollage, width: 1047, format: 'webp', quality: 80 });
@@ -193,7 +194,9 @@ import { hero, results, leaders, people, campaignsCopy, services, voice } from '
     </div>
   </Section>
 
-  <Section id="contact" align="center" eyebrow="문의" title={'원장님의 병원은\n진료의 가치만큼 평가받고 있습니까?'} lead="아래 중 편한 방법으로 신청하시면 대표가 직접 연락드립니다.">
+  <!-- 문의: 나무 사진을 어둡게 배경으로 깐다 -->
+  <Section id="contact" class="relative isolate overflow-clip md:pt-[12rem] md:pb-[48rem]" align="center" eyebrow="문의" title={'원장님의 병원은\n진료의 가치만큼 평가받고 있습니까?'} lead="아래 중 편한 방법으로 신청하시면 대표가 직접 연락드립니다.">
+    <Image src={promiseTree} alt="" aria-hidden="true" widths={[800, 1600]} sizes="100vw" class="absolute inset-0 -z-10 size-full object-cover object-bottom brightness-[.3]" />
     <ContactChannels />
   </Section>
 </Layout>

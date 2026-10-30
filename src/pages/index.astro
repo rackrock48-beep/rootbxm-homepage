@@ -71,7 +71,7 @@ import { hero, results, leaders, people, campaignsCopy, services, voice } from '
         <span class="text-14 leading-tight font-bold text-foreground-muted group-hover:text-primary-foreground">스물한 분 원장님의</span>
         <span class="text-16 leading-snug font-extrabold md:text-18">고민과 해답</span>
         <span class="text-16 font-extrabold text-primary-bright group-hover:text-primary-foreground md:text-18">1위~30위</span>
-        <span aria-hidden="true" class="text-12 font-bold transition-transform group-hover:translate-x-1">→</span>
+        <span aria-hidden="true" class="text-13 font-bold transition-transform group-hover:translate-x-1">→</span>
       </a>
     </div>
   </Section>
@@ -87,7 +87,7 @@ import { hero, results, leaders, people, campaignsCopy, services, voice } from '
   <Section id="company" tone="surface">
     <div class="mx-auto mb-16 max-w-prose text-center">
       <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 text-14 font-bold text-primary-foreground">{leaders.eyebrow}</p>
-      <h2 class="text-20 leading-snug font-extrabold whitespace-pre-line md:text-36"><span class="text-lg-red">LG그룹</span>{leaders.title.replace('LG그룹', '').split('프리미엄 브랜드')[0]}<span class="text-premium-purple">프리미엄 브랜드</span>{leaders.title.split('프리미엄 브랜드')[1]}</h2>
+      <h2 class="text-20 leading-snug font-extrabold whitespace-pre-line md:text-36"><span class="text-lg-red">LG그룹</span>{leaders.title.replace('LG그룹', '').split('프리미엄 브랜드')[0]}<strong class="font-extrabold text-primary-bright">프리미엄 브랜드</strong>{leaders.title.split('프리미엄 브랜드')[1]}</h2>
     </div>
     <People items={people} />
   </Section>
@@ -120,7 +120,7 @@ import { hero, results, leaders, people, campaignsCopy, services, voice } from '
                 <!-- 연세대처럼 caption이 있으면 심볼 아래에 기관명을 작게 붙인다 -->
                 <div class="flex h-[7.3rem] w-full flex-col items-center justify-end">
                   <Image src={src} alt={alt} quality={95} format="png" class={caption ? "h-[4.8rem] w-auto object-contain" : `h-auto w-auto object-contain ${h ?? "max-h-[4.8rem] max-w-[9.4rem]"}`} />
-                  {caption && <span class="mt-1.5 text-12 font-bold tracking-tight text-black/70">{caption}</span>}
+                  {caption && <span class="mt-1.5 text-13 font-bold tracking-tight text-black/70">{caption}</span>}
                 </div>
                 <p class="mt-3.5 text-14 leading-snug font-bold whitespace-pre-line text-black/55 md:text-15">{project}</p>
               </li>

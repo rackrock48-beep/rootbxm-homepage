@@ -93,8 +93,8 @@ export const services = {
     { title: '콘텐츠', description: '원장님 진료 철학에\n병원 컨셉을 반영한\n글·영상·이미지' },
     { title: '네이버 검색\n통합 운영', description: '플레이스·블로그·카페\n클립·지식iN\n신규 섹션까지\n검색 전 영역' },
     { title: 'AI 추천 설계\n(GEO)', description: '검색을 넘어\nAI가 먼저\n추천하는 병원' },
-    { title: '오프라인 광고', description: '지역 TV 광고\n엘리베이터 영상\n버스 광고\n현수막\n전단지' },
-    { title: '의료법 관리', description: '전 콘텐츠 의료법 검수\n외부 광고 심의 안내\n분기별 의료법 점검\n민원·제재 리스크 사전 차단' },
+    { title: '오프라인 광고', description: '지역 TV · 엘리베이터 · 버스 등\n지역 오프라인 캠페인' },
+    { title: '의료법 관리', description: '전 콘텐츠 의료법 검수\n외부 광고 심의 안내\n3개월마다 의료법 점검\n민원·제재 리스크 사전 차단' },
   ],
 };
 
@@ -149,7 +149,7 @@ export const promise = {
   items: [
     { icon: 'userCheck', title: '끝까지 같은 사람', description: '루트가 커져도 대표가\n프로젝트 매니저로 직접 전담합니다.' },
     { icon: 'team', title: '두 디렉터 공동 브랜딩', description: '노규락 대표와 주현아 Director가\n브랜딩 전략부터 마케팅 실행까지\n직접 설계하고 실행합니다.' },
-    { icon: 'calendar', title: '3개월마다 새로운 제안', description: '지역, 경쟁 병원, 환자 타깃 분석과\n브랜드 점검, 새로운 아이디어를\n분기별로 직접 찾아뵙고 제시합니다.' },
+    { icon: 'calendar', title: '3개월마다 새로운 제안', description: '지역, 경쟁 병원, 환자 타깃 분석과\n브랜드 점검, 새로운 아이디어를\n3개월마다 직접 찾아뵙고 제시합니다.' },
     { icon: 'shield', title: '의료법 대비부터 해결까지', description: '모든 콘텐츠는 의료광고 기준을 검토한 뒤 발행하고\n이슈 발생 시 끝까지 해결합니다.' },
     { icon: 'pin', title: '같은 진료권 한 곳만 대행', description: '원장님 병원을 위한 전략은 오직\n원장님 병원에만 쓰입니다.' },
     { icon: 'test', title: '신규 콘텐츠 1회 무료 제공', description: '새로 나온 콘텐츠를 저희 비용으로\n테스트하고 효과 검증 후 제안드립니다.' },
@@ -163,7 +163,7 @@ export const stages = {
   items: [
     { art: 'seed', badge: '씨앗', name: 'SEED', period: '개원 1년 이내', headline: '처음 심는 씨앗이\n병원의 10년을 결정합니다', lead: '시작부터 흔들리지 않는\n브랜드의 뿌리를 만듭니다', tag: '초기 정착', points: ['첫 브랜드 설계', '지역 인지도', '기본 채널 세팅'] },
     { art: 'stem', badge: '줄기', name: 'GROW', period: '3년 차', headline: '찾아오는 환자를\n선택하는 환자로', lead: '문의가 진료로 이어지는\n성장 구조를 세웁니다', tag: '성장 체계', points: ['원장님 진료 철학 강화', '문의 대비 결제율', '대표 진료 브랜딩'] },
-    { art: 'tree', badge: '나무', name: 'THRIVE', period: '7년 차', headline: '지역에서 가장 먼저\n떠오르는 병원으로', lead: '경쟁 속에서도 흔들리지 않는\n대표 병원의 자리를 굳힙니다', tag: '지역 대표 병원', points: ['지역 포지셔닝 확장', '재방문·소개 환자 관리', '원장 전문성 정통성 브랜딩'] },
+    { art: 'tree', badge: '나무', name: 'THRIVE', period: '7년 차', headline: '지역에서 가장 먼저\n떠오르는 병원으로', lead: '경쟁 속에서도 흔들리지 않는\n대표 병원의 자리를 굳힙니다', tag: '지역 대표 병원', points: ['지역 포지셔닝 확장', '재방문·소개 환자 관리', '원장님 전문성·정통성 브랜딩'] },
     { art: 'forest', badge: '숲', name: 'RENEW', period: '10년 이상', headline: '한 병원을 넘어\n지역이 신뢰하는 이름으로', lead: '쌓아 온 명성을 새롭게 다듬어\n다음 10년을 준비합니다', tag: '리뉴얼', points: ['브랜드 이미지 재정립', '지역 사회적 역할 부여', '쌓아 온 명성을 다음 10년의 자산으로'], highlight: true },
   ],
   footnote: '어느 단계든 기준은 같습니다.|지금의 매출과 10년 뒤의 명성을 함께 설계합니다.', // | 자리에서 휴대폰만 줄바꿈

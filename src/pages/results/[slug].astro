@@ -25,7 +25,7 @@ const schema = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${c.label} 병원 브랜딩·마케팅 사례: ${c.valueNote} ${c.value}`,
+    headline: `${c.label} 병원 브랜딩·마케팅 사례: ${c.summary}`,
     about: ['병원 마케팅', '병원 브랜딩', c.label],
     articleSection: '브랜딩 성과',
     inLanguage: 'ko-KR',
@@ -34,12 +34,12 @@ const schema = [
     author: { '@id': new URL(url('/#organization'), site).href },
     publisher: { '@id': new URL(url('/#organization'), site).href },
     image: new URL(url(SITE.ogImage), site).href,
-    articleBody: `PROBLEM\n${c.problem}\n\nSOLUTION\n${c.solution}\n\n결과: ${c.valueNote} ${c.value}`,
+    articleBody: `PROBLEM\n${c.problem}\n\nSOLUTION\n${c.solution}\n\n결과: ${c.summary}`,
   },
 ];
 ---
 
-<Layout title={`${c.label} 병원 마케팅 사례: ${c.valueNote} ${c.value}`} description={`${c.label}의 고민(PROBLEM)과 루트의 병원 브랜딩·마케팅 해결 과정(SOLUTION). ${c.valueNote} ${c.value}.`} schema={schema}>
+<Layout title={`${c.label} 병원 마케팅 사례: ${c.summary}`} description={`${c.label}의 고민(PROBLEM)과 루트의 병원 브랜딩·마케팅 해결 과정(SOLUTION). ${c.summary}.`} schema={schema}>
   <Section narrow>
     <a href={url('/#results')} class="inline-flex min-h-11 items-center gap-2 text-15 font-semibold text-foreground-muted hover:text-primary">
       <span aria-hidden="true">←</span> 브랜딩 성과로 돌아가기
@@ -77,7 +77,7 @@ const schema = [
             <a href={url(`/results/${o.slug}/`)} class="flex h-full flex-col rounded-2xl bg-surface-accent px-5 py-4 transition-colors hover:bg-primary-surface">
               <span class="text-14 font-bold text-primary">[{o.label}]</span>
               <span class="mt-2 text-24 font-extrabold">{o.value}</span>
-              <span class="mt-1 text-13 text-foreground-muted">{o.valueNote}</span>
+              <span class="mt-1 text-14 text-foreground-muted">{o.valueNote}</span>
             </a>
           </li>
         ))}

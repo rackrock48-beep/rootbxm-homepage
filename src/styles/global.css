@@ -30,8 +30,8 @@
   --surface-accent: hsl(0, 0%, 11%);
 
   --foreground: hsl(0, 0%, 100%);
-  --foreground-muted: hsl(0, 0%, 78%);
-  --foreground-subtle: hsl(0, 0%, 58%); /* 큰 글자·장식에만 쓴다 */
+  --foreground-muted: hsl(0, 0%, 84%);
+  --foreground-subtle: hsl(0, 0%, 66%); /* 큰 글자·장식에만 쓴다 */
 
   --border: hsl(0, 0%, 14%);
   --border-accent: hsl(0, 0%, 22%);

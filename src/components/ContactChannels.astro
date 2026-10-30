@@ -1,19 +1,20 @@
 ---
-// 문의 채널 두 가지: 전화·카카오톡. 값은 src/site.ts의 contact에서 바꾼다.
+// 문의 채널: 맨 위 브랜드 전략 제안 신청(문의폼, 가로 전체) → 전화·카카오톡. 값은 src/site.ts의 contact에서 바꾼다.
 import { SITE } from '../site';
 import Button from './Button.astro';
 
-const { phone, kakao } = SITE.contact;
+const { phone, kakao, form } = SITE.contact;
 const channels = [
-  { label: '전화', value: phone, note: '원장님의 가치를 진단해 드립니다', href: `tel:${phone.replace(/-/g, '')}`, button: '전화 걸기', variant: 'primary' as const },
-  { label: '카카오톡', value: '오픈채팅 1:1 문의', note: '편하게 메시지 남겨 주세요.', href: kakao, button: '카카오톡 문의', variant: 'kakao' as const },
+  { label: '브랜드 전략 제안', value: '브랜드 진단을 넘어 전략을 제안드립니다', note: 'LG그룹 브랜드 전략 프로세스와 동일한 방식으로 약 20페이지 분량의 전략 제안서를 직접 브리핑해드립니다.', href: form, button: '우리 병원 브랜드 전략 제안 받기', variant: 'primary' as const, wide: true },
+  { label: '전화', value: phone, note: '원장님의 가치를 진단해 드립니다', href: `tel:${phone.replace(/-/g, '')}`, button: '문자 또는 전화하기', variant: 'gray' as const },
+  { label: '카카오톡', value: '1:1 문의', note: '편하게 메시지 남겨 주세요.', href: kakao, button: '카카오톡 문의', variant: 'kakao' as const },
 ];
 ---
 
 <ul class="mx-auto grid max-w-[80rem] gap-5 md:grid-cols-2">
   {
-    channels.map(({ label, value, note, href, button, variant }) => (
-      <li class="flex flex-col rounded-3xl border border-border-accent bg-background p-7">
+    channels.map(({ label, value, note, href, button, variant, wide }) => (
+      <li class:list={['flex flex-col rounded-3xl border bg-background p-7', wide ? 'border-primary md:col-span-2' : 'border-border-accent']}>
         <p class="text-14 font-semibold text-primary">{label}</p>
         <p class="mt-2 text-20 font-bold text-foreground">{value}</p>
         {note && <p class="mt-1 text-14 text-foreground-muted">{note}</p>}

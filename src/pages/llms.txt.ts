@@ -31,7 +31,7 @@ export const GET: APIRoute = ({ site }) => {
     `- 주요 캠페인: ${one(campaignsCopy.title)}`,
     '',
     '## 병원 브랜딩·마케팅 성과 사례',
-    ...cases.map((c) => `- [${c.label}: ${c.valueNote} ${c.value}](${abs(`/results/${c.slug}/`)})`),
+    ...cases.map((c) => `- [${c.label}: ${c.summary}](${abs(`/results/${c.slug}/`)})`),
     '',
     '## 병원 원장님 고민 30가지와 해답',
     `- [전체 보기](${abs('/concerns/')}): 스물한 분 원장님 인터뷰에서 가장 많이 나온 병원 경영·마케팅 고민 1위~30위와 해결 방법`,

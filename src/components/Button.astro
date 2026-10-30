@@ -3,7 +3,7 @@
 // 내부 링크·앵커는 url('/#services')처럼 url()로 감싸서 넘긴다. 전화는 "tel:0200000000", 카카오톡은 채널 주소 그대로.
 interface Props {
   href?: string;
-  variant?: 'primary' | 'secondary' | 'ghost' | 'kakao';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'kakao' | 'gray';
   size?: 'sm' | 'md' | 'lg';
   type?: 'button' | 'submit';
   full?: boolean; // 가로로 꽉 채우기
@@ -23,6 +23,7 @@ const variants = {
   primary: 'border border-primary bg-primary text-primary-foreground hover:bg-secondary hover:text-secondary-foreground',
   secondary: 'border border-border-accent bg-background text-foreground hover:border-primary hover:text-primary',
   ghost: 'text-primary hover:bg-primary-surface',
+  gray: 'border border-transparent bg-[hsl(0_0%_88%)] font-bold text-primary hover:border-primary', // 밝은 회색 바탕 + 초록 글씨
   kakao: 'bg-[#fee500] text-[#191919] hover:bg-[#f2da00]',
 };
 const classes = [base, sizes[size], variants[variant], full && 'w-full', className];

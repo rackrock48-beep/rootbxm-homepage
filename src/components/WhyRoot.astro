@@ -18,7 +18,7 @@ const bold = (p: string) => p.split('**').map((part, i) => ({ part, strong: i % 
   <div>
     <p class="mb-5 inline-flex rounded-lg bg-primary px-3 py-1 text-14 font-bold text-primary-foreground">{eyebrow}</p>
     <h2 class="text-[2.1rem] leading-relaxed font-extrabold whitespace-pre-line md:text-28">
-      {paint(before).map(({ part, on }) => (on ? <span class="text-primary-bright">{part}</span> : part))}{after !== undefined && <span class="text-primary">{highlight}</span>}{after}
+      {paint(before).map(({ part, on }) => (on ? <span class="text-primary-bright">{part}</span> : part))}{after !== undefined && <span class="text-[1.3em] font-black text-primary">{highlight}</span>}{after}
     </h2>
     {
       paragraphs.map((p) => (
@@ -33,14 +33,14 @@ const bold = (p: string) => p.split('**').map((part, i) => ({ part, strong: i % 
     <Image src={tree} alt="" aria-hidden="true" class="absolute inset-0 m-auto h-[95%] w-auto max-w-full object-contain -translate-y-[6%] opacity-40" />
     <div class="relative flex translate-y-10 flex-col gap-5 px-6 py-10">
       <div class="px-6 py-6 text-center [text-shadow:0_1px_8px_rgb(0_0_0/0.9)]">
-        <p class="text-13 font-semibold text-foreground-muted">{others.label}</p>
+        <p class="text-14 font-semibold text-foreground-muted">{others.label}</p>
         <p class="mt-2 text-28 font-extrabold">{others.title}</p>
         <p class="mt-1 text-15 text-foreground-muted">{others.keywords}</p>
       </div>
       <div class="relative border-t-2 border-primary">
       </div>
       <div class="px-6 py-6 text-center text-primary-foreground [text-shadow:0_1px_8px_rgb(0_0_0/0.9)]">
-        <p class="text-13 font-semibold">{root.label}</p>
+        <p class="text-14 font-semibold">{root.label}</p>
         <p class="mt-2 text-28 font-extrabold">{root.title}</p>
         <p class="mt-1 text-15">{root.keywords}</p>
       </div>

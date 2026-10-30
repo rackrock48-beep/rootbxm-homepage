@@ -25,6 +25,7 @@ export const SITE = {
   contact: {
     phone: '010-9966-4156',
     kakao: 'https://open.kakao.com/o/srJjr8Fi', // 카카오톡 채널 주소. "문의하기" 버튼이 여기로 연결된다.
+    form: 'https://tally.so/r/OQQvN7', // "브랜드 진단 제안 받기" 문의폼(Tally). 문의가 오면 rackrock48@gmail.com 으로 메일 알림
     email: 'brius525@naver.com',
     address: '', // 비워 두면 바닥글에서 주소 줄이 빠진다.
     hours: '평일 10:00 – 18:00 (주말·공휴일 휴무)',

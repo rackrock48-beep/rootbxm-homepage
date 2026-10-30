@@ -152,7 +152,7 @@ export const promise = {
     { icon: 'calendar', title: '3개월마다 새로운 제안', description: '지역, 경쟁 병원, 환자 타깃 분석과\n브랜드 점검, 새로운 아이디어를\n3개월마다 직접 찾아뵙고 제시합니다.' },
     { icon: 'shield', title: '의료법 대비부터 해결까지', description: '모든 콘텐츠는 의료광고 기준을 검토한 뒤 발행하고\n이슈 발생 시 끝까지 해결합니다.' },
     { icon: 'pin', title: '같은 진료권 한 곳만 대행', description: '원장님 병원을 위한 전략은 오직\n원장님 병원에만 쓰입니다.' },
-    { icon: 'test', title: '신규 콘텐츠 1회 무료 제공', description: '새로 나온 콘텐츠를 저희 비용으로\n테스트하고 효과 검증 후 제안드립니다.' },
+    { icon: 'test', title: '신규 콘텐츠 1회 테스트 제공', description: '새로 나온 콘텐츠를 저희 비용으로\n테스트하고 효과 검증 후 제안드립니다.' },
   ],
 };
 

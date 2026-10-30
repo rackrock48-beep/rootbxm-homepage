@@ -17,11 +17,11 @@ const linkClass =
 
     <nav aria-label="주요 메뉴" class="hidden items-center gap-1 lg:flex">
       {SITE.nav.map(({ href, label }) => <a href={url(href)} class={linkClass}>{label}</a>)}
-      <Button href={SITE.contact.form} size="sm" class="ml-3">우리 병원 브랜드 전략 제안 받기</Button>
+      <Button href={SITE.contact.form} size="sm" class="ml-3">우리 병원 브랜딩 제안 받기</Button>
     </nav>
 
     <div class="flex items-center gap-1 lg:hidden">
-    <Button href={SITE.contact.form} size="sm" class="max-sm:px-3 max-sm:text-13">우리 병원 브랜드 전략 제안 받기</Button>
+    <Button href={SITE.contact.form} size="sm" class="max-sm:px-3 max-sm:text-13">우리 병원 브랜딩 제안 받기</Button>
     <details class="group relative">
       <summary
         class="flex size-11 cursor-pointer items-center justify-center rounded-lg text-foreground hover:bg-surface"
@@ -36,7 +36,7 @@ const linkClass =
       >
         {SITE.nav.map(({ href, label }) => <a href={url(href)} class={linkClass}>{label}</a>)}
         <div class="mt-2 border-t border-border pt-2">
-          <Button href={SITE.contact.form} full>우리 병원 브랜드 전략 제안 받기</Button>
+          <Button href={SITE.contact.form} full>우리 병원 브랜딩 제안 받기</Button>
         </div>
       </nav>
     </details>

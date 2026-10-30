@@ -1,9 +1,9 @@
 ---
-// 바닥글. 상호·대표자·사업자번호·연락처·운영시간·저작권. 내용은 src/site.ts에서 바꾼다.
+// 바닥글. 상호·대표자·사업자번호·전화·저작권(이메일·운영시간은 표시하지 않는다). 내용은 src/site.ts에서 바꾼다.
 // 아래쪽 여백은 모바일 플로팅 메뉴(QuickMenu)에 가리지 않기 위한 것이다.
 import { SITE, url } from '../site';
 
-const { phone, email, address, hours } = SITE.contact;
+const { phone, address } = SITE.contact;
 const tel = `tel:${phone.replace(/-/g, '')}`;
 ---
 
@@ -20,10 +20,6 @@ const tel = `tel:${phone.replace(/-/g, '')}`;
         {address && <dd>{address}</dd>}
         <dt>전화</dt>
         <dd><a href={tel} class="hover:text-foreground">{phone}</a></dd>
-        <dt>이메일</dt>
-        <dd><a href={`mailto:${email}`} class="hover:text-foreground">{email}</a></dd>
-        <dt>운영시간</dt>
-        <dd>{hours}</dd>
       </dl>
     </div>
 

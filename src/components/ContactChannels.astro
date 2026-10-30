@@ -1,29 +1,31 @@
 ---
-// 문의 채널: 맨 위 브랜딩 제안 신청(문의폼, 가로 전체) → 전화·카카오톡. 값은 src/site.ts의 contact에서 바꾼다.
+// 문의 상자 두 개: 맨 위 브랜딩 제안 신청(문의폼) → 1:1 문의(문자·전화 버튼과 카카오톡 버튼을 한 상자에). 값은 src/site.ts의 contact에서 바꾼다.
 import { SITE } from '../site';
 import Button from './Button.astro';
 
 const { phone, kakao, form } = SITE.contact;
-const channels = [
-  { label: '브랜딩 제안', value: '진단을 넘어, 우리 병원만의 브랜딩을 제안드립니다', note: 'LG그룹 브랜드 전략 프로세스와 동일한 방식으로 브랜딩 제안서를 직접 브리핑 해드립니다.', href: form, button: '우리 병원 브랜딩 제안 받기', variant: 'primary' as const, wide: true },
-  { label: '전화', value: phone, note: '원장님의 가치를 진단하고 브랜딩 해드립니다', href: `tel:${phone.replace(/-/g, '')}`, button: '문자 또는 전화하기', variant: 'gray' as const },
-  { label: '카카오톡', value: '1:1 문의', note: '편하게 메시지 남겨 주세요.', href: kakao, button: '카카오톡 문의', variant: 'kakao' as const },
-];
+const tel = `tel:${phone.replace(/-/g, '')}`;
 ---
 
-<ul class="mx-auto grid max-w-[80rem] gap-5 md:grid-cols-2">
-  {
-    channels.map(({ label, value, note, href, button, variant, wide }) => (
-      <li class:list={['flex flex-col rounded-3xl border bg-background p-7', wide ? 'border-primary md:col-span-2' : 'border-border-accent']}>
-        <p class="text-14 font-semibold text-primary">{label}</p>
-        <p class="mt-2 text-20 font-bold text-foreground">{value}</p>
-        {note && <p class="mt-1 text-14 text-foreground-muted">{note}</p>}
-        <div class="mt-auto pt-6">
-          <Button href={href} variant={variant} full>
-            {button}
-          </Button>
-        </div>
-      </li>
-    ))
-  }
+<ul class="mx-auto grid max-w-[80rem] gap-5">
+  <!-- 브랜딩 제안: 문의폼(Tally)으로 간다 -->
+  <li class="flex flex-col rounded-3xl border border-primary bg-background p-7">
+    <p class="text-14 font-semibold text-primary">브랜딩 제안</p>
+    <p class="mt-2 text-20 font-bold text-foreground">진단을 넘어, 우리 병원만의 브랜딩을 제안드립니다</p>
+    <p class="mt-1 text-14 text-foreground-muted">LG그룹 브랜드 전략 프로세스와 동일한 방식으로 브랜딩 제안서를 직접 브리핑 해드립니다.</p>
+    <div class="mt-auto pt-6">
+      <Button href={form} variant="primary" full>우리 병원 브랜딩 제안 받기</Button>
+    </div>
+  </li>
+
+  <!-- 1:1 문의: 문자·전화와 카카오톡을 한 상자에. 버튼은 넓은 화면에서 나란히, 휴대폰에서는 위아래로 -->
+  <li class="flex flex-col rounded-3xl border border-border-accent bg-background p-7">
+    <p class="text-14 font-semibold text-primary">1:1 문의</p>
+    <p class="mt-2 text-20 font-bold text-foreground">{phone}</p>
+    <p class="mt-1 text-14 text-foreground-muted">고민하고 망설이지 말고 편하게 연락해 주세요. 간단한 상담만으로도 병원 경영에 큰 도움이 됩니다.</p>
+    <div class="mt-auto grid gap-3 pt-6 sm:grid-cols-2">
+      <Button href={tel} variant="gray" full>문자 또는 전화하기</Button>
+      <Button href={kakao} variant="kakao" full>카카오톡 문의</Button>
+    </div>
+  </li>
 </ul>

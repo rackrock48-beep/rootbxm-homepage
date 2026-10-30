@@ -143,7 +143,7 @@ export const compare = {
 // 루트의 약속. icon 이름은 src/components/Promises.astro의 icons에 있다.
 export const promise = {
   eyebrow: 'ROOT의 약속',
-  title: '루트가 성장해서 커져도\n원장님의 담당자는 바뀌지 않습니다',
+  title: '루트의 성장과는 상관없이\n원장님의 담당자는 바뀌지 않습니다',
   quote: '“지금 믿어 주신 원장님을 가장 마지막까지 책임지겠습니다”',
   signature: '대표 노규락',
   items: [

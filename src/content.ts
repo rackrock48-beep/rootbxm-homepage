@@ -148,7 +148,7 @@ export const promise = {
   signature: '대표 노규락',
   items: [
     { icon: 'userCheck', title: '끝까지 같은 사람', description: '루트가 커져도 대표가\n프로젝트 매니저로 직접 전담합니다.' },
-    { icon: 'team', title: '두 디렉터 공동 브랜딩', description: '노규락 대표와 주현아 Director가\n브랜딩 전략부터 마케팅 실행까지\n직접 설계하고 실행합니다.' },
+    { icon: 'team', title: '두 디렉터 공동 브랜딩', description: '노규락 광고 기획자와 주현아 브랜드 디렉터가\n브랜딩 전략부터 마케팅 실행까지\n직접 설계하고 실행합니다.' },
     { icon: 'calendar', title: '3개월마다 새로운 제안', description: '지역, 경쟁 병원, 환자 타깃 분석과\n브랜드 점검, 새로운 아이디어를\n3개월마다 직접 찾아뵙고 제시합니다.' },
     { icon: 'shield', title: '의료법 대비부터 해결까지', description: '모든 콘텐츠는 의료광고 기준을 검토한 뒤 발행하고\n이슈 발생 시 끝까지 해결합니다.' },
     { icon: 'pin', title: '같은 진료권 한 곳만 대행', description: '원장님 병원을 위한 전략은 오직\n원장님 병원에만 쓰입니다.' },

@@ -238,12 +238,6 @@
     min-height: calc((100svh - 12rem) * 0.7); /* 위 메뉴 줄·아래 고정 메뉴를 뺀 화면 높이의 70% */
     align-items: center;
   }
-  #contact {
-    display: flex;
-    min-height: 129.4vw; /* 문의: 산·호수 사진 전체가 보이는 높이. 글·박스는 위쪽 하늘에 */
-    align-items: flex-start;
-    padding-bottom: 70vw; /* 박스 아래로 산·호수가 보이게 */
-  }
   #concerns > div > div:first-child {
     margin-bottom: 3.4rem;
   }

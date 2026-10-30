@@ -71,13 +71,13 @@ const { eyebrow, title, letter, signature, pillars } = conditions;
 </div>
 
 <!-- 대표의 글 -->
-<figure class="mx-auto mt-24 max-w-[64rem] border-t border-border-accent pt-16 md:mt-32">
+<figure class="mx-auto mt-24 max-w-[72rem] border-t border-border-accent pt-16 md:mt-32">
   <p class="mb-10 text-center text-20 font-black tracking-[0.2em] text-white md:text-24">{pillars.map((p) => p.title).join(' & ')}</p>
-  <blockquote class="space-y-6 text-center text-15 leading-[1.9] whitespace-pre-line text-foreground-muted md:text-16">
+  <blockquote class="space-y-6 text-center text-16 leading-[1.9] whitespace-pre-line text-foreground-muted md:text-18">
     {letter.map((p) => <p>{p}</p>)}
   </blockquote>
   <!-- 서명: "대표 노규락" 옆에 손글씨 사인 -->
-  <figcaption class="mt-10 flex items-center justify-center gap-4 text-[1.7rem] font-bold tracking-[0.15em] text-foreground">
+  <figcaption class="mt-10 flex items-center justify-center gap-4 text-18 font-bold tracking-[0.15em] text-foreground">
     <span>{signature}</span>
     <Image src={signImg} alt="노규락 대표 서명" quality={95} format="png" class="h-auto w-[8.4rem] md:w-[10rem]" />
   </figcaption>

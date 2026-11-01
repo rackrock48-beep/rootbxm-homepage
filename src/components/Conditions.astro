@@ -10,8 +10,8 @@ const { eyebrow, title, letter, signature, pillars } = conditions;
 ---
 
 <div class="mx-auto max-w-[96rem] text-center">
-  <p class="mb-5 text-14 font-semibold tracking-[0.2em] text-primary">{eyebrow}</p>
-  <h2 class="text-18 leading-snug font-extrabold whitespace-pre-line md:text-36">{title}</h2>
+  <p class="mb-5 t-body font-semibold tracking-[0.2em] text-primary">{eyebrow}</p>
+  <h2 class="t-headline leading-snug font-extrabold whitespace-pre-line">{title}</h2>
 </div>
 
 <!-- 두 기둥: 휴대폰은 모두 가운데 정렬, 넓은 화면은 TRUST 왼쪽·PREMIUM 오른쪽 아래로 엇갈리게. 나무가 TRUST의 T, PREMIUM의 M 위에 올라앉고,
@@ -50,9 +50,9 @@ const { eyebrow, title, letter, signature, pillars } = conditions;
         <div class:list={['relative text-center', right ? 'lg:mt-[0.3em] lg:text-right' : 'lg:text-left']}>
           <!-- 맨 위: 한마디 → 그 아래: 라벨·설명 → 영문 단어 -->
           <div class:list={['flex flex-col gap-2 pb-[0.34em] lg:pb-[0.03em]', right ? 'items-center lg:mr-[0.32em] lg:items-end' : 'items-center lg:ml-[0.4em] lg:items-start']}>
-            <p class="text-20 leading-snug font-extrabold md:text-28">{quote}</p>
+            <p class="t-headline leading-snug font-extrabold">{quote}</p>
             <!-- 라벨과 설명을 한 줄로: "환자가 선택하는 이유 | 실력과 전문성에 대한 신뢰" -->
-            <p class="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-14 md:text-16">
+            <p class="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1 t-mid">
               <span class="font-bold text-foreground">{label}</span>
               <span aria-hidden="true" class="h-[1.1em] w-px bg-primary/70"></span>
               <span class="text-foreground-muted">{description}</span>
@@ -72,12 +72,12 @@ const { eyebrow, title, letter, signature, pillars } = conditions;
 
 <!-- 대표의 글 -->
 <figure class="mx-auto mt-24 max-w-[72rem] border-t border-border-accent pt-16 md:mt-32">
-  <p class="mb-10 text-center text-20 font-black tracking-[0.2em] text-white md:text-24">{pillars.map((p) => p.title).join(' & ')}</p>
-  <blockquote class="space-y-6 text-center text-16 leading-[1.9] whitespace-pre-line text-foreground-muted md:text-18">
+  <p class="mb-10 text-center t-head font-black tracking-[0.2em] text-white">{pillars.map((p) => p.title).join(' & ')}</p>
+  <blockquote class="space-y-6 text-center t-mid leading-[1.9] whitespace-pre-line text-foreground-muted">
     {letter.map((p) => <p>{p}</p>)}
   </blockquote>
   <!-- 서명: "대표 노규락" 옆에 손글씨 사인 -->
-  <figcaption class="mt-10 flex items-center justify-center gap-4 text-18 font-bold tracking-[0.15em] text-foreground">
+  <figcaption class="mt-10 flex items-center justify-center gap-4 t-mid font-bold tracking-[0.15em] text-foreground">
     <span>{signature}</span>
     <Image src={signImg} alt="노규락 대표 서명" quality={95} format="png" class="h-auto w-[8.4rem] md:w-[10rem]" />
   </figcaption>

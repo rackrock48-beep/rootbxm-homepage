@@ -14,12 +14,12 @@ const { items } = Astro.props;
     items.map(({ slug, label, description, metric, value }) => (
       <li>
         <a href={url(`/results/${slug}/`)} class="group flex h-full flex-col rounded-4xl border border-transparent bg-surface-accent p-8 transition-colors hover:border-primary">
-          <p class="text-15 font-bold text-primary">[{label}]</p>
-          <p class="mt-5 text-16 font-semibold whitespace-pre-line text-foreground">{description}</p>
+          <p class="t-body font-bold text-primary">[{label}]</p>
+          <p class="mt-5 t-mid font-semibold whitespace-pre-line text-foreground">{description}</p>
           <!-- 숫자가 무엇인지(기간·지표): 큰 숫자 바로 위에 크게 -->
-          <p class="mt-auto pt-6 text-20 leading-snug font-bold whitespace-pre-line text-foreground md:text-22">{metric}</p>
-          <p class="mt-2 text-40 font-extrabold text-foreground">{value}</p>
-          <span class="mt-4 inline-flex items-center gap-1 text-14 font-bold text-primary-bright">
+          <p class="mt-auto pt-6 t-head leading-snug font-bold whitespace-pre-line text-foreground">{metric}</p>
+          <p class="mt-2 t-headline font-extrabold text-foreground">{value}</p>
+          <span class="mt-4 inline-flex items-center gap-1 t-body font-bold text-primary-bright">
             자세히 보기 <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
           </span>
         </a>

@@ -12,15 +12,15 @@ const { items } = Astro.props;
       <li class="rounded-3xl border border-border-accent bg-background p-6">
         <span
           aria-hidden="true"
-          class="flex size-11 items-center justify-center rounded-full bg-primary-surface text-16 font-bold text-primary tabular-nums"
+          class="flex size-11 items-center justify-center rounded-full bg-primary-surface t-mid font-bold text-primary tabular-nums"
         >
           {i + 1}
         </span>
-        <h3 class="mt-5 text-20 font-bold">
+        <h3 class="mt-5 t-head font-bold">
           <span class="sr-only">{i + 1}단계. </span>
           {title}
         </h3>
-        {description && <p class="mt-1.5 text-15 text-foreground-muted">{description}</p>}
+        {description && <p class="mt-1.5 t-body text-foreground-muted">{description}</p>}
       </li>
     ))
   }

@@ -34,13 +34,13 @@ const { items } = Astro.props;
         />
 
         <div class:list={['flex flex-col', i % 2 === 1 && 'md:order-1']}>
-          <p class="text-22 leading-snug font-extrabold text-primary md:text-[2.6rem]">{tag}</p>
-          <h3 class="mt-8 text-36 font-extrabold tracking-[0.2em] md:text-46 md:tracking-[0.3em]">
-            {name}<span class="ml-2 text-20 font-bold tracking-normal md:text-24">{role}</span>
+          <p class="t-headline leading-snug font-extrabold text-primary">{tag}</p>
+          <h3 class="mt-8 t-headline font-extrabold tracking-[0.2em] md:tracking-[0.3em]">
+            {name}<span class="ml-2 t-head font-bold tracking-normal">{role}</span>
           </h3>
-          <p class="mt-1 text-16 text-foreground-muted md:text-18">{title}</p>
+          <p class="mt-1 t-mid text-foreground-muted">{title}</p>
 
-          <ul class="mt-8 space-y-2 border-t border-border-accent pt-8 text-16 font-bold md:text-18">
+          <ul class="mt-8 space-y-2 border-t border-border-accent pt-8 t-mid font-bold">
             {career.map((c) => <li>{c}</li>)}
             <li class="font-medium text-foreground-muted">{more}</li>
           </ul>

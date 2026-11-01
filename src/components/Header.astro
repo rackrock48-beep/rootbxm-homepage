@@ -6,7 +6,7 @@ import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
 
 const linkClass =
-  'flex min-h-11 items-center rounded-lg px-3 text-15 font-medium text-foreground-muted transition-colors hover:bg-surface hover:text-foreground';
+  'flex min-h-11 items-center rounded-lg px-3 t-body font-medium text-foreground-muted transition-colors hover:bg-surface hover:text-foreground';
 ---
 
 <header class="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
@@ -21,7 +21,7 @@ const linkClass =
     </nav>
 
     <div class="flex items-center gap-1 lg:hidden">
-    <Button href={SITE.contact.form} size="sm" class="max-sm:px-3 max-sm:text-13">우리 병원 브랜딩 제안 받기</Button>
+    <Button href={SITE.contact.form} size="sm" class="max-sm:px-3 max-sm:t-body">우리 병원 브랜딩 제안 받기</Button>
     <details class="group relative">
       <summary
         class="flex size-11 cursor-pointer items-center justify-center rounded-lg text-foreground hover:bg-surface"

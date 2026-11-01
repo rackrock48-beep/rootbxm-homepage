@@ -46,8 +46,8 @@ const tones = ['bg-primary/10', 'bg-primary/20', 'bg-primary/35', 'bg-primary'];
 ---
 
 <div class="mx-auto max-w-[96rem] text-center">
-  <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 text-14 font-bold text-primary-foreground">{eyebrow}</p>
-  <h2 class="text-20 leading-snug font-extrabold whitespace-pre-line md:text-36">{title}</h2>
+  <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 t-body font-bold text-primary-foreground">{eyebrow}</p>
+  <h2 class="t-headline leading-snug font-extrabold whitespace-pre-line">{title}</h2>
 </div>
 
 <ol class="mx-auto mt-12 grid max-w-[120rem] gap-4 sm:grid-cols-2 md:mt-16 lg:grid-cols-4 lg:gap-5">
@@ -55,23 +55,23 @@ const tones = ['bg-primary/10', 'bg-primary/20', 'bg-primary/35', 'bg-primary'];
     items.map(({ art, badge, name, period, headline, lead, tag, points, highlight }, i) => (
       <li class="flex flex-col">
         <!-- 연차: 카드 바로 위, 카드 밖에 -->
-        <p class="mb-3 text-center text-20 font-extrabold text-white md:text-24">{period}</p>
+        <p class="mb-3 text-center t-head font-extrabold text-white">{period}</p>
         <div class:list={['flex flex-1 flex-col items-center rounded-3xl px-6 py-8 text-center', tones[i]]}>
         <!-- 단계 그림 + 단계 이름 동그라미 -->
         <div class="relative">
           <svg aria-hidden="true" viewBox="0 0 80 80" style={`animation-delay: ${i * 0.5}s`} class:list={['tree-grow size-24 md:size-28', highlight ? 'text-white' : 'text-primary-bright']} set:html={arts[art]} />
-          <span class:list={['absolute -right-3 -bottom-1 rounded-full px-3 py-1 text-14 font-extrabold', highlight ? 'bg-white text-primary' : 'bg-primary text-primary-foreground']}>{badge}</span>
+          <span class:list={['absolute -right-3 -bottom-1 rounded-full px-3 py-1 t-body font-extrabold', highlight ? 'bg-white text-primary' : 'bg-primary text-primary-foreground']}>{badge}</span>
         </div>
 
-        <h3 class="mt-5 text-36 leading-none font-black tracking-tight md:text-40">{name}</h3>
+        <h3 class="mt-5 t-headline leading-none font-black tracking-tight">{name}</h3>
         <!-- 단계 이름과 아래 문구 사이의 작은 흰 동그라미 -->
         <span aria-hidden="true" class="mt-4 size-1.5 rounded-full bg-white" />
 
-        <p class:list={['mt-4 text-18 leading-snug font-extrabold whitespace-pre-line md:text-20', highlight ? 'text-white' : 'text-primary-bright']}>{headline}</p>
-        <p class:list={['mt-3 text-14 leading-relaxed whitespace-pre-line', highlight ? 'text-white/85' : 'text-foreground-muted']}>{lead}</p>
+        <p class:list={['mt-4 t-head leading-snug font-extrabold whitespace-pre-line', highlight ? 'text-white' : 'text-primary-bright']}>{headline}</p>
+        <p class:list={['mt-3 t-body leading-relaxed whitespace-pre-line', highlight ? 'text-white/85' : 'text-foreground-muted']}>{lead}</p>
 
-        <p class:list={['mt-6 w-full max-w-[20rem] rounded-full py-2 text-14 font-bold', highlight ? 'bg-white text-primary' : 'bg-background text-foreground']}>{tag}</p>
-        <ul class:list={['mt-4 space-y-1 text-14', highlight ? 'text-white' : 'text-foreground']}>
+        <p class:list={['mt-6 w-full max-w-[20rem] rounded-full py-2 t-body font-bold', highlight ? 'bg-white text-primary' : 'bg-background text-foreground']}>{tag}</p>
+        <ul class:list={['mt-4 space-y-1 t-body', highlight ? 'text-white' : 'text-foreground']}>
           {points.map((p) => <li>· {p}</li>)}
         </ul>
         </div>
@@ -80,4 +80,4 @@ const tones = ['bg-primary/10', 'bg-primary/20', 'bg-primary/35', 'bg-primary'];
   }
 </ol>
 
-<p class="mx-auto mt-6 max-w-[120rem] rounded-2xl bg-surface-accent px-6 py-5 text-center text-15 font-bold md:text-18">{footnote.split('|').map((t, j) => (j ? <><br class="md:hidden" /><span class="max-md:hidden"> </span>{t}</> : t))}</p>
+<p class="mx-auto mt-6 max-w-[120rem] rounded-2xl bg-surface-accent px-6 py-5 text-center t-mid font-bold">{footnote.split('|').map((t, j) => (j ? <><br class="md:hidden" /><span class="max-md:hidden"> </span>{t}</> : t))}</p>

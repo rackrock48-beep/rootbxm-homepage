@@ -10,14 +10,14 @@ const linkClass =
 ---
 
 <header class="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
-  <div class="mx-auto flex min-h-16 max-w-site items-center justify-between gap-4 px-gutter">
+  <div class="mx-auto flex min-h-16 max-w-site items-center lg:min-h-24 justify-between gap-4 px-gutter">
     <a href={url('/')} class="flex min-h-11 items-center">
-      <Image src={logo} alt={SITE.name} class="h-9 w-auto" loading="eager" />
+      <Image src={logo} alt={SITE.name} class="h-9 w-auto lg:h-[5.4rem]" loading="eager" />
     </a>
 
     <nav aria-label="주요 메뉴" class="hidden items-center gap-1 lg:flex">
-      {SITE.nav.map(({ href, label }) => <a href={url(href)} class={linkClass}>{label}</a>)}
-      <Button href={SITE.contact.form} size="sm" class="ml-3">우리 병원 브랜딩 제안 받기</Button>
+      {SITE.nav.map(({ href, label }) => <a href={url(href)} class={`${linkClass} lg:min-h-16 lg:text-[2.2rem]`}>{label}</a>)}
+      <Button href={SITE.contact.form} size="sm" class="ml-3 lg:min-h-14 lg:px-7 lg:text-[2.2rem]">우리 병원 브랜딩 제안 받기</Button>
     </nav>
 
     <div class="flex items-center gap-1 lg:hidden">

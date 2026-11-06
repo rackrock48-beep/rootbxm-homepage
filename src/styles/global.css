@@ -495,14 +495,14 @@
 }
 
 /* 글자 크기 4단계. 사이트의 글자는 이 네 가지만 쓴다(휴대폰 → PC).
-   큰 헤드라인: 섹션 제목 / 헤드카피: 카드 제목·소제목 / 중간카피: 설명 첫 줄·강조 문장 / 설명카피: 본문·라벨·작은 글
+   큰 헤드라인(23→36): 섹션 제목 / 헤드카피(19→24): 카드 제목·소제목 / 중간카피: 설명 첫 줄·강조 문장 / 설명카피: 본문·라벨·작은 글
    예외: 첫 화면 큰 제목, 큰 따옴표, 100+·성과 숫자 같은 장식용 큰 글자 */
 @utility t-headline {
-  font-size: 2.4rem;
+  font-size: 2.3rem;
   @variant md { font-size: 3.6rem; }
 }
 @utility t-head {
-  font-size: 2rem;
+  font-size: 1.9rem;
   @variant md { font-size: 2.4rem; }
 }
 @utility t-mid {

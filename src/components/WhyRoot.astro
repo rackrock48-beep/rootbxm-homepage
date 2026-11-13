@@ -17,7 +17,7 @@ const bold = (p: string) => p.split('**').map((part, i) => ({ part, strong: i % 
 <div class="grid items-center gap-14 lg:grid-cols-2">
   <div>
     <p class="mb-5 inline-flex rounded-lg bg-primary px-3 py-1 t-body font-bold text-primary-foreground">{eyebrow}</p>
-    <h2 class="t-headline leading-relaxed font-extrabold whitespace-pre-line">
+    <h2 class="t-headline leading-relaxed font-extrabold whitespace-pre-line lg:text-[3.2rem] lg:whitespace-pre">
       {paint(before).map(({ part, on }) => (on ? <span class="text-primary-bright">{part}</span> : part))}{after !== undefined && <span class="text-[1.3em] font-black text-primary">{highlight}</span>}{after}
     </h2>
     {

@@ -105,8 +105,8 @@ import { hero, results, leaders, people, campaignsCopy, services, voice } from '
       <h2 class="t-headline leading-snug font-extrabold whitespace-pre-line">{campaignsCopy.title}</h2>
 
       <div class="mx-auto mt-10 max-w-[104.7rem] md:mt-14">
-        <p class="text-[6.4rem] leading-none font-extrabold text-primary [text-shadow:0_0_6px_#fff,0_0_18px_#fff,0_0_32px_#fff] md:text-[12rem]" aria-label={`${campaignsCopy.count}${campaignsCopy.countSuffix}`}>
-          <span aria-hidden="true" class="count-up" style={`--to: ${campaignsCopy.count}`}></span><span aria-hidden="true" class="plus-pop ml-1">{campaignsCopy.countSuffix}</span>
+        <p class="text-[6.4rem] leading-none font-extrabold text-primary [text-shadow:0_0_6px_#fff,0_0_18px_#fff,0_0_32px_#fff] md:text-[12rem]" aria-label={`${campaignsCopy.count}${campaignsCopy.countUnit}${campaignsCopy.countSuffix}`}>
+          <span aria-hidden="true" class="count-up" style={`--to: ${campaignsCopy.count}`}></span><span aria-hidden="true" class="ml-1 text-[0.5em]">{campaignsCopy.countUnit}</span><span aria-hidden="true" class="plus-pop ml-1">{campaignsCopy.countSuffix}</span>
         </p>
         <div class="mx-auto mt-8 rounded-3xl bg-white px-6 py-6 shadow-lg md:mx-[6%] md:mt-12 md:py-7">
           <!-- 휴대폰에서는 상자 안 제목·로고·설명을 20% 작게(zoom 0.8) -->

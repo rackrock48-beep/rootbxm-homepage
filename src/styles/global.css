@@ -315,6 +315,27 @@
   }
 }
 
+/* "ROOT" 글자가 한 글자씩 천천히 떠오르고, 잠시 머문 뒤 사라지기를 반복 */
+@keyframes letter-loop {
+  0% {
+    opacity: 0;
+    transform: translateY(0.3em);
+  }
+  15%, 75% {
+    opacity: 1;
+    transform: none;
+  }
+  90%, 100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+@utility letter-loop {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: letter-loop 5s ease-out infinite both;
+  }
+}
+
 /* 흐름도 차례로 나타나기(CSS만). 부모에 flow-timeline, 각 항목에 flow-reveal + style="--i: 순서(0부터)".
    스크롤해서 흐름도가 화면에 올라오는 동안 선이 그려지고 1번부터 하나씩 아래에서 떠오른다.
    지원하지 않는 브라우저나 "동작 줄이기" 설정에서는 처음부터 모두 보인다. */

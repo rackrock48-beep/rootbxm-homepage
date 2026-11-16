@@ -18,7 +18,7 @@ const bold = (p: string) => p.split('**').map((part, i) => ({ part, strong: i % 
   <div>
     <p class="mb-5 inline-flex rounded-lg bg-primary px-3 py-1 t-body font-bold text-primary-foreground">{eyebrow}</p>
     <h2 class="t-headline leading-relaxed font-extrabold whitespace-pre-line lg:text-[3.2rem] lg:whitespace-pre">
-      {paint(before).map(({ part, on }) => (on ? <span class="text-primary-bright">{part}</span> : part))}{after !== undefined && <span class="text-[1.3em] font-black text-primary">{highlight}</span>}{after}
+      {paint(before).map(({ part, on }) => (on ? <span class="text-primary-bright">{part}</span> : part))}{after !== undefined && <span class="text-[1.3em] font-black text-primary" aria-label={highlight}>{[...highlight].map((ch, i) => <span aria-hidden="true" class="letter-loop inline-block" style={`animation-delay: ${i * 0.45}s`}>{ch}</span>)}</span>}{after}
     </h2>
     {
       paragraphs.map((p) => (

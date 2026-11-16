@@ -21,12 +21,12 @@ const { items } = Astro.props;
       <li>
         <a href={url(`/results/${slug}/`)} class="group relative isolate flex h-full flex-col overflow-hidden rounded-4xl bg-surface-accent bg-cover bg-center p-8 md:p-12 ring-1 ring-inset ring-white/10 transition-shadow hover:ring-2 hover:ring-primary-bright" style={`background-image: url(${bgs[i % bgs.length].src})`}>
           <div aria-hidden="true" class="absolute inset-0 -z-10 bg-black/75" />
-          <p class="text-[1.9rem] md:text-[2.1rem] leading-tight font-bold text-primary-bright">[{label}]</p>
-          <p class="mt-5 text-[1.2rem] md:text-[1.45rem] font-semibold whitespace-pre-line text-foreground">{description}</p>
+          <p class="text-[2.2rem] md:text-[2.4rem] leading-tight font-bold text-primary-bright">[{label}]</p>
+          <p class="mt-5 text-[1.4rem] md:text-[1.7rem] font-semibold whitespace-pre-line text-foreground">{description}</p>
           <!-- 숫자가 무엇인지(기간·지표): 큰 숫자 바로 위에 크게 -->
-          <p class="mt-auto pt-6 text-[1.2rem] md:text-[1.45rem] leading-snug font-bold whitespace-pre-line text-foreground">{metric}</p>
-          <p class="mt-2 text-[3.3rem] leading-none font-extrabold text-primary-bright md:text-[4.8rem]">{value}</p>
-          <span class="mt-6 inline-flex items-center gap-1 text-[1.1rem] md:text-[1.1rem] font-bold text-primary-bright">
+          <p class="mt-auto pt-6 text-[1.4rem] md:text-[1.7rem] leading-snug font-bold whitespace-pre-line text-foreground">{metric}</p>
+          <p class="mt-2 text-[3.8rem] leading-none font-extrabold text-primary-bright md:text-[5.5rem]">{value}</p>
+          <span class="mt-6 inline-flex items-center gap-1 text-[1.3rem] md:text-[1.3rem] font-bold text-primary-bright">
             자세히 보기 <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
           </span>
         </a>

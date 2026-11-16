@@ -288,6 +288,33 @@
   }
 }
 
+/* 편지 위 TRUST & PREMIUM: 스크롤로 화면에 들어오면 흐릿하게 넓게 퍼진 글자가 모이며 또렷해진다(CSS만).
+   지원하지 않는 브라우저나 "동작 줄이기" 설정에서는 처음부터 그대로 보인다. */
+@keyframes title-gather {
+  from {
+    opacity: 0;
+    letter-spacing: 0.9em;
+    filter: blur(0.8rem);
+    transform: translateY(2rem);
+  }
+}
+@utility title-gather {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: title-gather ease-out both;
+    }
+  }
+}
+/* 타임라인은 따로 적는다. 압축기가 animation 한 줄로 합치면 브라우저가 통째로 무시하기 때문 */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    p.title-gather {
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
+  }
+}
+
 /* 흐름도 차례로 나타나기(CSS만). 부모에 flow-timeline, 각 항목에 flow-reveal + style="--i: 순서(0부터)".
    스크롤해서 흐름도가 화면에 올라오는 동안 선이 그려지고 1번부터 하나씩 아래에서 떠오른다.
    지원하지 않는 브라우저나 "동작 줄이기" 설정에서는 처음부터 모두 보인다. */

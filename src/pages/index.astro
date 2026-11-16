@@ -62,8 +62,12 @@ import { hero, results, leaders, people, campaignsCopy, services, voice } from '
         <InterviewWall />
         <p class="font-serif t-headline font-bold leading-[1.8] max-md:text-[3.9vw] md:text-[2.07rem] max-md:whitespace-pre md:whitespace-pre-line text-foreground-subtle">{voice.quote}</p>
       </blockquote>
-      <div aria-hidden="true" class="mx-auto mt-8 h-8 w-px bg-primary/60 md:mt-12 md:h-12" />
-      <h2 class="mt-5 t-headline leading-snug font-extrabold text-primary-bright md:mt-6"><span class="mb-2 block t-mid font-semibold text-foreground-muted">한마디로,</span>{voice.answer.split('가치를 ')[0]}가치를<br class="md:hidden" /> {voice.answer.split('가치를 ')[1]}</h2>
+      <div aria-hidden="true" class="mx-auto mt-8 h-16 w-px bg-primary/60 md:mt-12 md:h-24" />
+      <!-- 핵심 한 줄: "진료 가치" 네 글자를 크게, 글자마다 위에 점(드러냄표)을 찍어 강조. 아래 설명은 흰 글씨 -->
+      <h2 class="mt-5 md:mt-6">
+        <span class="block text-[5.6rem] leading-[1.3] font-extrabold tracking-[0.25em] text-primary-bright pl-[0.25em] [text-emphasis:filled_dot] [text-emphasis-position:over_right] [-webkit-text-emphasis:filled_dot] [-webkit-text-emphasis-position:over] md:text-[8rem]">진료<span class="inline-block w-[0.3em]"></span>가치</span>
+        <span class="mt-5 block t-headline leading-snug font-extrabold text-white md:mt-6">{voice.answer.split('가치를 ')[0]}가치를<br class="md:hidden" /> {voice.answer.split('가치를 ')[1]}</span>
+      </h2>
       <!-- 원장님 고민 30가지: 정사각형 상자 하나. 누르면 /concerns 페이지로 간다 -->
       <a id="concerns-tab" href={url('/concerns/')} class="group scroll-mt-[40vh] mx-auto mt-12 flex aspect-square w-[11.2rem] flex-col items-center justify-center gap-1.5 rounded-xl border-2 border-primary bg-background/80 p-2 text-center shadow-lg transition-colors hover:bg-primary hover:text-primary-foreground md:mt-14 md:w-[12.4rem]">
         <span class="t-body leading-tight font-bold text-foreground-muted group-hover:text-primary-foreground">스물한 분 원장님의</span>

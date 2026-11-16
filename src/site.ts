@@ -15,9 +15,9 @@ export const SITE = {
   // 상단 메뉴. 원페이지라 섹션 id로 이동한다. index.astro의 Section id와 맞춘다.
   nav: [
     { href: '/#conditions', label: '브랜드 철학' },
+    { href: '/#results', label: '성공 사례' },
     { href: '/#company', label: '대표 소개' },
     { href: '/#campaigns', label: '주요 경력' },
-    { href: '/#results', label: '성공 사례' },
     { href: '/#services', label: '서비스' },
     { href: '/#promise', label: '약속' },
     { href: '/#contact', label: '문의' },

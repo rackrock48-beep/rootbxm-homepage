@@ -78,11 +78,19 @@ import { hero, results, leaders, people, campaignsCopy, services, voice } from '
     <Conditions />
   </Section>
 
-  <Section id="brand">
+  <Section id="results">
+    <div class="mx-auto mb-14 max-w-[96rem] text-center md:mb-20">
+      <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 t-body font-bold text-primary-foreground">브랜딩 성과</p>
+      <h2 class="t-headline leading-snug font-extrabold">저희의 정성스러운 브랜딩과<br />원장님의 <span class="text-primary">TRUST &amp; PREMIUM</span>한 노력으로<br />만든 귀한 성과입니다</h2>
+    </div>
+    <Stats items={results} />
+  </Section>
+
+  <Section id="brand" tone="surface">
     <WhyRoot />
   </Section>
 
-  <Section id="company" tone="surface">
+  <Section id="company">
     <div class="mx-auto mb-16 max-w-prose text-center">
       <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 t-body font-bold text-primary-foreground">{leaders.eyebrow}</p>
       <h2 class="t-headline leading-snug font-extrabold whitespace-pre-line"><span class="text-lg-red">LG그룹</span>{leaders.title.replace('LG그룹', '').split('프리미엄 브랜드')[0]}<strong class="font-extrabold text-white">프리미엄 브랜드</strong>{leaders.title.split('프리미엄 브랜드')[1]}</h2>
@@ -139,14 +147,6 @@ import { hero, results, leaders, people, campaignsCopy, services, voice } from '
       </div>
     </div>
   </section>
-
-  <Section id="results">
-    <div class="mx-auto mb-14 max-w-[96rem] text-center md:mb-20">
-      <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 t-body font-bold text-primary-foreground">브랜딩 성과</p>
-      <h2 class="t-headline leading-snug font-extrabold">저희의 정성스러운 브랜딩과<br />원장님의 <span class="text-primary">TRUST &amp; PREMIUM</span>한 노력으로<br />만든 귀한 성과입니다</h2>
-    </div>
-    <Stats items={results} />
-  </Section>
 
   <Section id="compare" tone="surface">
     <Compare />

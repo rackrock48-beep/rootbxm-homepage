@@ -165,7 +165,7 @@ import { hero, results, leaders, people, campaignsCopy, services, voice } from '
       <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 t-body font-bold text-primary-foreground">{services.eyebrow}</p>
       <h2 class="t-headline leading-snug font-extrabold whitespace-pre-line">{services.title}</h2>
     </div>
-    <ServiceFlow items={services.items} />
+    <ServiceFlow items={services.items} care={services.care} />
   </Section>
 
   <Section id="promise">

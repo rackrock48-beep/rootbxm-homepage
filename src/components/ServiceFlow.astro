@@ -39,7 +39,7 @@ const { items, care } = Astro.props;
       <div aria-hidden="true" class="mx-[calc(50%/var(--cols))] hidden h-8 rounded-b-2xl border-x-2 border-b-2 border-primary/60 lg:block" />
       <div aria-hidden="true" class="mx-auto h-10 w-0.5 bg-primary/60 max-lg:hidden" />
       <div class="mx-auto max-w-[96rem] pt-4 text-center">
-        <p class="t-body font-bold text-primary-bright max-lg:inline-flex max-lg:rounded-lg max-lg:bg-primary max-lg:px-4 max-lg:py-1.5 max-lg:text-primary-foreground">{care.title}</p>
+        <p class="t-body font-bold text-primary-bright max-lg:inline-flex max-lg:rounded-lg max-lg:border-2 max-lg:border-primary max-lg:px-4 max-lg:py-1.5">{care.title}</p>
         <h3 class="mt-2 t-head leading-snug font-extrabold">{care.lead}</h3>
         <p class="mt-4 t-body leading-relaxed text-foreground-muted">
           {care.points.map((t, i) => (<>{i > 0 && <span aria-hidden="true" class="mx-2 text-primary/60 max-sm:hidden">·</span>}<span class="max-sm:block">{t}</span></>))}

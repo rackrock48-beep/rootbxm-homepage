@@ -444,6 +444,22 @@
   animation: slow-zoom-out 14s ease-in-out infinite alternate both;
 }
 
+/* 대표·이사 사진: 아주 천천히 다가가며 살짝 위로 흐르는 움직임 */
+@keyframes portrait-drift {
+  from {
+    transform: scale(1) translateY(0);
+  }
+  to {
+    transform: scale(1.1) translateY(-2%);
+  }
+}
+@utility portrait-drift {
+  animation: portrait-drift 12s ease-in-out infinite alternate;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
 /* 살짝 커졌다 돌아오는 은은한 움직임. 예: 900+의 + */
 @keyframes plus-pop {
   0%, 70%, 100% {

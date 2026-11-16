@@ -26,12 +26,16 @@ const { items } = Astro.props;
   {
     items.map(({ tag, name, role, title, career, more, image, logos, logosAlt = '' }, i) => (
       <li class:list={['grid items-center gap-8 rounded-4xl border border-border-accent bg-surface p-6 md:min-h-[72rem] md:gap-12 md:p-10', i % 2 === 1 ? 'md:grid-cols-[3fr_2fr]' : 'md:grid-cols-[2fr_3fr]']}>
-        <Image
-          src={image ?? placeholder}
-          alt={`${name} ${role} 사진`}
-          quality={95}
-          class:list={['mx-auto aspect-[4/5] w-4/5 md:w-full rounded-3xl bg-surface-accent object-cover grayscale brightness-[.82] contrast-[1.15]', i % 2 === 1 && 'md:order-2']}
-        />
+        <!-- 사진 틀은 고정하고 안의 사진만 천천히 다가왔다 물러난다(portrait-drift) -->
+        <div class:list={['mx-auto aspect-[4/5] w-4/5 overflow-hidden rounded-3xl bg-surface-accent md:w-full', i % 2 === 1 && 'md:order-2']}>
+          <Image
+            src={image ?? placeholder}
+            alt={`${name} ${role} 사진`}
+            quality={95}
+            class="portrait-drift size-full object-cover grayscale brightness-[.82] contrast-[1.15]"
+            style={i % 2 === 1 ? 'animation-delay: -6s' : undefined}
+          />
+        </div>
 
         <div class:list={['flex flex-col', i % 2 === 1 && 'md:order-1']}>
           <p class="t-headline leading-snug font-extrabold text-primary">{tag}</p>

@@ -12,6 +12,7 @@ import jooLogos from './assets/logos-joo.png';
 export const hero = {
   eyebrow: '뿌리깊은 나무가 단단한 열매를 맺습니다',
   title: '병원 브랜딩의 기본을 생각합니다',
+  proof: ['LG 광고대행사 출신 대표', '광고 캠페인 480건+', '원장님 21분 인터뷰'],
   name: 'ROOT Branding × Marketing',
   image: undefined as ImageMetadata | undefined,
   imageAlt: '',
@@ -173,5 +174,5 @@ export const stages = {
     { art: 'tree', badge: '나무', name: 'THRIVE', period: '7년 차', headline: '지역에서 가장 먼저\n떠오르는 병원으로', lead: '경쟁 속에서도 흔들리지 않는\n대표 병원의 자리를 굳힙니다', tag: '지역 대표 병원', points: ['지역 포지셔닝 확장', '재방문·소개 환자 관리', '원장님 전문성·정통성 브랜딩'] },
     { art: 'forest', badge: '숲', name: 'RENEW', period: '10년 이상', headline: '한 병원을 넘어\n지역이 신뢰하는 이름으로', lead: '쌓아 온 명성을 새롭게 다듬어\n다음 10년을 준비합니다', tag: '리뉴얼', points: ['브랜드 이미지 재정립', '지역 사회적 역할 부여', '쌓아 온 명성을 다음 10년의 자산으로'], highlight: true },
   ],
-  footnote: '어느 단계든 기준은 같습니다.|지금의 매출과 10년 뒤의 명성을 함께 설계합니다.', // | 자리에서 휴대폰만 줄바꿈
+  footnote: '어느 단계든 기준은 같습니다.|원장님의 진료 가치를 가장 먼저 봅니다.', // | 자리에서 휴대폰만 줄바꿈
 };

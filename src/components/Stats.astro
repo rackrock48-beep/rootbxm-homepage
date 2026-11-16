@@ -2,12 +2,6 @@
 // 성과 카드. 카드마다 [병원명]·설명·큰 숫자. 글은 src/content.ts의 results에서 바꾼다.
 // 카드를 누르면 그 병원의 자세한 이야기(/results/slug/, 글은 src/cases.ts)로 간다.
 import { url } from '../site';
-import bg1 from '../assets/result-bg-1.jpg';
-import bg2 from '../assets/result-bg-2.jpg';
-import bg3 from '../assets/result-bg-3.jpg';
-import bg4 from '../assets/result-bg-4.jpg';
-// 카드 배경: 위 인터뷰 띠에서 잘라 낸 원장님 사진. 카드 순서대로 하나씩, 어둡게 눌러 깐다.
-const bgs = [bg1, bg2, bg3, bg4];
 
 interface Props {
   items: { slug: string; label: string; description: string; metric: string; value: string }[];
@@ -19,14 +13,13 @@ const { items } = Astro.props;
   {
     items.map(({ slug, label, description, metric, value }, i) => (
       <li>
-        <a href={url(`/results/${slug}/`)} class="group relative isolate flex h-full flex-col overflow-hidden rounded-4xl bg-surface-accent bg-cover bg-center p-8 md:p-12 ring-1 ring-inset ring-white/10 transition-shadow hover:ring-2 hover:ring-primary-bright" style={`background-image: url(${bgs[i % bgs.length].src})`}>
-          <div aria-hidden="true" class="absolute inset-0 -z-10 bg-black/75" />
+        <a href={url(`/results/${slug}/`)} class="group relative isolate flex h-full flex-col overflow-hidden rounded-4xl bg-surface-accent bg-[linear-gradient(145deg,hsl(150_30%_11%)_0%,hsl(0_0%_8%)_60%)] p-8 md:p-12 ring-1 ring-inset ring-white/10 transition-shadow hover:ring-2 hover:ring-primary-bright">
           <p class="text-[2.2rem] md:text-[2.4rem] leading-tight font-bold text-primary-bright">[{label}]</p>
-          <p class="mt-5 text-[1.4rem] md:text-[1.7rem] font-semibold whitespace-pre-line text-foreground">{description}</p>
+          <p class="mt-5 text-[1.5rem] md:text-[1.8rem] font-semibold whitespace-pre-line text-foreground">{description}</p>
           <!-- 숫자가 무엇인지(기간·지표): 큰 숫자 바로 위에 크게 -->
-          <p class="mt-auto pt-6 text-[1.4rem] md:text-[1.7rem] leading-snug font-bold whitespace-pre-line text-foreground">{metric}</p>
+          <p class="mt-auto pt-6 text-[1.5rem] md:text-[1.8rem] leading-snug font-bold whitespace-pre-line text-foreground">{metric}</p>
           <p class="mt-2 text-[3.8rem] leading-none font-extrabold text-primary-bright md:text-[5.5rem]">{value}</p>
-          <span class="mt-6 inline-flex items-center gap-1 text-[1.3rem] md:text-[1.3rem] font-bold text-primary-bright">
+          <span class="mt-6 inline-flex items-center gap-1 text-[1.5rem] md:text-[1.5rem] font-bold text-primary-bright">
             자세히 보기 <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
           </span>
         </a>

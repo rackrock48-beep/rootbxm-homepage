@@ -510,6 +510,6 @@
   @variant md { font-size: 1.8rem; }
 }
 @utility t-body {
-  font-size: 1.4rem;
-  @variant md { font-size: 1.5rem; }
+  font-size: 1.5rem;
+  @variant md { font-size: 1.6rem; }
 }

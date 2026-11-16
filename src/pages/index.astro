@@ -78,46 +78,38 @@ import { hero, results, leaders, people, campaignsCopy, services, voice } from '
     </div>
   </Section>
 
-  <Section id="conditions" tone="surface">
-    <Conditions />
-  </Section>
-
-  <Section id="results">
+  <Section id="results" tone="surface">
     <div class="mx-auto mb-14 max-w-[96rem] text-center md:mb-20">
       <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 t-body font-bold text-primary-foreground">브랜딩 성과</p>
-      <h2 class="t-headline leading-snug font-extrabold">저희의 정성스러운 브랜딩과<br />원장님의 <span class="text-primary">TRUST &amp; PREMIUM</span>한 노력으로<br />만든 귀한 성과입니다</h2>
+      <h2 class="t-headline leading-snug font-extrabold">원장님의 <span class="text-primary-bright">진료 가치</span>에 맞춘<br />브랜딩으로 만든 성과입니다</h2>
     </div>
     <Stats items={results} />
-  </Section>
-
-  <Section id="brand" tone="surface">
-    <WhyRoot />
   </Section>
 
   <Section id="company">
     <div class="mx-auto mb-16 max-w-prose text-center">
       <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 t-body font-bold text-primary-foreground">{leaders.eyebrow}</p>
-      <h2 class="t-headline leading-snug font-extrabold whitespace-pre-line"><span class="text-lg-red">LG그룹</span>{leaders.title.replace('LG그룹', '').split('프리미엄 브랜드')[0]}<strong class="font-extrabold text-white">프리미엄 브랜드</strong>{leaders.title.split('프리미엄 브랜드')[1]}</h2>
+      <h2 class="t-headline leading-snug font-extrabold whitespace-pre-line"><span class="text-primary-bright">LG그룹</span>{leaders.title.replace('LG그룹', '').split('프리미엄 브랜드')[0]}<strong class="font-extrabold text-white">프리미엄 브랜드</strong>{leaders.title.split('프리미엄 브랜드')[1]}</h2>
     </div>
     <People items={people} />
   </Section>
 
   <!-- 주요 캠페인 소개: 캠페인 사진 모음을 섹션 전체 배경으로 반복해 깔고 흰색으로 흐리게 누른다. 그 위에 제목·480+·로고 상자 -->
-  <section id="campaigns" class="relative isolate overflow-clip bg-white py-section text-black">
+  <section id="campaigns" class="relative isolate overflow-clip bg-background py-section text-foreground">
     <!-- 흰 여백을 지운 사진 모음을 네 겹으로 어긋나게 겹쳐 빈틈 없이 채운다. 맨 아래 색은 사진들의 평균 색 -->
     <div
       aria-hidden="true"
       class="absolute inset-0 -z-10 bg-[rgb(171_181_201)] bg-repeat"
       style={`background-image: ${Array(4).fill(`url(${collageBg.src})`).join(', ')}; background-size: 72rem auto; background-position: 0 0, 36rem 26.5rem, 18rem 13rem, 54rem 40rem;`}
     />
-    <div aria-hidden="true" class="absolute inset-0 -z-10 bg-white/55" />
+    <div aria-hidden="true" class="absolute inset-0 -z-10 bg-black/85" />
 
     <div class="mx-auto max-w-site px-gutter text-center">
       <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 t-body font-bold text-primary-foreground">{campaignsCopy.eyebrow}</p>
       <h2 class="t-headline leading-snug font-extrabold whitespace-pre-line">{campaignsCopy.title}</h2>
 
       <div class="mx-auto mt-10 max-w-[104.7rem] md:mt-14">
-        <p class="text-[6.4rem] leading-none font-extrabold text-primary-bright [text-shadow:0_0_6px_#fff,0_0_18px_#fff,0_0_32px_#fff] md:text-[12rem]" aria-label={`${campaignsCopy.count}${campaignsCopy.countUnit}${campaignsCopy.countSuffix}`}>
+        <p class="text-[6.4rem] leading-none font-extrabold text-primary-bright md:text-[12rem]" aria-label={`${campaignsCopy.count}${campaignsCopy.countUnit}${campaignsCopy.countSuffix}`}>
           <span aria-hidden="true" class="count-up" style={`--to: ${campaignsCopy.count}`}></span><span aria-hidden="true" class="ml-1 text-[0.5em]">{campaignsCopy.countUnit}</span><span aria-hidden="true" class="plus-pop ml-1">{campaignsCopy.countSuffix}</span>
         </p>
         <div class="mx-auto mt-8 rounded-3xl bg-white px-6 py-6 shadow-lg md:mx-[6%] md:mt-12 md:py-7">
@@ -151,6 +143,14 @@ import { hero, results, leaders, people, campaignsCopy, services, voice } from '
       </div>
     </div>
   </section>
+
+  <Section id="conditions" tone="surface">
+    <Conditions />
+  </Section>
+
+  <Section id="brand">
+    <WhyRoot />
+  </Section>
 
   <Section id="compare" tone="surface">
     <Compare />
@@ -198,4 +198,5 @@ import { hero, results, leaders, people, campaignsCopy, services, voice } from '
   <Section id="contact" align="center" eyebrow="문의" title={'원장님의 병원은\n진료의 가치만큼 평가받고 있습니까?'} lead="아래 중 편한 방법으로 신청하시면 대표가 직접 연락드립니다.">
     <ContactChannels />
   </Section>
+
 </Layout>

@@ -19,7 +19,7 @@ const { items } = Astro.props;
   {
     items.map(({ slug, label, description, metric, value }, i) => (
       <li>
-        <a href={url(`/results/${slug}/`)} class="group relative isolate flex h-full flex-col overflow-hidden rounded-4xl border border-transparent bg-surface-accent bg-cover bg-center p-8 md:p-12 transition-colors hover:border-primary" style={`background-image: url(${bgs[i % bgs.length].src})`}>
+        <a href={url(`/results/${slug}/`)} class="group relative isolate flex h-full flex-col overflow-hidden rounded-4xl bg-surface-accent bg-cover bg-center p-8 md:p-12 ring-1 ring-inset ring-white/10 transition-shadow hover:ring-2 hover:ring-primary-bright" style={`background-image: url(${bgs[i % bgs.length].src})`}>
           <div aria-hidden="true" class="absolute inset-0 -z-10 bg-black/75" />
           <p class="text-[1.9rem] md:text-[2.1rem] leading-tight font-bold text-primary-bright">[{label}]</p>
           <p class="mt-5 text-[1.2rem] md:text-[1.45rem] font-semibold whitespace-pre-line text-foreground">{description}</p>

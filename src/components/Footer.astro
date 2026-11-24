@@ -5,6 +5,8 @@ import { SITE, url } from '../site';
 
 const { phone, address } = SITE.contact;
 const tel = `tel:${phone.replace(/-/g, '')}`;
+// 네이버 블로그 주소가 있으면 메뉴 끝에 바깥 링크 탭으로 붙인다
+const navItems = SITE.naverBlog ? [...SITE.nav, { href: SITE.naverBlog, label: '네이버 블로그' }] : SITE.nav;
 ---
 
 <footer class="border-t border-border bg-surface pb-[calc(5.6rem+env(safe-area-inset-bottom))] lg:pb-0">
@@ -30,9 +32,9 @@ const tel = `tel:${phone.replace(/-/g, '')}`;
     <nav aria-label="바닥글 메뉴" class="md:justify-self-end">
       <ul class="grid grid-cols-2 gap-x-8 sm:grid-cols-3 md:grid-cols-1">
         {
-          SITE.nav.map(({ href, label }) => (
+          navItems.map(({ href, label }) => (
             <li>
-              <a href={url(href)} class="flex min-h-10 items-center t-body text-foreground hover:text-primary">
+              <a href={href.startsWith('http') ? href : url(href)} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener' : undefined} class="flex min-h-10 items-center t-body text-foreground hover:text-primary">
                 {label}
               </a>
             </li>

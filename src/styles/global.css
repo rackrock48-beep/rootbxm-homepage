@@ -231,23 +231,6 @@
     }
   }
 }
-/* 휴대폰: 홈 아래 "원장님 인터뷰"(고민 1위~30위 안내) 섹션은 한 화면에 꽉 차게, 꼬리표·제목·설명·버튼 사이를 위아래로 넉넉히 벌린다 */
-@media (max-width: 767px) {
-  #concerns {
-    display: flex;
-    min-height: calc((100svh - 12rem) * 0.7); /* 위 메뉴 줄·아래 고정 메뉴를 뺀 화면 높이의 70% */
-    align-items: center;
-  }
-  #concerns > div > div:first-child {
-    margin-bottom: 3.4rem;
-  }
-  #concerns > div > div:first-child > p:first-child {
-    margin-bottom: 1.4rem;
-  }
-  #concerns > div > div:first-child > h2 + p {
-    margin-top: 2rem;
-  }
-}
 /* 움직임을 멈췄을 때 픽토그램 선이 지워진 채로 남지 않게, 선을 다 그려진 상태로 둔다 */
 @media (prefers-reduced-motion: reduce) {
   .icon-draw :is(path, circle, rect) {

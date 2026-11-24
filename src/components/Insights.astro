@@ -1,0 +1,94 @@
+---
+// 인사이트 섹션(첫 페이지, 문의 바로 위). 대표 칼럼과 영상 썸네일. 글·영상은 src/insights.ts에서 추가한다.
+// 칼럼은 제목을 누르면 그 자리에서 전문이 펼쳐진다(자바스크립트 없이 <details>). 글이 페이지 안에 있어 검색·AI가 그대로 읽는다.
+// 영상은 썸네일을 누르면 유튜브에서 열린다.
+import { shownColumns as columns, shownVideos as videos } from '../insights';
+
+const dot = (d: string) => d.replaceAll('-', '.');
+---
+
+<div class="mx-auto max-w-[96rem]">
+  <header class="text-center">
+    <p class="t-body font-semibold tracking-[0.2em] text-primary">고민과 생각</p>
+    <h2 class="mt-6 t-headline leading-snug font-extrabold">병원의 성장을 함께 생각합니다</h2>
+    <p class="mx-auto mt-6 max-w-[52rem] t-mid leading-relaxed text-foreground-muted">원장님들과 나눈 고민에서 출발해, 병원 브랜딩과 마케팅의 기본을 칼럼과 영상으로 전합니다.</p>
+  </header>
+
+  <!-- 인터뷰: 첫 페이지에서 넘겨주는 원장님 고민 1~30위 상자(index.astro). 인사이트는 인터뷰에서 시작한다 -->
+  <slot />
+
+  <!-- 칼럼: 잡지 목차처럼 날짜 · 제목 · 요약을 가는 선으로 나누고, 누르면 아래로 전문이 펼쳐진다 -->
+  <section aria-labelledby="insights-columns" class="mt-14 md:mt-20">
+    <h3 id="insights-columns" class="t-body font-semibold tracking-[0.3em] text-foreground-muted">COLUMN</h3>
+    {
+      columns.length ? (
+        <ul class="mt-5 border-t border-border-accent">
+          {columns.map((c) => (
+            <li class="border-b border-border-accent">
+              <details class="group/col">
+                <summary class="grid cursor-pointer list-none gap-3 py-8 md:grid-cols-[12rem_1fr] md:gap-10 md:py-10 [&::-webkit-details-marker]:hidden">
+                  <time datetime={c.date} class="t-body tabular-nums text-foreground-subtle md:pt-2">{dot(c.date)}</time>
+                  <span class="block">
+                    <span class="block font-serif t-head leading-snug font-bold transition-colors hover:text-primary-bright">{c.title}</span>
+                    <span class="mt-3 block t-body leading-relaxed text-foreground-muted">{c.summary}</span>
+                    <span class="mt-5 inline-flex items-center gap-2 t-body font-semibold text-primary-bright">
+                      <span class="group-open/col:hidden">전문 읽기</span>
+                      <span class="hidden group-open/col:inline">접기</span>
+                      <span aria-hidden="true" class="transition-transform group-open/col:rotate-180">↓</span>
+                    </span>
+                  </span>
+                </summary>
+
+                <article class="pb-12 md:pl-[22rem]">
+                  <p class="t-body text-foreground-subtle">{c.author}</p>
+                  <div class="mt-6 max-w-[68rem] space-y-7 t-mid leading-[1.95] text-foreground-muted">
+                    {c.body.map((p) =>
+                      p.startsWith('## ') ? (
+                        <h4 class="pt-8 font-serif t-head leading-snug font-bold text-foreground">{p.slice(3)}</h4>
+                      ) : p.startsWith('> ') ? (
+                        <blockquote class="border-l-2 border-primary py-1 pl-6 font-serif t-head leading-relaxed font-bold text-foreground">{p.slice(2)}</blockquote>
+                      ) : /^\d+\. /.test(p) ? (
+                        <p class="grid grid-cols-[2.8rem_1fr] text-foreground"><span class="font-serif font-bold text-primary-bright">{p.match(/^\d+/)![0]}</span><span>{p.replace(/^\d+\. /, '')}</span></p>
+                      ) : (
+                        <p>{p}</p>
+                      ),
+                    )}
+                  </div>
+                </article>
+              </details>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="mt-5 border-y border-border-accent py-14 text-center t-body text-foreground-subtle">첫 칼럼을 준비하고 있습니다.</p>
+      )
+    }
+  </section>
+
+  <!-- 영상: 썸네일을 누르면 유튜브에서 열린다. 평소엔 반쯤 흑백, 마우스를 올리면 색이 돌아온다. 영상이 없으면 이 부분은 숨긴다 -->
+  {videos.length > 0 && (
+    <section aria-labelledby="insights-videos" class="mt-16 md:mt-24">
+      <h3 id="insights-videos" class="t-body font-semibold tracking-[0.3em] text-foreground-muted">VIDEO</h3>
+      <ul class="mt-5 grid gap-10 md:grid-cols-2 md:gap-x-8 md:gap-y-12">
+        {videos.map((v) => (
+          <li>
+            <a href={v.youtubeId ? `https://www.youtube.com/watch?v=${v.youtubeId}` : undefined} target="_blank" rel="noopener" class="group block">
+              <div class="relative aspect-video overflow-hidden rounded-2xl border border-border-accent bg-surface-accent">
+                {v.youtubeId && (
+                  <img src={`https://i.ytimg.com/vi/${v.youtubeId}/hqdefault.jpg`} alt={v.title} loading="lazy" class="size-full object-cover grayscale-[60%] transition duration-500 group-hover:scale-[1.03] group-hover:grayscale-0" />
+                )}
+                <span aria-hidden="true" class="absolute inset-0 bg-black/25 transition-colors group-hover:bg-black/10" />
+                <span aria-hidden="true" class="absolute top-1/2 left-1/2 flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 backdrop-blur-sm transition-colors group-hover:border-primary group-hover:bg-primary">
+                  <svg width="16" height="18" viewBox="0 0 16 18" fill="currentColor" class="ml-1 text-white"><path d="M0 0l16 9-16 9z" /></svg>
+                </span>
+              </div>
+              <time datetime={v.date} class="mt-5 block t-body tabular-nums text-foreground-subtle">{dot(v.date)}</time>
+              <h4 class="mt-2 font-serif t-mid leading-snug font-bold transition-colors group-hover:text-primary-bright">{v.title}</h4>
+              <p class="mt-2 t-body leading-relaxed text-foreground-muted">{v.summary}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</div>

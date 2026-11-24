@@ -20,8 +20,11 @@ export const SITE = {
     { href: '/#conditions', label: '브랜드 철학' },
     { href: '/#services', label: '서비스' },
     { href: '/#promise', label: '약속' },
+    { href: '/#insights', label: '고민과 생각' },
     { href: '/#contact', label: '문의' },
   ],
+  // 네이버 블로그 주소. 넣으면 상단·바닥글 메뉴에 "네이버 블로그" 탭이 생긴다(비우면 숨김).
+  naverBlog: '',
   contact: {
     phone: '010-9966-4156',
     kakao: 'https://open.kakao.com/o/srJjr8Fi', // 카카오톡 채널 주소. "문의하기" 버튼이 여기로 연결된다.

@@ -7,6 +7,8 @@ import logo from '../assets/logo.png';
 
 const linkClass =
   'flex min-h-11 items-center rounded-lg px-3 t-body font-medium text-foreground-muted transition-colors hover:bg-surface hover:text-foreground';
+// 네이버 블로그 주소가 있으면 메뉴 끝에 바깥 링크 탭으로 붙인다
+const navItems = SITE.naverBlog ? [...SITE.nav, { href: SITE.naverBlog, label: '네이버 블로그' }] : SITE.nav;
 ---
 
 <header class="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
@@ -16,7 +18,7 @@ const linkClass =
     </a>
 
     <nav aria-label="주요 메뉴" class="hidden items-center gap-1 lg:flex">
-      {SITE.nav.map(({ href, label }) => <a href={url(href)} class={`${linkClass} lg:min-h-[4.5rem] lg:text-[1.54rem]`}>{label}</a>)}
+      {navItems.map(({ href, label }) => <a href={href.startsWith('http') ? href : url(href)} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener' : undefined} class={`${linkClass} lg:min-h-[4.5rem] lg:text-[1.54rem]`}>{label}{href.startsWith('http') && <span aria-hidden="true" class="ml-1 text-[0.8em]">↗</span>}</a>)}
       <Button href={SITE.contact.form} size="sm" class="ml-3 lg:min-h-[3.6rem] lg:px-[1.8rem] lg:py-1 lg:text-[1.4rem]">우리 병원 브랜딩 제안 받기</Button>
     </nav>
 
@@ -34,7 +36,7 @@ const linkClass =
         aria-label="주요 메뉴"
         class="absolute top-full right-0 mt-2 w-[min(32rem,calc(100vw-3.2rem))] rounded-2xl border border-border-accent bg-background p-2 shadow-lg"
       >
-        {SITE.nav.map(({ href, label }) => <a href={url(href)} class={linkClass}>{label}</a>)}
+        {navItems.map(({ href, label }) => <a href={href.startsWith('http') ? href : url(href)} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener' : undefined} class={linkClass}>{label}{href.startsWith('http') && <span aria-hidden="true" class="ml-1 text-[0.8em]">↗</span>}</a>)}
         <div class="mt-2 border-t border-border pt-2">
           <Button href={SITE.contact.form} full>우리 병원 브랜딩 제안 받기</Button>
         </div>

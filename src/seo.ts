@@ -33,7 +33,7 @@ export function baseSchema(site: URL) {
       alternateName: ['루트', 'ROOT', 'ROOTBXM', 'ROOT BxM', '루트 브랜딩 마케팅'],
       description: SITE.description,
       url: abs('/', site),
-      logo: abs('/favicon.svg', site),
+      logo: abs('/favicon-512.png', site),
       image: abs(SITE.ogImage, site),
       telephone: SITE.contact.phone,
       email: SITE.contact.email,

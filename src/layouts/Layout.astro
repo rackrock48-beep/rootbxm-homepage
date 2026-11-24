@@ -34,8 +34,11 @@ const jsonLd = [...baseSchema(Astro.site!), ...schema];
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
-    <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
-    <link rel="icon" href={url('/favicon.ico')} />
+    <!-- 브라우저 탭·북마크·휴대폰 홈 화면 아이콘: 루트 나무 마크(public/favicon-*.png, favicon.ico) -->
+    <link rel="icon" href={url('/favicon.ico')} sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href={url('/favicon-32.png')} />
+    <link rel="icon" type="image/png" sizes="512x512" href={url('/favicon-512.png')} />
+    <link rel="apple-touch-icon" href={url('/apple-touch-icon.png')} />
     <link rel="sitemap" href={url('/sitemap-index.xml')} />
     <link rel="alternate" type="text/markdown" title="llms.txt" href={url('/llms.txt')} />
     <link rel="alternate" type="application/rss+xml" title={`${SITE.name} 고민과 생각`} href={url('/rss.xml')} />

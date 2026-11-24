@@ -18,6 +18,8 @@ export const GET: APIRoute = ({ site }) =>
     `User-agent: *\nAllow: /\n\n` +
       aiBots.map((b) => `User-agent: ${b}\nAllow: /\n`).join('\n') +
       `\nSitemap: ${new URL(url('/sitemap-index.xml'), site).href}\n` +
+      `# 칼럼 RSS: ${new URL(url('/rss.xml'), site).href}
+` +
       `# AI용 사이트 요약: ${new URL(url('/llms.txt'), site).href}\n` +
       (SITE.verification.daum ? `\n${SITE.verification.daum}\n` : ''),
   );

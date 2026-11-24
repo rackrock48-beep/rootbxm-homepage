@@ -1,11 +1,12 @@
 // llms.txt: AI(ChatGPT·Claude·Perplexity 등)가 사이트를 빠르게 이해하도록 핵심 정보를 글로 정리한 파일(/llms.txt).
-// 내용은 src/site.ts, src/content.ts, src/cases.ts, src/concerns.ts에서 자동으로 가져온다. 여기서 따로 고칠 필요는 없다.
+// 내용은 src/site.ts, src/content.ts, src/cases.ts, src/concerns.ts, src/insights.ts에서 자동으로 가져온다. 여기서 따로 고칠 필요는 없다.
 import type { APIRoute } from 'astro';
 import { SITE, url } from '../site';
 import { people, services, campaignsCopy } from '../content';
 import { cases } from '../cases';
 import { concerns } from '../concerns';
 import { topics } from '../seo';
+import { columns } from '../insights';
 
 const one = (s: string) => s.replace(/\s*\n\s*/g, ' ').trim();
 
@@ -37,9 +38,13 @@ export const GET: APIRoute = ({ site }) => {
     `- [전체 보기](${abs('/concerns/')}): 스물한 분 원장님 인터뷰에서 가장 많이 나온 병원 경영·마케팅 고민 1위~30위와 해결 방법`,
     ...concerns.map((c) => `- ${c.rank}위 ${c.title} (${c.category})`),
     '',
+    '## 고민과 생각: 대표 칼럼',
+    ...[...columns].sort((a, b) => b.date.localeCompare(a.date)).map((c) => `- [${c.title}](${abs(`/insights/${c.slug}/`)}) (${c.author}, ${c.date}): ${c.summary}`),
+    '',
     '## 페이지',
-    `- [홈](${abs('/')}): 회사 소개, 브랜드 철학, 대표 소개, 주요 경력, 성공 사례, 서비스, 약속, 문의`,
+    `- [홈](${abs('/')}): 회사 소개, 브랜드 철학, 대표 소개, 주요 경력, 성공 사례, 서비스, 약속, 고민과 생각(원장님 인터뷰·칼럼·영상), 문의`,
     `- [원장님 고민 30가지](${abs('/concerns/')})`,
+    `- [칼럼 RSS](${abs('/rss.xml')})`,
     `- [사이트맵](${abs('/sitemap-index.xml')})`,
     '',
   ];

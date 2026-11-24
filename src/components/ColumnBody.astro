@@ -1,0 +1,23 @@
+---
+// 칼럼 본문 한 편을 그린다. 첫 페이지 "고민과 생각" 섹션과 칼럼 개별 페이지(/insights/주소이름/)가 함께 쓴다.
+// 줄 규칙(src/insights.ts): "## " 소제목, "> " 크게 보이는 인용, "1. " 번호 목록, 나머지는 문단.
+interface Props {
+  body: string[];
+  heading?: 'h2' | 'h4'; // 소제목 태그. 개별 페이지는 h2, 첫 페이지 안에서는 h4
+}
+const { body, heading: H = 'h2' } = Astro.props;
+---
+
+<div class="space-y-7 t-mid leading-[1.95] text-foreground-muted">
+  {body.map((p) =>
+    p.startsWith('## ') ? (
+      <H class="pt-8 font-serif t-head leading-snug font-bold text-foreground">{p.slice(3)}</H>
+    ) : p.startsWith('> ') ? (
+      <blockquote class="border-l-2 border-primary py-1 pl-6 font-serif t-head leading-relaxed font-bold text-foreground">{p.slice(2)}</blockquote>
+    ) : /^\d+\. /.test(p) ? (
+      <p class="grid grid-cols-[2.8rem_1fr] text-foreground"><span class="font-serif font-bold text-primary-bright">{p.match(/^\d+/)![0]}</span><span>{p.replace(/^\d+\. /, '')}</span></p>
+    ) : (
+      <p>{p}</p>
+    ),
+  )}
+</div>

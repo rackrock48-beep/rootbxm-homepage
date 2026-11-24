@@ -1,8 +1,10 @@
 ---
 // 인사이트 섹션(첫 페이지, 문의 바로 위). 대표 칼럼과 영상 썸네일. 글·영상은 src/insights.ts에서 추가한다.
-// 칼럼은 제목을 누르면 그 자리에서 전문이 펼쳐진다(자바스크립트 없이 <details>). 글이 페이지 안에 있어 검색·AI가 그대로 읽는다.
+// 칼럼은 제목을 누르면 그 자리에서 전문이 펼쳐진다(자바스크립트 없이 <details>). 글마다 검색용 개별 주소(/insights/주소이름/)도 있다.
 // 영상은 썸네일을 누르면 유튜브에서 열린다.
 import { shownColumns as columns, shownVideos as videos } from '../insights';
+import ColumnBody from './ColumnBody.astro';
+import { url } from '../site';
 
 const dot = (d: string) => d.replaceAll('-', '.');
 ---
@@ -41,19 +43,9 @@ const dot = (d: string) => d.replaceAll('-', '.');
 
                 <article class="pb-12 md:pl-[22rem]">
                   <p class="t-body text-foreground-subtle">{c.author}</p>
-                  <div class="mt-6 max-w-[68rem] space-y-7 t-mid leading-[1.95] text-foreground-muted">
-                    {c.body.map((p) =>
-                      p.startsWith('## ') ? (
-                        <h4 class="pt-8 font-serif t-head leading-snug font-bold text-foreground">{p.slice(3)}</h4>
-                      ) : p.startsWith('> ') ? (
-                        <blockquote class="border-l-2 border-primary py-1 pl-6 font-serif t-head leading-relaxed font-bold text-foreground">{p.slice(2)}</blockquote>
-                      ) : /^\d+\. /.test(p) ? (
-                        <p class="grid grid-cols-[2.8rem_1fr] text-foreground"><span class="font-serif font-bold text-primary-bright">{p.match(/^\d+/)![0]}</span><span>{p.replace(/^\d+\. /, '')}</span></p>
-                      ) : (
-                        <p>{p}</p>
-                      ),
-                    )}
-                  </div>
+                  <div class="mt-6 max-w-[68rem]"><ColumnBody body={c.body} heading="h4" /></div>
+                  <!-- 이 글만 담긴 개별 주소. 검색·AI가 글 하나하나를 따로 찾아 보여 줄 수 있게 한다 -->
+                  <a href={url(`/insights/${c.slug}/`)} class="mt-10 inline-flex items-center gap-2 t-body font-semibold text-foreground-subtle transition-colors hover:text-primary-bright">이 글만 따로 보기 <span aria-hidden="true">↗</span></a>
                 </article>
               </details>
             </li>

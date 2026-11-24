@@ -46,22 +46,11 @@ import Conditions from '../components/Conditions.astro';
 import ServiceFlow from '../components/ServiceFlow.astro';
 import Insights from '../components/Insights.astro';
 import { columns } from '../insights';
+import { columnSchema } from '../seo';
 import { hero, results, leaders, people, campaignsCopy, services, voice } from '../content';
 
-// 검색·AI용 칼럼 정보(누가 언제 쓴 글인지). 화면의 인사이트 섹션과 같은 내용이다.
-const orgId = new URL(url('/#organization'), Astro.site!).href;
-const schema = columns.map((c) => ({
-  '@context': 'https://schema.org',
-  '@type': 'Article',
-  headline: c.title,
-  description: c.summary,
-  datePublished: c.date,
-  inLanguage: 'ko-KR',
-  url: new URL(url('/#insights'), Astro.site!).href,
-  author: { '@type': 'Person', name: c.author.replace(/ ?대표$/, ''), jobTitle: '대표', worksFor: { '@id': orgId } },
-  publisher: { '@id': orgId },
-  articleBody: c.body.map((p) => p.replace(/^(## |> )/, '')).join('\n\n'),
-}));
+// 검색·AI용 칼럼 정보(누가 언제 쓴 글인지). 화면의 고민과 생각 섹션과 같은 내용이다.
+const schema = columns.map((c) => columnSchema(c, Astro.site!));
 ---
 
 <Layout title="병원 마케팅·병원 브랜딩 전문" schema={schema}>

@@ -9,7 +9,8 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<ul class="mx-auto grid max-w-[120rem] gap-6 md:grid-cols-2 md:gap-8">
+<!-- 휴대폰: 카드가 옆으로 넘어간다(swipe-row, global.css) -->
+<ul class="swipe-row mx-auto grid max-w-[120rem] gap-6 md:grid-cols-2 md:gap-8">
   {
     items.map(({ slug, label, description, metric, value }, i) => (
       <li>

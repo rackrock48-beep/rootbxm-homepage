@@ -73,8 +73,15 @@ const { eyebrow, title, letter, signature, pillars } = conditions;
 <!-- 대표의 글 -->
 <figure class="mx-auto mt-24 max-w-[72rem] border-t border-border-accent pt-16 md:mt-32">
   <p class="title-gather mb-10 text-center t-head font-black tracking-[0.2em] whitespace-nowrap text-white">{pillars.map((p) => p.title).join(' & ')}</p>
+  <!-- 첫 두 문단만 보이고, 나머지는 "이어 읽기"를 눌러 그 자리에서 펼친다 -->
   <blockquote class="space-y-6 text-center t-mid leading-[1.9] whitespace-pre-line text-foreground-muted">
-    {letter.map((p) => <p>{p}</p>)}
+    {letter.slice(0, 2).map((p) => <p>{p}</p>)}
+    <details class="group/letter">
+      <summary class="mx-auto flex w-fit cursor-pointer list-none items-center gap-2 rounded-full border border-border-accent px-6 py-2.5 t-body font-semibold text-primary-bright transition-colors hover:border-primary group-open/letter:hidden [&::-webkit-details-marker]:hidden">
+        이어 읽기 <span aria-hidden="true">↓</span>
+      </summary>
+      <div class="space-y-6">{letter.slice(2).map((p) => <p>{p}</p>)}</div>
+    </details>
   </blockquote>
   <!-- 서명: "대표 노규락" 옆에 손글씨 사인 -->
   <figcaption class="mt-10 flex items-center justify-center gap-4 t-mid font-bold tracking-[0.15em] text-foreground">

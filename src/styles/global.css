@@ -560,3 +560,26 @@
   font-size: 1.5rem;
   @variant md { font-size: 1.6rem; }
 }
+
+/* 휴대폰(500px 미만): 세로로 길게 쌓이던 카드 목록(성공 사례·4단계·약속)을 옆으로 넘기는 한 줄로 바꾼다.
+   카드 폭을 화면의 84%로 두어 다음 카드가 살짝 보이게 하고, 손을 떼면 카드 하나씩 딱 맞게 멈춘다 */
+@media (max-width: 499px) {
+  .swipe-row {
+    display: flex;
+    gap: 1.2rem;
+    margin-inline: calc(var(--spacing-gutter, 1.6rem) * -1);
+    padding-inline: var(--spacing-gutter, 1.6rem);
+    padding-bottom: 0.4rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--spacing-gutter, 1.6rem);
+    scrollbar-width: none;
+  }
+  .swipe-row::-webkit-scrollbar {
+    display: none;
+  }
+  .swipe-row > li {
+    flex: 0 0 84%;
+    scroll-snap-align: start;
+  }
+}

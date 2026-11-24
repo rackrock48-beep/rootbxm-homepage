@@ -40,7 +40,8 @@ const drawable = (svg: string) => svg.replace(/<(path|circle|rect) /g, '<$1 path
 </figure>
 
 <!-- 약속 카드 6개 -->
-<ul class="mx-auto mt-14 grid max-w-[112rem] gap-4 sm:grid-cols-2 md:mt-16 lg:grid-cols-3 lg:gap-5">
+<!-- 휴대폰: 카드가 옆으로 넘어간다(swipe-row, global.css) -->
+<ul class="swipe-row mx-auto mt-14 grid max-w-[112rem] gap-4 sm:grid-cols-2 md:mt-16 lg:grid-cols-3 lg:gap-5">
   {
     items.map(({ icon, title, description }, i) => (
       <li class="flex flex-col rounded-3xl border border-border-accent bg-background p-7 md:p-8">

@@ -50,7 +50,8 @@ const tones = ['bg-primary/10', 'bg-primary/20', 'bg-primary/35', 'bg-primary'];
   <h2 class="t-headline leading-snug font-extrabold whitespace-pre-line">{title}</h2>
 </div>
 
-<ol class="mx-auto mt-12 grid max-w-[120rem] gap-4 sm:grid-cols-2 md:mt-16 lg:grid-cols-4 lg:gap-5">
+<!-- 휴대폰: 카드가 옆으로 넘어간다(swipe-row, global.css). 다음 카드가 살짝 보여 넘길 수 있음을 알려 준다 -->
+<ol class="swipe-row mx-auto mt-12 grid max-w-[120rem] gap-4 sm:grid-cols-2 md:mt-16 lg:grid-cols-4 lg:gap-5">
   {
     items.map(({ art, badge, name, period, headline, lead, tag, points, highlight }, i) => (
       <li class="flex flex-col">

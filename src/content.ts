@@ -12,7 +12,6 @@ import jooLogos from './assets/logos-joo.png';
 export const hero = {
   eyebrow: '뿌리깊은 나무가 단단한 열매를 맺습니다',
   title: '병원 브랜딩의 기본을 생각합니다',
-  proof: ['LG 광고대행사 출신 대표', '광고 캠페인 480건+', '원장님 스물한 분 심층 인터뷰'],
   name: 'ROOT Branding × Marketing',
   image: undefined as ImageMetadata | undefined,
   imageAlt: '',

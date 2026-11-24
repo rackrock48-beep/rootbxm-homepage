@@ -32,7 +32,7 @@ const dot = (d: string) => d.replaceAll('-', '.');
                   <time datetime={c.date} class="t-body tabular-nums text-foreground-subtle md:pt-2">{dot(c.date)}</time>
                   <span class="block">
                     <span class="block font-serif t-head leading-snug font-bold transition-colors hover:text-primary-bright">{c.title}</span>
-                    <span class="mt-3 block t-body leading-relaxed text-foreground-muted">{c.summary}</span>
+                    <span class="mt-3 block max-w-[60rem] t-body leading-relaxed text-foreground-muted">{c.summary}</span>
                     <span class="mt-5 inline-flex items-center gap-2 t-body font-semibold text-primary-bright">
                       <span class="group-open/col:hidden">전문 읽기</span>
                       <span class="hidden group-open/col:inline">접기</span>

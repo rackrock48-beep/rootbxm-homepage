@@ -42,7 +42,7 @@ export const GET: APIRoute = ({ site }) => {
     ...[...columns].sort((a, b) => b.date.localeCompare(a.date)).map((c) => `- [${c.title}](${abs(`/insights/${c.slug}/`)}) (${c.author}, ${c.date}): ${c.summary}`),
     '',
     '## 페이지',
-    `- [홈](${abs('/')}): 회사 소개, 브랜드 철학, 대표 소개, 성공 사례, 서비스, 약속, 원장님 고민(원장님 인터뷰·칼럼·영상), 문의`,
+    `- [홈](${abs('/')}): 회사 소개, 브랜드 철학, 대표 소개, 성공 사례, 서비스, 약속, 원장님 고민(원장님 인터뷰·칼럼·영상·성향 테스트), 문의`,
     `- [원장님 고민 30가지](${abs('/concerns/')})`,
     `- [칼럼 RSS](${abs('/rss.xml')})`,
     `- [사이트맵](${abs('/sitemap-index.xml')})`,

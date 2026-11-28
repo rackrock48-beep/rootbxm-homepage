@@ -18,9 +18,7 @@ export const SITE = {
     { href: '/#company', label: '대표 소개' },
     { href: '/#conditions', label: '브랜드 철학' },
     { href: '/#services', label: '서비스' },
-    { href: '/#promise', label: '약속' },
     { href: '/#insights', label: '원장님 고민' },
-    { href: '/diagnosis/', label: '성향 진단' },
     { href: '/#contact', label: '문의' },
   ],
   // 네이버 블로그 주소. 넣으면 상단·바닥글 메뉴에 "네이버 블로그" 탭이 생긴다(비우면 숨김).

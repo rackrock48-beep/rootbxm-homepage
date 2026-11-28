@@ -6,7 +6,7 @@ import Section from '../../components/Section.astro';
 import Button from '../../components/Button.astro';
 import ColumnBody from '../../components/ColumnBody.astro';
 import { url, SITE } from '../../site';
-import { shownColumns as columns } from '../../insights';
+import { shownColumns as columns, columnLabel } from '../../insights';
 import { breadcrumb, columnSchema } from '../../seo';
 
 export function getStaticPaths() {
@@ -37,7 +37,7 @@ const dot = (d: string) => d.replaceAll('-', '.');
         <p class="t-body font-semibold tracking-[0.3em] text-primary">COLUMN</p>
         <h1 class="mt-6 font-serif t-headline leading-snug font-bold">{c.title}</h1>
         <p class="mt-6 t-body text-foreground-subtle">
-          <span>{c.author}</span><span aria-hidden="true" class="mx-3">·</span><time datetime={c.date} class="tabular-nums">{dot(c.date)}</time>
+          <span>{columnLabel(c.slug)}</span><span aria-hidden="true" class="mx-3">·</span><span>{c.author}</span>
         </p>
       </header>
 
@@ -58,7 +58,7 @@ const dot = (d: string) => d.replaceAll('-', '.');
             <li class="border-b border-border-accent">
               <a href={url(`/insights/${o.slug}/`)} class="group flex items-baseline justify-between gap-6 py-5">
                 <span class="font-serif t-mid font-bold transition-colors group-hover:text-primary-bright">{o.title}</span>
-                <time datetime={o.date} class="shrink-0 t-body tabular-nums text-foreground-subtle">{dot(o.date)}</time>
+                <span class="shrink-0 t-body text-foreground-subtle">{columnLabel(o.slug)}</span>
               </a>
             </li>
           ))}

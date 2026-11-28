@@ -2,7 +2,7 @@
 // 인사이트 섹션(첫 페이지, 문의 바로 위). 대표 칼럼과 영상 썸네일. 글·영상은 src/insights.ts에서 추가한다.
 // 칼럼은 제목을 누르면 그 자리에서 전문이 펼쳐진다(자바스크립트 없이 <details>). 글마다 검색용 개별 주소(/insights/주소이름/)도 있다.
 // 영상은 썸네일을 누르면 유튜브에서 열린다.
-import { shownColumns as columns, shownVideos as videos } from '../insights';
+import { shownColumns as columns, shownVideos as videos, columnLabel } from '../insights';
 import ColumnBody from './ColumnBody.astro';
 import { url } from '../site';
 
@@ -32,7 +32,7 @@ const brief = (i: number) => i < list.length - 5;
             <li class="border-b border-border-accent">
               <details class="group/col">
                 <summary class:list={['grid cursor-pointer list-none gap-3 md:grid-cols-[12rem_1fr] md:gap-10 [&::-webkit-details-marker]:hidden', brief(i) ? 'py-5 md:py-6' : 'py-8 md:py-10']}>
-                  <time datetime={c.date} class:list={['t-body tabular-nums text-foreground-subtle', !brief(i) && 'md:pt-2']}>{dot(c.date)}</time>
+                  <span class:list={['t-body font-semibold text-primary-bright', !brief(i) && 'md:pt-2']}>{columnLabel(c.slug)}</span>
                   <span class="block">
                     <span class:list={['block font-serif leading-snug font-bold transition-colors hover:text-primary-bright', brief(i) ? 't-mid' : 't-head']}>{c.title}</span>
                     {!brief(i) && <span class="mt-3 block max-w-[60rem] t-body leading-relaxed text-foreground-muted">{c.summary}</span>}

@@ -264,3 +264,7 @@ const preview = import.meta.env.DEV && columns.length === 0 && videos.length ===
 const oldestFirst = <T extends { date: string }>(list: T[]) => [...list].sort((a, b) => a.date.localeCompare(b.date));
 export const shownColumns = oldestFirst(preview ? sampleColumns : columns);
 export const shownVideos = oldestFirst(preview ? sampleVideos : videos);
+
+// 화면에 날짜 대신 보이는 칼럼 번호. 오래된 글부터 '브랜딩 생각 1, 2, 3…'(날짜는 검색·RSS용으로만 남는다)
+const numbered = [...columns].sort((a, b) => a.date.localeCompare(b.date)).map((c) => c.slug);
+export const columnLabel = (slug: string) => `브랜딩 생각 ${numbered.indexOf(slug) + 1}`;

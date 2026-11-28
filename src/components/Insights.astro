@@ -7,6 +7,9 @@ import ColumnBody from './ColumnBody.astro';
 import { url } from '../site';
 
 const dot = (d: string) => d.replaceAll('-', '.');
+// 칼럼은 최근 10편까지만 보인다. 그중 최근 5편은 제목·요약을 보여 주고, 그보다 오래된 글은 제목만 한 줄로 보인다(누르면 전문이 펼쳐지는 건 같다)
+const list = columns.slice(-10);
+const brief = (i: number) => i < list.length - 5;
 ---
 
 <div class="mx-auto max-w-[96rem]">
@@ -25,15 +28,15 @@ const dot = (d: string) => d.replaceAll('-', '.');
     {
       columns.length ? (
         <ul class="mt-5 border-t border-border-accent">
-          {columns.map((c) => (
+          {list.map((c, i) => (
             <li class="border-b border-border-accent">
               <details class="group/col">
-                <summary class="grid cursor-pointer list-none gap-3 py-8 md:grid-cols-[12rem_1fr] md:gap-10 md:py-10 [&::-webkit-details-marker]:hidden">
-                  <time datetime={c.date} class="t-body tabular-nums text-foreground-subtle md:pt-2">{dot(c.date)}</time>
+                <summary class:list={['grid cursor-pointer list-none gap-3 md:grid-cols-[12rem_1fr] md:gap-10 [&::-webkit-details-marker]:hidden', brief(i) ? 'py-5 md:py-6' : 'py-8 md:py-10']}>
+                  <time datetime={c.date} class:list={['t-body tabular-nums text-foreground-subtle', !brief(i) && 'md:pt-2']}>{dot(c.date)}</time>
                   <span class="block">
-                    <span class="block font-serif t-head leading-snug font-bold transition-colors hover:text-primary-bright">{c.title}</span>
-                    <span class="mt-3 block max-w-[60rem] t-body leading-relaxed text-foreground-muted">{c.summary}</span>
-                    <span class="mt-5 inline-flex items-center gap-2 t-body font-semibold text-primary-bright">
+                    <span class:list={['block font-serif leading-snug font-bold transition-colors hover:text-primary-bright', brief(i) ? 't-mid' : 't-head']}>{c.title}</span>
+                    {!brief(i) && <span class="mt-3 block max-w-[60rem] t-body leading-relaxed text-foreground-muted">{c.summary}</span>}
+                    <span class:list={['inline-flex items-center gap-2 t-body font-semibold text-primary-bright', brief(i) ? 'mt-2' : 'mt-5']}>
                       <span class="group-open/col:hidden">전문 읽기</span>
                       <span class="hidden group-open/col:inline">접기</span>
                       <span aria-hidden="true" class="transition-transform group-open/col:rotate-180">↓</span>

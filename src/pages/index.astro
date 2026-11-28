@@ -213,7 +213,7 @@ const schema = columns.map((c) => columnSchema(c, Astro.site!));
       <Fragment slot="after">
         <div id="diagnosis" class="mt-16 scroll-mt-28 rounded-3xl border border-primary bg-background px-6 py-12 text-center md:mt-24 md:px-12 md:py-14">
           <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 t-body font-bold text-primary-foreground">원장님 성향 테스트</p>
-          <h2 class="t-headline leading-snug font-extrabold">원장님 <span class="text-primary-bright">성향</span>에 따른<br /> 브랜드 방향을 테스트해 보세요</h2>
+          <h2 class="t-headline leading-snug font-extrabold">원장님 <span class="text-primary-bright">성향</span>에 따라<br class="md:hidden" /> 브랜드 방향이 바뀝니다.<br />지금 테스트해 보세요</h2>
           <a href={url('/diagnosis/')} class="mt-8 inline-flex min-h-13 items-center gap-2 rounded-full border-2 border-primary px-7 py-3 t-mid font-bold text-foreground transition-colors hover:bg-primary hover:text-primary-foreground">
             성향 테스트하기 <span aria-hidden="true">→</span>
           </a>

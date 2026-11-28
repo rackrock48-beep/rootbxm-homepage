@@ -97,7 +97,7 @@ export function columnSchema(c: Column, site: URL) {
     inLanguage: 'ko-KR',
     url: pageUrl,
     mainEntityOfPage: pageUrl,
-    articleSection: '고민과 생각',
+    articleSection: '원장님 고민',
     about: ['병원 마케팅', '병원 브랜딩'],
     author: { '@type': 'Person', '@id': personId(author, site), name: author, jobTitle: '대표', worksFor: { '@id': abs('/#organization', site) } },
     publisher: { '@id': abs('/#organization', site) },

@@ -29,7 +29,7 @@ export const GET: APIRoute = ({ site }) => {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>${esc(SITE.name)} 고민과 생각</title>
+    <title>${esc(SITE.name)} 원장님 고민</title>
     <link>${abs('/#insights')}</link>
     <atom:link href="${abs('/rss.xml')}" rel="self" type="application/rss+xml" />
     <description>병원 전문 브랜딩·마케팅 회사 루트(ROOT) 대표가 직접 쓰는 병원 브랜딩·마케팅 칼럼</description>

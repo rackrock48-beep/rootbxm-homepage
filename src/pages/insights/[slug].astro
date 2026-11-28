@@ -1,6 +1,6 @@
 ---
 // 칼럼 한 편의 개별 주소(/insights/주소이름/). 글은 src/insights.ts에서 쓴다.
-// 사람은 주로 첫 페이지 "고민과 생각" 섹션에서 읽고, 이 페이지는 검색·AI·네이버가 글 하나하나를 따로 찾아 보여 주도록 둔다.
+// 사람은 주로 첫 페이지 "원장님 고민" 섹션에서 읽고, 이 페이지는 검색·AI·네이버가 글 하나하나를 따로 찾아 보여 주도록 둔다.
 import Layout from '../../layouts/Layout.astro';
 import Section from '../../components/Section.astro';
 import Button from '../../components/Button.astro';
@@ -18,7 +18,7 @@ const others = columns.filter((o) => o.slug !== c.slug).slice(0, 3);
 const site = Astro.site!;
 const schema = [
   breadcrumb(site, [
-    { name: '고민과 생각', path: '/#insights' },
+    { name: '원장님 고민', path: '/#insights' },
     { name: c.title, path: `/insights/${c.slug}/` },
   ]),
   columnSchema(c, site),
@@ -29,7 +29,7 @@ const dot = (d: string) => d.replaceAll('-', '.');
 <Layout title={c.title} description={c.summary} schema={schema} article={{ published: c.date, author: c.author }}>
   <Section narrow>
     <a href={url('/#insights')} class="inline-flex min-h-11 items-center gap-2 t-body font-semibold text-foreground-muted hover:text-primary">
-      <span aria-hidden="true">←</span> 고민과 생각
+      <span aria-hidden="true">←</span> 원장님 고민
     </a>
 
     <article class="mx-auto mt-10 max-w-[68rem]">

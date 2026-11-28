@@ -213,7 +213,19 @@ const schema = columns.map((c) => columnSchema(c, Astro.site!));
     </Insights>
   </Section>
 
-  <Section id="contact" align="center" eyebrow="문의" title={'원장님의 병원은\n진료의 가치만큼 평가받고 있습니까?'}>
+  <!-- 원장님 성향 진단으로 가는 상자. 진단 문항·타입은 src/diagnosis.ts -->
+  <Section id="diagnosis">
+    <div class="mx-auto max-w-[96rem] rounded-3xl border border-primary bg-surface px-6 py-12 text-center md:px-12 md:py-14">
+      <p class="mb-4 inline-flex rounded-lg bg-primary px-3 py-1 t-body font-bold text-primary-foreground">원장님 성향 진단</p>
+      <h2 class="t-headline leading-snug font-extrabold">병원 브랜딩은<br class="md:hidden" /> <span class="text-primary-bright">원장님을 아는 데서</span> 시작합니다</h2>
+      <p class="mx-auto mt-5 max-w-[56rem] t-mid leading-relaxed text-foreground-muted">12개 질문으로 원장님이 만들고 싶은 병원의 브랜딩 타입을 알아보세요.<br />약 2분이면 결과를 바로 확인할 수 있습니다.</p>
+      <a href={url('/diagnosis/')} class="mt-8 inline-flex min-h-13 items-center gap-2 rounded-full border border-primary bg-primary px-7 py-3 t-mid font-bold text-primary-foreground transition-colors hover:bg-secondary hover:text-secondary-foreground">
+        진단 시작하기 <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </Section>
+
+  <Section id="contact" tone="surface" align="center" eyebrow="문의" title={'원장님의 병원은\n진료의 가치만큼 평가받고 있습니까?'}>
     <ContactChannels />
   </Section>
 

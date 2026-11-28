@@ -16,7 +16,6 @@ export const SITE = {
   nav: [
     { href: '/#results', label: '성공 사례' },
     { href: '/#company', label: '대표 소개' },
-    { href: '/#campaigns', label: '주요 경력' },
     { href: '/#conditions', label: '브랜드 철학' },
     { href: '/#services', label: '서비스' },
     { href: '/#promise', label: '약속' },

@@ -1,5 +1,5 @@
 ---
-// 원장님 성향 진단(병원 브랜딩 타입 진단, 간이판 12문항) 페이지(/diagnosis).
+// 원장님 성향 진단(병원 브랜딩 타입 진단, 간이판 13문항) 페이지(/diagnosis).
 // 문항·타입 글은 src/diagnosis.ts에서 고친다.
 // 이 페이지만 예외로 짧은 자바스크립트(아래 <script>)를 쓴다. 답을 더해 타입을 고르는 계산이라 CSS만으로는 할 수 없다. 외부 라이브러리는 쓰지 않는다.
 import Layout from '../layouts/Layout.astro';
@@ -20,7 +20,7 @@ const data = {
 };
 ---
 
-<Layout title="원장님 성향 진단 · 병원 브랜딩 타입" description="12개 질문으로 원장님이 만들고 싶은 병원의 브랜딩 타입을 알아보세요. 원장님 성향에 따라 병원 브랜딩의 얼굴, 말투, 무대가 달라집니다." schema={schema}>
+<Layout title="원장님 성향 진단 · 병원 브랜딩 타입" description="13개 질문으로 원장님이 만들고 싶은 병원의 브랜딩 타입을 알아보세요. 원장님 성향에 따라 병원 브랜딩의 얼굴, 말투, 무대가 달라집니다." schema={schema}>
   <Section narrow>
     <a href={url('/')} class="inline-flex min-h-11 items-center gap-2 t-mid font-semibold text-foreground-muted hover:text-primary">
       <span aria-hidden="true">←</span> 홈으로 돌아가기
@@ -33,7 +33,7 @@ const data = {
         병원 브랜딩은 원장님을 아는 데서 시작합니다. 원장님 성향에 따라 브랜드의 얼굴도, 환자에게 건네는 말투도, 선택받는 무대도 달라집니다.
       </p>
       <ul class="mt-6 flex flex-wrap gap-2 t-body font-semibold text-foreground-muted">
-        <li class="rounded-full border border-border-accent px-4 py-1.5">12문항</li>
+        <li class="rounded-full border border-border-accent px-4 py-1.5">13문항</li>
         <li class="rounded-full border border-border-accent px-4 py-1.5">약 2분</li>
         <li class="rounded-full border border-border-accent px-4 py-1.5">결과 바로 확인</li>
       </ul>
@@ -74,7 +74,7 @@ const data = {
       ))}
 
       <div class="border-t border-border-accent pt-8 text-center">
-        <p id="diag-progress" class="t-mid font-semibold text-foreground-muted" aria-live="polite">13개 중 0개 답했어요</p>
+        <p id="diag-progress" class="t-mid font-semibold text-foreground-muted" aria-live="polite">14개 중 0개 답했어요</p>
         <p id="diag-error" class="mt-2 t-mid font-semibold text-warning" hidden>아직 답하지 않은 질문이 있어요. 표시된 질문부터 골라 주세요.</p>
         <Button type="submit" variant="primary" size="lg" class="mt-5">결과 보기</Button>
       </div>

@@ -1,4 +1,4 @@
-// 첫 페이지 인사이트 섹션(#insights)의 칼럼과 영상. 새 글·영상은 배열 아무 곳에나 추가하면 날짜 최신순으로 자동 정렬된다.
+// 첫 페이지 인사이트 섹션(#insights)의 칼럼과 영상. 새 글·영상은 배열 아무 곳에나 추가하면 날짜순(최신 글이 맨 아래)으로 자동 정렬된다.
 // 칼럼 본문(body)은 문단 하나가 한 줄. "## "는 소제목, "> "는 크게 보이는 인용, "1. "은 번호 목록이 된다.
 // 영상은 유튜브 주소의 v= 뒤 11자리(youtubeId)만 넣으면 썸네일이 자동으로 나온다.
 
@@ -260,7 +260,7 @@ const sampleVideos: Video[] = [
 ];
 
 const preview = import.meta.env.DEV && columns.length === 0 && videos.length === 0;
-// 날짜가 최신인 글이 맨 위로 오도록 자동 정렬한다(배열에 넣는 순서는 상관없다)
-const newestFirst = <T extends { date: string }>(list: T[]) => [...list].sort((a, b) => b.date.localeCompare(a.date));
-export const shownColumns = newestFirst(preview ? sampleColumns : columns);
-export const shownVideos = newestFirst(preview ? sampleVideos : videos);
+// 화면에서는 오래된 글이 위, 최신 글이 맨 아래로 오도록 날짜순으로 자동 정렬한다(배열에 넣는 순서는 상관없다). RSS는 따로 최신순이다
+const oldestFirst = <T extends { date: string }>(list: T[]) => [...list].sort((a, b) => a.date.localeCompare(b.date));
+export const shownColumns = oldestFirst(preview ? sampleColumns : columns);
+export const shownVideos = oldestFirst(preview ? sampleVideos : videos);
